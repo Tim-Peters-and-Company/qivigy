@@ -4,10 +4,13 @@ import { useState } from "react";
 import {
   weightToKg,
   calculateFirstInfusion,
+  calculateSubsequentInfusion,
   formatInfusionTime,
   type WeightUnit,
   type FirstInfusionResult,
 } from "@/lib/qivigy-calc";
+
+type InfusionMode = "first" | "subsequent";
 
 const DOSE_MIN = 300;
 const DOSE_MAX = 800;
@@ -15,11 +18,20 @@ const DOSE_ERROR =
   "The dose is not within the FDA-approved range of 300 to 800 mg/kg. Please enter a dose within that range.";
 
 export default function QivigyCalculator() {
+  const [mode, setMode] = useState<InfusionMode>("first");
   const [weight, setWeight] = useState("");
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
   const [dose, setDose] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<FirstInfusionResult | null>(null);
+  const [resultMode, setResultMode] = useState<InfusionMode | null>(null);
+
+  function handleTabClick(newMode: InfusionMode) {
+    setMode(newMode);
+    setResult(null);
+    setResultMode(null);
+    setError(null);
+  }
 
   function handleCalculate() {
     setError(null);
@@ -40,15 +52,17 @@ export default function QivigyCalculator() {
     }
 
     const weightKg = weightToKg(weightNum, weightUnit);
-    const calcResult = calculateFirstInfusion({
-      weightKg,
-      doseMgPerKg: doseNum,
-    });
+    const calcResult =
+      mode === "first"
+        ? calculateFirstInfusion({ weightKg, doseMgPerKg: doseNum })
+        : calculateSubsequentInfusion({ weightKg, doseMgPerKg: doseNum });
     setResult(calcResult);
+    setResultMode(mode);
   }
 
   function handleRecalculate() {
     setResult(null);
+    setResultMode(null);
     setError(null);
   }
 
@@ -56,12 +70,25 @@ export default function QivigyCalculator() {
     window.print();
   }
 
-  if (result) {
+  if (result && resultMode !== null) {
     const weightKg = weightToKg(parseFloat(weight), weightUnit);
-    // Exclude 120+ row when infusion finishes before 120 min (grams would be negative)
+    const isSubsequent = resultMode === "subsequent";
+    // Exclude last row when infusion finishes early (grams would be negative)
     const displayRows = result.scheduleRows.filter(
       (r) => r.gramsPerInterval >= 0
     );
+    const lastFullInterval = isSubsequent ? "30-44" : "90-119";
+    // Minute-by-minute: grams this minute and cumulative (for debug accordion)
+    const minuteRows: { minute: number; rate: number; gramsThisMinute: number; cumulativeGrams: number }[] = [];
+    let cum = 0;
+    for (let t = 1; t <= result.infusionTimeMinutes; t++) {
+      const rate = isSubsequent
+        ? (t < 15 ? 4 : t < 30 ? 8 : t < 45 ? 12 : 8)
+        : (t < 30 ? 1 : t < 60 ? 2 : t < 90 ? 4 : t < 120 ? 6 : 8);
+      const grams = (rate * weightKg) / 1000;
+      cum += grams;
+      minuteRows.push({ minute: t, rate, gramsThisMinute: grams, cumulativeGrams: cum });
+    }
     return (
       <div className="min-h-screen p-6 print:p-0">
         <div className="mx-auto max-w-4xl">
@@ -72,14 +99,23 @@ export default function QivigyCalculator() {
           <div className="mb-2 flex gap-4 border-b border-gray-300">
             <button
               type="button"
-              className="border-b-2 border-blue-600 pb-2 font-semibold"
+              onClick={() => handleTabClick("first")}
+              className={
+                resultMode === "first"
+                  ? "border-b-2 border-blue-600 pb-2 font-semibold"
+                  : "pb-2 text-gray-500"
+              }
             >
               FIRST INFUSION
             </button>
             <button
               type="button"
-              className="pb-2 text-gray-500"
-              disabled
+              onClick={() => handleTabClick("subsequent")}
+              className={
+                resultMode === "subsequent"
+                  ? "border-b-2 border-blue-600 pb-2 font-semibold"
+                  : "pb-2 text-gray-500"
+              }
             >
               SUBSEQUENT INFUSIONS
             </button>
@@ -113,7 +149,9 @@ export default function QivigyCalculator() {
           <div className="print-results">
             <div className="mb-2 flex items-center justify-between">
               <h2 className="text-lg font-semibold">
-                Infusion Rate Schedule for First Infusion
+                {isSubsequent
+                  ? "Infusion Rate Schedule for Subsequent Infusions"
+                  : "Infusion Rate Schedule for First Infusion"}
               </h2>
               <div className="flex gap-4 no-print">
                 <button
@@ -165,7 +203,9 @@ export default function QivigyCalculator() {
                   <td className="border border-gray-300 p-2 font-medium">Grams infused per 30 min.</td>
                   {displayRows.map((row) => (
                     <td key={row.interval} className="border border-gray-300 p-2">
-                      {row.gramsPerInterval.toFixed(1)}
+                      {isSubsequent && row.interval !== "45+"
+                        ? ((row.rateMgPerKgMin * 30 * weightKg) / 1000).toFixed(1)
+                        : row.gramsPerInterval.toFixed(1)}
                     </td>
                   ))}
                 </tr>
@@ -173,7 +213,7 @@ export default function QivigyCalculator() {
                   <td className="border border-gray-300 p-2 font-medium">Cumulative grams infused</td>
                   {displayRows.map((row) => (
                     <td key={row.interval} className="border border-gray-300 p-2">
-                      {(row.interval === "90-119"
+                      {(row.interval === lastFullInterval
                         ? Math.min(row.cumulativeGrams, result.totalDoseG)
                         : row.cumulativeGrams
                       ).toFixed(1)}
@@ -220,7 +260,21 @@ export default function QivigyCalculator() {
                   <br />
                   {formatInfusionTime(result.infusionTimeMinutes)}
                   <br />
-                  {result.infusionTimeMinutes >= 120 ? (
+                  {isSubsequent ? (
+                    result.infusionTimeMinutes >= 45 ? (
+                      <>
+                        Calculation: 15 + 15 + 15 + {result.infusionTimeMinutes - 45} = 45 + {result.infusionTimeMinutes - 45} = {result.infusionTimeMinutes} min
+                        <br />
+                        (0-14: 15 min; 15-29: 15 min; 30-44: 15 min; 45+: {result.infusionTimeMinutes - 45} min partial)
+                      </>
+                    ) : result.infusionTimeMinutes >= 30 ? (
+                      <>Calculation: 15 + 15 + {result.infusionTimeMinutes - 30} = 30 + {result.infusionTimeMinutes - 30} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: 15; 30-44: {result.infusionTimeMinutes - 30} min partial)</>
+                    ) : result.infusionTimeMinutes >= 15 ? (
+                      <>Calculation: 15 + {result.infusionTimeMinutes - 15} = 15 + {result.infusionTimeMinutes - 15} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: {result.infusionTimeMinutes - 15} min partial)</>
+                    ) : (
+                      <>Calculation: {result.infusionTimeMinutes} min (0-14: {result.infusionTimeMinutes} min partial)</>
+                    )
+                  ) : result.infusionTimeMinutes >= 120 ? (
                     <>
                       Calculation: 30 + 30 + 30 + 30 + {result.infusionTimeMinutes - 120} = 120 + {result.infusionTimeMinutes - 120} = {result.infusionTimeMinutes} min
                       <br />
@@ -243,7 +297,7 @@ export default function QivigyCalculator() {
                       <tr className="bg-amber-100">
                         <th className="border border-amber-200 p-2">Interval (min)</th>
                         <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
-                        <th className="border border-amber-200 p-2">Grams per 30 min</th>
+                        <th className="border border-amber-200 p-2">{isSubsequent ? "Grams per 15 min" : "Grams per 30 min"}</th>
                         <th className="border border-amber-200 p-2">Math</th>
                       </tr>
                     </thead>
@@ -253,10 +307,16 @@ export default function QivigyCalculator() {
                           <td className="border border-amber-200 p-2">{r.interval}</td>
                           <td className="border border-amber-200 p-2">{r.rateMgPerKgMin.toFixed(1)}</td>
                           <td className="border border-amber-200 p-2">
-                            {r.interval === "120+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : `${r.gramsPerInterval.toFixed(2)} g`}
+                            {isSubsequent && r.interval === "45+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : !isSubsequent && r.interval === "120+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : `${r.gramsPerInterval.toFixed(2)} g`}
                           </td>
                           <td className="border border-amber-200 p-2 text-xs">
-                            {r.interval === "120+" ? (
+                            {isSubsequent ? (
+                              r.interval === "45+" ? (
+                                <>TD − cumulative(0–44) = {result.totalDoseG.toFixed(2)} − {displayRows[2].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
+                              ) : (
+                                <>{r.rateMgPerKgMin} × 15 × W / 1000 = {r.rateMgPerKgMin} × 15 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
+                              )
+                            ) : r.interval === "120+" ? (
                               <>TD − cumulative(0–119) = {result.totalDoseG.toFixed(2)} − {displayRows[3].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
                             ) : (
                               <>{r.rateMgPerKgMin} × 30 × W / 1000 = {r.rateMgPerKgMin} × 30 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
@@ -281,21 +341,17 @@ export default function QivigyCalculator() {
                     <tbody>
                       {displayRows.map((r, i) => {
                         const prevCumulative = i === 0 ? 0 : displayRows[i - 1].cumulativeGrams;
+                        const capCumulative = (r.interval === lastFullInterval ? Math.min(r.cumulativeGrams, result.totalDoseG) : r.cumulativeGrams);
                         return (
                           <tr key={r.interval}>
                             <td className="border border-amber-200 p-2">{r.interval}</td>
                             <td className="border border-amber-200 p-2">{r.gramsPerInterval.toFixed(2)} g</td>
-                            <td className="border border-amber-200 p-2">
-                              {(r.interval === "90-119"
-                                ? Math.min(r.cumulativeGrams, result.totalDoseG)
-                                : r.cumulativeGrams
-                              ).toFixed(2)} g
-                            </td>
+                            <td className="border border-amber-200 p-2">{capCumulative.toFixed(2)} g</td>
                             <td className="border border-amber-200 p-2 text-xs">
                               {i === 0 ? (
-                                <>{r.rateMgPerKgMin} × 30 × W / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
-                              ) : r.interval === "120+" ? (
-                                <>cumulative(0–119) + partial = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g = TD</>
+                                <>{r.rateMgPerKgMin} × {isSubsequent ? "15" : "30"} × W / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
+                              ) : (isSubsequent && r.interval === "45+") || (!isSubsequent && r.interval === "120+") ? (
+                                <>cumulative(0–{isSubsequent ? "44" : "119"}) + partial = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g = TD</>
                               ) : (
                                 <>cumulative(prev) + this = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g</>
                               )}
@@ -305,6 +361,36 @@ export default function QivigyCalculator() {
                       })}
                     </tbody>
                   </table>
+                </dd>
+                <dt className="mt-2">Minute-by-minute</dt>
+                <dd className="ml-0">
+                  <details className="rounded border border-amber-200 bg-amber-100/50">
+                    <summary className="cursor-pointer select-none px-3 py-2 font-medium text-amber-900 hover:bg-amber-100">
+                      Grams infused each minute and cumulative grams
+                    </summary>
+                    <div className="px-2 pb-2">
+                      <table className="mt-2 w-full border-collapse border border-amber-200 text-left text-amber-800">
+                        <thead>
+                          <tr className="bg-amber-100 sticky top-0">
+                            <th className="border border-amber-200 p-2">Minute</th>
+                            <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
+                            <th className="border border-amber-200 p-2">Grams this minute</th>
+                            <th className="border border-amber-200 p-2">Cumulative grams</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {minuteRows.map((row) => (
+                            <tr key={row.minute}>
+                              <td className="border border-amber-200 p-2">{row.minute}</td>
+                              <td className="border border-amber-200 p-2">{row.rate.toFixed(1)}</td>
+                              <td className="border border-amber-200 p-2">{row.gramsThisMinute.toFixed(4)}</td>
+                              <td className="border border-amber-200 p-2">{row.cumulativeGrams.toFixed(4)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </details>
                 </dd>
               </dl>
             </section>
@@ -324,14 +410,23 @@ export default function QivigyCalculator() {
         <div className="mb-2 flex gap-4 border-b border-gray-300">
           <button
             type="button"
-            className="border-b-2 border-blue-600 pb-2 font-semibold"
+            onClick={() => handleTabClick("first")}
+            className={
+              mode === "first"
+                ? "border-b-2 border-blue-600 pb-2 font-semibold"
+                : "pb-2 text-gray-500"
+            }
           >
             FIRST INFUSION
           </button>
           <button
             type="button"
-            className="pb-2 text-gray-500"
-            disabled
+            onClick={() => handleTabClick("subsequent")}
+            className={
+              mode === "subsequent"
+                ? "border-b-2 border-blue-600 pb-2 font-semibold"
+                : "pb-2 text-gray-500"
+            }
           >
             SUBSEQUENT INFUSIONS
           </button>

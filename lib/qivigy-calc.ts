@@ -8,6 +8,10 @@ const CONCENTRATION_MG_PER_ML = 100;
 const RATES_MG_KG_MIN = [1.0, 2.0, 4.0, 6.0, 8.0] as const;
 const INTERVAL_LABELS = ["0-29", "30-59", "60-89", "90-119", "120+"] as const;
 
+// Subsequent: 15-min intervals; rates 4, 8, 12, 8 mg/kg/min (per reference schedule: 25.2 g in 45 min, then 9.8 at 8)
+const SUBSEQUENT_RATES_MG_KG_MIN = [4.0, 8.0, 12.0, 8.0] as const;
+const SUBSEQUENT_INTERVAL_LABELS = ["0-14", "15-29", "30-44", "45+"] as const;
+
 export type WeightUnit = "kg" | "lbs";
 
 export interface FirstInfusionInput {
@@ -137,6 +141,94 @@ export function calculateFirstInfusion(
   const totalDose = totalDoseG(weightKg, doseMgPerKg);
   const infusionTimeMinutes = firstInfusionTimeMinutes(weightKg, totalDose);
   const scheduleRows = buildFirstInfusionSchedule(
+    weightKg,
+    totalDose,
+    infusionTimeMinutes
+  );
+  return {
+    totalDoseG: totalDose,
+    infusionTimeMinutes,
+    scheduleRows,
+  };
+}
+
+/**
+ * Subsequent infusion: iterate by minute until cumulative dose >= total dose.
+ * Rates: T < 15 → 4.0; 15 ≤ T < 30 → 8.0; 30 ≤ T < 45 → 12.0; T ≥ 45 → 8.0 mg/kg/min.
+ * Returns infusion time in minutes.
+ */
+export function subsequentInfusionTimeMinutes(
+  weightKg: number,
+  totalDoseG: number
+): number {
+  let CD = 0;
+  let T = 0;
+  const W = weightKg;
+
+  while (CD < totalDoseG) {
+    T += 1;
+    if (T < 15) {
+      CD += (SUBSEQUENT_RATES_MG_KG_MIN[0] * W) / 1000;
+    } else if (T < 30) {
+      CD += (SUBSEQUENT_RATES_MG_KG_MIN[1] * W) / 1000;
+    } else if (T < 45) {
+      CD += (SUBSEQUENT_RATES_MG_KG_MIN[2] * W) / 1000;
+    } else {
+      CD += (SUBSEQUENT_RATES_MG_KG_MIN[3] * W) / 1000;
+    }
+  }
+
+  return T;
+}
+
+/**
+ * Build infusion rate schedule table for subsequent infusion.
+ * Intervals 0-14, 15-29, 30-44 (15 min each), 45+ (partial).
+ */
+export function buildSubsequentInfusionSchedule(
+  weightKg: number,
+  totalDoseG: number,
+  infusionTimeMinutes: number
+): ScheduleRow[] {
+  const W = weightKg;
+  const rows: ScheduleRow[] = [];
+  let cumulative = 0;
+
+  for (let i = 0; i < 3; i++) {
+    const rate = SUBSEQUENT_RATES_MG_KG_MIN[i];
+    const gramsPerInterval = (rate * 15 * W) / 1000;
+    cumulative += gramsPerInterval;
+    rows.push({
+      interval: SUBSEQUENT_INTERVAL_LABELS[i],
+      rateMgPerKgMin: rate,
+      rateMlPerKgMin: rate / CONCENTRATION_MG_PER_ML,
+      gramsPerInterval,
+      cumulativeGrams: cumulative,
+    });
+  }
+
+  const grams45Plus = totalDoseG - cumulative;
+  rows.push({
+    interval: SUBSEQUENT_INTERVAL_LABELS[3],
+    rateMgPerKgMin: SUBSEQUENT_RATES_MG_KG_MIN[3],
+    rateMlPerKgMin: SUBSEQUENT_RATES_MG_KG_MIN[3] / CONCENTRATION_MG_PER_ML,
+    gramsPerInterval: grams45Plus,
+    cumulativeGrams: totalDoseG,
+  });
+
+  return rows;
+}
+
+/**
+ * Run full subsequent infusion calculation.
+ */
+export function calculateSubsequentInfusion(
+  input: FirstInfusionInput
+): FirstInfusionResult {
+  const { weightKg, doseMgPerKg } = input;
+  const totalDose = totalDoseG(weightKg, doseMgPerKg);
+  const infusionTimeMinutes = subsequentInfusionTimeMinutes(weightKg, totalDose);
+  const scheduleRows = buildSubsequentInfusionSchedule(
     weightKg,
     totalDose,
     infusionTimeMinutes
