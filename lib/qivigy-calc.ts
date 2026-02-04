@@ -8,8 +8,8 @@ const CONCENTRATION_MG_PER_ML = 100;
 const RATES_MG_KG_MIN = [1.0, 2.0, 4.0, 6.0, 8.0] as const;
 const INTERVAL_LABELS = ["0-29", "30-59", "60-89", "90-119", "120+"] as const;
 
-// Subsequent: 15-min intervals; rates 4, 8, 12, 8 mg/kg/min (per reference schedule: 25.2 g in 45 min, then 9.8 at 8)
-const SUBSEQUENT_RATES_MG_KG_MIN = [4.0, 8.0, 12.0, 8.0] as const;
+// Subsequent: 15-min intervals; rates 2.0, 4.0, 6.0, 8.0 mg/kg/min (per programming instructions)
+const SUBSEQUENT_RATES_MG_KG_MIN = [2.0, 4.0, 6.0, 8.0] as const;
 const SUBSEQUENT_INTERVAL_LABELS = ["0-14", "15-29", "30-44", "45+"] as const;
 
 export type WeightUnit = "kg" | "lbs";
@@ -158,7 +158,7 @@ export function calculateFirstInfusion(
 
 /**
  * Subsequent infusion: iterate by minute until cumulative dose >= total dose.
- * Rates: T < 15 → 4.0; 15 ≤ T < 30 → 8.0; 30 ≤ T < 45 → 12.0; T ≥ 45 → 8.0 mg/kg/min.
+ * Rates: T < 15 → 2.0; 15 ≤ T < 30 → 4.0; 30 ≤ T < 45 → 6.0; T ≥ 45 → 8.0 mg/kg/min.
  * Returns infusion time in minutes.
  */
 export function subsequentInfusionTimeMinutes(

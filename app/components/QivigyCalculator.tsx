@@ -83,7 +83,7 @@ export default function QivigyCalculator() {
     let cum = 0;
     for (let t = 1; t <= result.infusionTimeMinutes; t++) {
       const rate = isSubsequent
-        ? (t < 15 ? 4 : t < 30 ? 8 : t < 45 ? 12 : 8)
+        ? (t < 15 ? 2 : t < 30 ? 4 : t < 45 ? 6 : 8)
         : (t < 30 ? 1 : t < 60 ? 2 : t < 90 ? 4 : t < 120 ? 6 : 8);
       const grams = (rate * weightKg) / 1000;
       cum += grams;
@@ -203,9 +203,7 @@ export default function QivigyCalculator() {
                   <td className="border border-gray-300 p-2 font-medium">Grams infused per interval</td>
                   {displayRows.map((row) => (
                     <td key={row.interval} className="border border-gray-300 p-2">
-                      {isSubsequent && row.interval !== "45+"
-                        ? ((row.rateMgPerKgMin * 30 * weightKg) / 1000).toFixed(1)
-                        : row.gramsPerInterval.toFixed(1)}
+                      {row.gramsPerInterval.toFixed(1)}
                     </td>
                   ))}
                 </tr>
