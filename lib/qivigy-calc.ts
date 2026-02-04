@@ -56,18 +56,22 @@ export function firstInfusionTimeMinutes(
   totalDoseG: number
 ): number {
   let CD = 0;
-  let T = 0;
+  let T = 0; // minutes elapsed
   const W = weightKg;
 
   while (CD < totalDoseG) {
     T += 1;
-    if (T < 30) {
+    // 0–29 min (30 minutes): minutes 1–30
+    if (T <= 30) {
       CD += (1.0 * W) / 1000;
-    } else if (T < 60) {
+    // 30–59 min (30 minutes): minutes 31–60
+    } else if (T <= 60) {
       CD += (2.0 * W) / 1000;
-    } else if (T < 90) {
+    // 60–89 min (30 minutes): minutes 61–90
+    } else if (T <= 90) {
       CD += (4.0 * W) / 1000;
-    } else if (T < 120) {
+    // 90–119 min (30 minutes): minutes 91–120
+    } else if (T <= 120) {
       CD += (6.0 * W) / 1000;
     } else {
       CD += (8.0 * W) / 1000;
@@ -162,16 +166,19 @@ export function subsequentInfusionTimeMinutes(
   totalDoseG: number
 ): number {
   let CD = 0;
-  let T = 0;
+  let T = 0; // minutes elapsed
   const W = weightKg;
 
   while (CD < totalDoseG) {
     T += 1;
-    if (T < 15) {
+    // 0–14 min (15 minutes): minutes 1–15
+    if (T <= 15) {
       CD += (SUBSEQUENT_RATES_MG_KG_MIN[0] * W) / 1000;
-    } else if (T < 30) {
+    // 15–29 min (15 minutes): minutes 16–30
+    } else if (T <= 30) {
       CD += (SUBSEQUENT_RATES_MG_KG_MIN[1] * W) / 1000;
-    } else if (T < 45) {
+    // 30–44 min (15 minutes): minutes 31–45
+    } else if (T <= 45) {
       CD += (SUBSEQUENT_RATES_MG_KG_MIN[2] * W) / 1000;
     } else {
       CD += (SUBSEQUENT_RATES_MG_KG_MIN[3] * W) / 1000;

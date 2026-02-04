@@ -200,7 +200,7 @@ export default function QivigyCalculator() {
                   ))}
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 p-2 font-medium">Grams infused per 30 min.</td>
+                  <td className="border border-gray-300 p-2 font-medium">Grams infused per interval</td>
                   {displayRows.map((row) => (
                     <td key={row.interval} className="border border-gray-300 p-2">
                       {isSubsequent && row.interval !== "45+"
