@@ -1,6 +1,8 @@
-import Image from "next/image";
-import qivigyLogo from "@/app/assets/images/qivigy-logo.png"
 import HeaderUtility from "@/components/header/header-utility";
+import HeaderLogo from "@/components/header/header-logo";
+import { Button } from "../ui/button";
+import { PrimaryNav } from "@/content/header";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -10,11 +12,19 @@ export default function Header() {
     >
       <HeaderUtility />
 
-      <div className="max-width pt-6 pb-1">
-        <h1 className="text-4xl font-bold mb-4">
-          <Image src={qivigyLogo} alt="QIVIGY Logo" width={233} height={100} />
-          <span className="sr-only">QIVIGY</span>
-        </h1>
+      <div className="max-width pt-6 pb-1 flex flex-row items-stretch justify-between">
+        <HeaderLogo />
+
+        <div className="flex flex-col justify-between items-end self-stretch">
+          <Button variant="ghost-outline" size="xs">Contact a Rep</Button>
+          <ul className="flex flex-row items-center justify-center divide-x divide-white text-[15px] font-medium pb-3">
+            {PrimaryNav.map((nav) => (
+              <li key={nav.label} className="px-2 hover:underline whitespace-nowrap transition-all last:pr-0">
+                <Link href={nav.href}>{nav.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </header>
   );

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { headerUtilityLinksData } from "@/app/content/header";
+import { headerUtilityLinksData } from "@/content/header";
 
 const headerUtilityLink = ({ label, href }: { label: string; href: string }) => {
   return (
-    <li className="px-5 hover:underline whitespace-nowrap" key={label}>
+    <li className="px-5 hover:underline whitespace-nowrap last:pr-0" key={label}>
       <Link href={href}>{label}</Link>
     </li>
   );
@@ -20,7 +20,7 @@ export default function HeaderUtility() {
     )}>
       <div className="max-width flex flex-row items-center justify-between">
         <p className="w-full text-center">For Healthcare Professionals</p>
-        <ul className="flex divide-x divide-white/50 px-4">
+        <ul className="flex divide-x divide-white/50">
           {headerUtilityLinks}
         </ul>
       </div>
