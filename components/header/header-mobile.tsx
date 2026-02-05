@@ -2,6 +2,7 @@ import HeaderLogo from "./header-logo";
 import HeaderUtility from "./header-utility";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import PrimaryAccordion from "../nav/primary-accordion";
 
 const BarsIcon = () => {
   return (
@@ -43,9 +44,7 @@ export default function HeaderMobile() {
       </div>
 
       {isMenuOpen && (
-        <div>
-          I am menu
-        </div>
+        <PrimaryAccordion />
       )}
     </header>
   );
