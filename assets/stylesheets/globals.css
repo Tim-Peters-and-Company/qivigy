@@ -8,8 +8,14 @@
 :root {
   /* QIVIGY Brand Colors (from Figma) */
   --navy: #37516d;
+  --navy-dark: color-mix(in lch, var(--navy), 20% black);
   --burnt-orange: #cc4c27;
   --deep-orange: #cc4900;
+  --deep-orange-medium: color-mix(
+    in lch,
+    var(--deep-orange-light),
+    20% var(--deep-orange)
+  );
   --deep-orange-light: #fde6de;
   --mint: #67fbdd;
   --peach: #ffd8c8;
@@ -63,8 +69,10 @@
 
   /* QIVIGY Brand Colors */
   --color-navy: var(--navy);
+  --color-navy-dark: var(--navy-dark);
   --color-burnt-orange: var(--burnt-orange);
   --color-deep-orange: var(--deep-orange);
+  --color-deep-orange-medium: var(--deep-orange-medium);
   --color-deep-orange-light: var(--deep-orange-light);
   --color-mint: var(--mint);
   --color-peach: var(--peach);

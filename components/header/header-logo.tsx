@@ -1,5 +1,5 @@
 import Image from "next/image";
-import qivigyLogo from "@/app/assets/images/qivigy-logo.png";
+import qivigyLogo from "@/assets/images/qivigy-logo.png";
 
 export default function HeaderLogo() {
   return (

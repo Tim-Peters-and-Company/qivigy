@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import "./assets/stylesheets/globals.css";
+import "@/assets/stylesheets/globals.css";
 import Header from "@/components/header/header";
 
 const openSans = Open_Sans({

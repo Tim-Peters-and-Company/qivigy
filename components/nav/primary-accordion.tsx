@@ -12,29 +12,25 @@ function navValue(label: string) {
 }
 
 export default function PrimaryAccordion() {
-  const firstWithChildren = PrimaryNav.find((n) => n.children?.length)?.label
-
   return (
-    <nav className="flex flex-col">
+    <nav className="flex flex-col bg-navy text-white border-t border-white font-open-sans">
       {PrimaryNav.map((nav) => {
         if (nav.children?.length) {
           const value = navValue(nav.label)
-          const isFirst = nav.label === firstWithChildren
           return (
             <Accordion
               key={nav.label}
               type="multiple"
-              defaultValue={isFirst ? [value] : []}
             >
               <AccordionItem value={value}>
-                <AccordionTrigger>{nav.label}</AccordionTrigger>
+                <AccordionTrigger className="p-4 text-sm font-medium hover:bg-navy-dark hover:no-underline transition-all">{nav.label}</AccordionTrigger>
                 <AccordionContent>
-                  <ul className="flex flex-col gap-2 pl-1">
+                  <ul className="flex flex-col gap-0 bg-deep-orange-light text-foreground border-b-2 border-t-2 border-deep-orange font-sans">
                     {nav.children.map((child) => (
                       <li key={child.label}>
                         <Link
                           href={child.href}
-                          className="text-sm hover:underline"
+                          className="block p-4 text-sm font-medium hover:bg-deep-orange-medium transition-all"
                         >
                           {child.label}
                         </Link>
@@ -50,7 +46,7 @@ export default function PrimaryAccordion() {
           <Link
             key={nav.label}
             href={nav.href ?? "/"}
-            className="py-3 text-sm font-medium hover:underline"
+            className="p-4 text-sm font-medium hover:bg-navy-dark transition-all"
           >
             {nav.label}
           </Link>
