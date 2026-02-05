@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "./assets/stylesheets/header.css";
+@import "./fonts.css";
+@import "./header.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -9,6 +10,7 @@
   --navy: #37516d;
   --burnt-orange: #cc4c27;
   --deep-orange: #cc4900;
+  --deep-orange-light: #fde6de;
   --mint: #67fbdd;
   --peach: #ffd8c8;
   --error-red: #e40901;
@@ -55,13 +57,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Chesna Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-open-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 
   /* QIVIGY Brand Colors */
   --color-navy: var(--navy);
   --color-burnt-orange: var(--burnt-orange);
   --color-deep-orange: var(--deep-orange);
+  --color-deep-orange-light: var(--deep-orange-light);
   --color-mint: var(--mint);
   --color-peach: var(--peach);
   --color-error-red: var(--error-red);

@@ -16,7 +16,6 @@ export const headerUtilityLinksData = [
 export const PrimaryNav = [
   {
     label: "Starting QIVIGY",
-    href: "/",
     children: [
       {
         label: "Dosing & Product Information",

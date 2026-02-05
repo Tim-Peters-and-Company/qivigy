@@ -15,7 +15,8 @@ const headerUtilityLinks = headerUtilityLinksData.map((link) => headerUtilityLin
 export default function HeaderUtility() {
   return (
     <div className={cn(
-      "bg-navy text-white py-2.5 w-full text-xs",
+      "bg-navy text-white py-2.5 w-full ",
+      "font-open-sans text-xs",
       "header-shadow"
     )}>
       <div className="max-width flex flex-row items-center justify-between">
