@@ -1,6 +1,6 @@
 import Image from "next/image";
 import qivigyLogo from "@/app/assets/images/qivigy-logo.png"
-import HeaderUtility from "@/app/components/header/header-utility";
+import HeaderUtility from "@/components/header/header-utility";
 
 export default function Header() {
   return (

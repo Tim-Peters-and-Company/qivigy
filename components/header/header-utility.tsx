@@ -1,10 +1,10 @@
 import Link from "next/link";
-import classNames from "classnames";
+import { cn } from "@/lib/utils";
 import { headerUtilityLinksData } from "@/app/content/header";
 
 const headerUtilityLink = ({ label, href }: { label: string; href: string }) => {
   return (
-    <li className="px-5 hover:underline whitespace-nowrap">
+    <li className="px-5 hover:underline whitespace-nowrap" key={label}>
       <Link href={href}>{label}</Link>
     </li>
   );
@@ -14,7 +14,7 @@ const headerUtilityLinks = headerUtilityLinksData.map((link) => headerUtilityLin
 
 export default function HeaderUtility() {
   return (
-    <div className={classNames(
+    <div className={cn(
       "bg-navy text-white py-2.5 w-full text-xs",
       "header-shadow"
     )}>

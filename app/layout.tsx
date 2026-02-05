@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/app/components/header/header";
+import Header from "@/components/header/header";
 
 export const metadata: Metadata = {
   title: "QIVIGY Infusion Time Calculator",
