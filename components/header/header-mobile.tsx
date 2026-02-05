@@ -23,7 +23,7 @@ const CloseIcon = () => {
 };
 
 export default function HeaderMobile() {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
