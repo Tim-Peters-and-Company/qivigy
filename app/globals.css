@@ -1,8 +1,23 @@
 @import "tailwindcss";
+@import "./assets/stylesheets/header.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* QIVIGY Brand Colors (from Figma) */
+  --navy: #37516d;
+  --burnt-orange: #cc4c27;
+  --deep-orange: #cc4900;
+  --mint: #67fbdd;
+  --peach: #ffd8c8;
+  --error-red: #e40901;
+  --Linear: linear-gradient(
+    90deg,
+    var(--navy) 28.26%,
+    var(--deep-orange) 83.21%,
+    #f3b699 100%
+  );
 }
 
 @theme inline {
@@ -10,6 +25,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* QIVIGY Brand Colors */
+  --color-navy: var(--navy);
+  --color-burnt-orange: var(--burnt-orange);
+  --color-deep-orange: var(--deep-orange);
+  --color-mint: var(--mint);
+  --color-peach: var(--peach);
+  --color-error-red: var(--error-red);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,4 +52,8 @@ body {
   .no-print {
     display: none !important;
   }
+}
+
+.max-width {
+  @apply w-full max-w-6xl mx-auto;
 }
