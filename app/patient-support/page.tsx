@@ -14,16 +14,18 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { RightAngleIcon } from "@/components/icons/rightAngle";
+import { PatientSupportContent } from "@/content/patient-support";
 
 export default function PatientSupport() {
   const [open, setOpen] = useState(true);
 
   return (
     <PageLayout pageTitle="Patient Support">
+      <PatientSupportContent />
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+        {/* <DialogTrigger asChild>
           <Button>Open dialog</Button>
-        </DialogTrigger>
+        </DialogTrigger> */}
         <DialogContent showCloseButton={false}>
           <DialogHeader>
             <DialogTitle>Are you absolutely sure?</DialogTitle>

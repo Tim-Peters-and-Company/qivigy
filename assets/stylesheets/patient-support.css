@@ -1,0 +1,37 @@
+.patient-support {
+  @apply text-lg space-y-4 font-sans py-4;
+}
+
+.patient-support h2 {
+  @apply font-bold text-3xl;
+}
+
+.patient-support h3 {
+  @apply font-semibold text-2xl;
+}
+
+.patient-support h4 {
+  @apply font-bold text-xl;
+}
+
+.patient-support ul {
+  @apply list-disc list-outside pl-4;
+}
+
+.patient-support li {
+  @apply marker:text-deep-orange;
+}
+
+.patient-support__callout {
+  max-width: 810px;
+  @apply mx-auto my-8 text-center;
+}
+
+.patient-support__callout__block {
+  @apply bg-white border-3 border-navy p-8 rounded-xl mb-4;
+  @apply text-xl text-deep-orange;
+}
+
+.patient-support__callout__description {
+  @apply text-base;
+}
