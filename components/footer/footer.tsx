@@ -2,6 +2,7 @@ import { footerLinksData, footerCopyrightData } from "@/content/footer";
 import Link from "next/link";
 import Image from "next/image";
 import KedrionLogo from "@/assets/images/kedrion-logo.png";
+import SafetyInformation from "@/components/safety-information/safety-information";
 
 const FooterLink = ({ label, href }: { label: string; href: string }) => {
   return (
@@ -13,7 +14,7 @@ const FooterLink = ({ label, href }: { label: string; href: string }) => {
 
 const FooterLinks = () => {
   return (
-    <ul className="flex flex-row items-center justify-start gap-4 md:gap-8 font-sans">
+    <ul className="flex flex-col md:flex-row items-start md:items-center justify-start gap-2 md:gap-8 font-sans">
       {footerLinksData.map((link) => FooterLink(link))}
     </ul>
   );
@@ -21,18 +22,21 @@ const FooterLinks = () => {
 
 export default function Footer() {
   return (
-    <footer className="relative z-90 mt-auto border-t border-b-36 border-navy py-8">
-      <div className="page-width flex flex-row items-start justify-between">
-        <div className="space-y-6 flex flex-col items-start justify-center">
-          <FooterLinks />
-          <div className="font-open-sans text-sm">
-            <p>{footerCopyrightData.copyright}</p>
-            <p>{footerCopyrightData.trademark}</p>
-            <p>{footerCopyrightData.version}</p>
+    <div className="relative z-90 mt-auto">
+      <SafetyInformation />
+      <footer className="border-t border-b-36 border-navy py-8">
+        <div className="page-width flex flex-col md:flex-row items-start justify-between gap-8 md:gap-0">
+          <div className="space-y-6 flex flex-col items-start justify-center">
+            <FooterLinks />
+            <div className="font-open-sans text-sm">
+              <p>{footerCopyrightData.copyright}</p>
+              <p>{footerCopyrightData.trademark}</p>
+              <p>{footerCopyrightData.version}</p>
+            </div>
           </div>
+          <Image src={KedrionLogo} alt="Kedrion Logo" width={212} height={80} className="mx-auto md:mx-0" />
         </div>
-        <Image src={KedrionLogo} alt="Kedrion Logo" width={212} height={80} />
-      </div>
-    </footer>
+      </footer>
+    </div>
   );
 }

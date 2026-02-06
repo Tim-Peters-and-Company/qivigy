@@ -1,8 +1,16 @@
+import { cn } from "@/lib/utils";
+
 export default function PageLayout({ children, pageTitle }: { children: React.ReactNode, pageTitle: string }) {
   return (
     <div>
-      <div className="page-title bg-deep-orange text-white pt-16 pb-20 z-20 relative">
-        <h1 className="font-bold page-width text-5xl">{pageTitle}</h1>
+      <div className={cn(
+        "page-title",
+        "bg-deep-orange text-white",
+        "pt-10 md:pt-16 pb-10 md:pb-20",
+        "z-20 relative",
+        "text-center md:text-left"
+      )}>
+        <h1 className="font-bold page-width text-4xl md:text-5xl">{pageTitle}</h1>
       </div>
 
       <main className="relative -mt-5 pt-10">

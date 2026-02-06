@@ -1,0 +1,27 @@
+.safety-information {
+  @apply text-base space-y-2 font-open-sans py-4;
+}
+
+.safety-information h2 {
+  @apply font-bold uppercase text-deep-orange;
+}
+
+.safety-information a {
+  @apply underline;
+}
+
+.safety-information__warning {
+  @apply border-2 border-navy p-4 lg:-mx-4;
+}
+
+.safety-information__warning h2 {
+  @apply font-bold uppercase text-navy!;
+}
+
+.safety-information__warning ul {
+  @apply list-disc list-outside pl-4;
+}
+
+.safety-information__warning li {
+  @apply font-bold;
+}
