@@ -22,7 +22,7 @@ const FooterLinks = () => {
 
 export default function Footer() {
   return (
-    <div className="relative z-90 mt-auto">
+    <div className="relative z-50 mt-auto">
       <SafetyInformation />
       <footer className="border-t border-b-36 border-navy py-8">
         <div className="page-width flex flex-col md:flex-row items-start justify-between gap-8 md:gap-0">

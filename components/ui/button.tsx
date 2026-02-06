@@ -21,6 +21,8 @@ const buttonVariants = cva(
         "ghost-outline":
           "w-fit font-open-sans bg-transparent border border-white hover:bg-accent hover:text-accent-foreground font-bold px-3! rounded-sm!",
         link: "text-primary underline-offset-4 hover:underline",
+        "dialog-primary": "border-2 border-navy bg-navy text-white text-lg rounded-full px-6! py-5! uppercase font-bold shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
+        "dialog-outline": "border-2 border-navy text-navy text-lg rounded-full px-6! py-5! uppercase font-bold shadow-lg hover:border-navy-dark hover:text-navy-dark transition-all",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
