@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const DownCaret = () => {
   return (
     <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.02464L4 4.83467L4 2.87902L6.95007 -4.16105e-08L8 1.02464ZM-4.94448e-08 1.02559L1.04993 0.000885557L4 2.87991L4 4.83556L-4.94448e-08 1.02559Z" fill="white" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M8 1.02464L4 4.83467L4 2.87902L6.95007 -4.16105e-08L8 1.02464ZM-4.94448e-08 1.02559L1.04993 0.000885557L4 2.87991L4 4.83556L-4.94448e-08 1.02559Z" fill="white" />
     </svg>
   );
 };

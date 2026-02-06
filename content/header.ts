@@ -37,6 +37,6 @@ export const PrimaryNav = [
   },
   {
     label: "Patient Support",
-    href: "/about",
+    href: "/patient-support",
   },
 ];

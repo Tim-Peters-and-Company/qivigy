@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 export default function HeaderDesktop() {
   return (
     <header
-      className="flex flex-col items-center justify-start text-white"
+      className="flex flex-col items-center justify-start text-white relative z-90"
       style={{ background: "var(--Linear)" }}
     >
       <HeaderUtility />
