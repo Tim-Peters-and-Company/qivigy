@@ -39,7 +39,7 @@ export default function HeaderMobile() {
 
         <div className="max-width flex flex-row items-center justify-between">
           <HeaderLogo />
-          <Button variant="ghost-outline" size="xs">Contact a Rep</Button>
+          <Button variant="ghost-outline" size="xs" href="/connect">Contact a Rep</Button>
 
           <div className="flex flex-col items-center gap-2 relative -top-2">
             <p className="text-[9px] font-semibold">For HCPs</p>
@@ -52,7 +52,7 @@ export default function HeaderMobile() {
       </div>
 
       {isMenuOpen && (
-        <PrimaryAccordion />
+        <PrimaryAccordion onNavigate={() => setIsMenuOpen(false)} />
       )}
     </header>
   );
