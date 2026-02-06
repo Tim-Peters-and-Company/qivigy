@@ -26,9 +26,11 @@ export default function PatientSupport() {
         <PatientSupportCopayProgram />
       </div>
 
-      <div className="patient-support-copay-reimbursement relative h-screen">
-        <PatientSupportCopayReimbursement />
-        {/* <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div> */}
+      <div className="arched-top relative pt-8">
+        <div className="page-width">
+          <PatientSupportCopayReimbursement />
+          <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div>
+        </div>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>

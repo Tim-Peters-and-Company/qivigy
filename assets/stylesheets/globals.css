@@ -142,6 +142,39 @@
     @apply w-full max-w-5xl mx-auto;
     @apply px-4;
   }
+
+  .arched-top {
+    --curve-height: 20px; /* Fixed height for the top curve - adjust as needed */
+
+    clip-path: polygon(
+      0% var(--curve-height),
+      0% var(--curve-height),
+      0.388% calc(var(--curve-height) * 0.972),
+      1.6% calc(var(--curve-height) * 0.896),
+      3.713% calc(var(--curve-height) * 0.784),
+      6.8% calc(var(--curve-height) * 0.648),
+      10.938% calc(var(--curve-height) * 0.5),
+      16.2% calc(var(--curve-height) * 0.352),
+      22.663% calc(var(--curve-height) * 0.216),
+      30.4% calc(var(--curve-height) * 0.104),
+      39.488% calc(var(--curve-height) * 0.028),
+      50% 0,
+      50% 0,
+      60.513% calc(var(--curve-height) * 0.028),
+      69.6% calc(var(--curve-height) * 0.104),
+      77.338% calc(var(--curve-height) * 0.216),
+      83.8% calc(var(--curve-height) * 0.352),
+      89.063% calc(var(--curve-height) * 0.5),
+      93.2% calc(var(--curve-height) * 0.648),
+      96.288% calc(var(--curve-height) * 0.784),
+      98.4% calc(var(--curve-height) * 0.896),
+      99.613% calc(var(--curve-height) * 0.972),
+      100% var(--curve-height),
+      100% 100%,
+      0% 100%,
+      0% var(--curve-height)
+    );
+  }
 }
 
 .page-title {

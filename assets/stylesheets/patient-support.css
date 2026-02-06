@@ -1,16 +1,20 @@
-.patient-support-copay {
+.patient-support-copay,
+.patient-support-copay-reimbursement {
   @apply text-lg space-y-4 font-sans py-4;
 }
 
-.patient-support-copay h2 {
+.patient-support-copay h2,
+.patient-support-copay-reimbursement h2 {
   @apply font-bold text-3xl;
 }
 
-.patient-support-copay h3 {
+.patient-support-copay h3,
+.patient-support-copay-reimbursement h3 {
   @apply font-semibold text-2xl;
 }
 
-.patient-support-copay h4 {
+.patient-support-copay h4,
+.patient-support-copay-reimbursement h4 {
   @apply font-bold text-xl;
 }
 
@@ -22,6 +26,7 @@
   @apply marker:text-deep-orange;
 }
 
+/* CALLOUT */
 .patient-support-copay__callout {
   max-width: 810px;
   @apply mx-auto my-8 text-center;
@@ -36,36 +41,28 @@
   @apply text-base;
 }
 
-.patient-support-copay-reimbursement {
-  @apply bg-red-50;
-  --curve-height: 20px; /* Fixed height for the top curve - adjust as needed */
+/* REIMBURSEMENT */
+.patient-support-copay-reimbursement p {
+  @apply font-bold text-xl;
+}
 
-  clip-path: polygon(
-    0% var(--curve-height),
-    0% var(--curve-height),
-    0.388% calc(var(--curve-height) * 0.972),
-    1.6% calc(var(--curve-height) * 0.896),
-    3.713% calc(var(--curve-height) * 0.784),
-    6.8% calc(var(--curve-height) * 0.648),
-    10.938% calc(var(--curve-height) * 0.500),
-    16.2% calc(var(--curve-height) * 0.352),
-    22.663% calc(var(--curve-height) * 0.216),
-    30.4% calc(var(--curve-height) * 0.104),
-    39.488% calc(var(--curve-height) * 0.028),
-    50% 0,
-    50% 0,
-    60.513% calc(var(--curve-height) * 0.028),
-    69.6% calc(var(--curve-height) * 0.104),
-    77.338% calc(var(--curve-height) * 0.216),
-    83.8% calc(var(--curve-height) * 0.352),
-    89.063% calc(var(--curve-height) * 0.500),
-    93.2% calc(var(--curve-height) * 0.648),
-    96.288% calc(var(--curve-height) * 0.784),
-    98.4% calc(var(--curve-height) * 0.896),
-    99.613% calc(var(--curve-height) * 0.972),
-    100% var(--curve-height),
-    100% 100%,
-    0% 100%,
-    0% var(--curve-height)
-  );
+.patient-support-copay-reimbursement__support {
+  @apply grid grid-cols-2 gap-4 max-w-2xl;
+}
+
+.patient-support-copay-reimbursement__support li {
+  @apply flex flex-row items-center gap-4;
+  @apply leading-tight;
+}
+
+.patient-support-copay-reimbursement__connect {
+  @apply flex flex-row items-center justify-start;
+  @apply divide-navy divide-x-2;
+}
+
+.patient-support-copay-reimbursement__connect li {
+  @apply px-8 first:pl-0 last:pr-0;
+  @apply flex flex-row items-center justify-start gap-4;
+  @apply leading-tight;
+  @apply text-deep-orange text-2xl font-bold;
 }
