@@ -19,19 +19,19 @@ export const PrimaryNav = [
     children: [
       {
         label: "Dosing & Product Information",
-        href: "/qivigy-first-infusion",
+        href: "/starting-qivigy#dosing-product-information",
       },
       {
         label: "Dosing Calculator",
-        href: "/qivigy-subsequent-infusion",
+        href: "/starting-qivigy#dosing-calculator",
       },
       {
         label: "Ordering QIVIGY",
-        href: "/qivigy-subsequent-infusion",
+        href: "/starting-qivigy#ordering-qivigy",
       },
       {
         label: "Customer Service",
-        href: "/qivigy-subsequent-infusion",
+        href: "/starting-qivigy#customer-service",
       },
     ],
   },

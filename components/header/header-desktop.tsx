@@ -15,7 +15,7 @@ export default function HeaderDesktop() {
         <HeaderLogo />
 
         <div className="flex flex-col justify-between items-end self-stretch">
-          <Button variant="ghost-outline" size="xs">Contact a Rep</Button>
+          <Button variant="ghost-outline" size="xs" href="/connect">Contact a Rep</Button>
           <PrimaryDropdown />
         </div>
       </div>
