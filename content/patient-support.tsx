@@ -1,11 +1,11 @@
-export const PatientSupportContent = () => (
-  <div className="patient-support">
+export const PatientSupportCopayProgram = () => (
+  <div className="patient-support-copay">
     <h2>QIVIGY® copay program</h2>
     <h3>Copay assistance is available for QIVIGY patients covered under both pharmacy and medical benefits.</h3>
 
-    <div className="patient-support__callout">
-      <p className="patient-support__callout__block">Eligible patients can receive up to <strong>$10,000 per calendar year</strong> to use on out-of-pocket costs for QIVIGY.</p>
-      <p className="patient-support__callout__description">The program covers the <strong>copay, deductible, and/or co-insurance</strong> associated with the cost of QIVIGY only. The program does not cover costs associated with administration or supplies.</p>
+    <div className="patient-support-copay__callout">
+      <p className="patient-support-copay__callout__block">Eligible patients can receive up to <strong>$10,000 per calendar year</strong> to use on out-of-pocket costs for QIVIGY.</p>
+      <p className="patient-support-copay__callout__description">The program covers the <strong>copay, deductible, and/or co-insurance</strong> associated with the cost of QIVIGY only. The program does not cover costs associated with administration or supplies.</p>
     </div>
 
     <h4>Copay benefit:</h4>
@@ -25,5 +25,17 @@ export const PatientSupportContent = () => (
     <ul>
       <li>Not valid for prescriptions eligible for reimbursement by any federal or state healthcare programs, such as Medicare, Medicaid, Medigap, Veterans Affairs, Department of Defense, TRICARE, or any other federal or state-funded programs</li>
     </ul>
+  </div>
+);
+
+export const PatientSupportCopayReimbursement = () => (
+  <div className="patient-support-copay-reimbursement">
+    <h2>QIVIGY® copay reimbursement</h2>
+    <h3>QIVIGY patients covered under both pharmacy and medical benefits may be eligible for reimbursement for QIVIGY copay expenses.</h3>
+
+    <div className="patient-support-copay-reimbursement__callout">
+      <p className="patient-support-copay-reimbursement__callout__block">Eligible patients can receive up to $10,000 per calendar year to use on out-of-pocket costs for QIVIGY.</p>
+      <p className="patient-support-copay-reimbursement__callout__description">The program covers the <strong>copay, deductible, and/or co-insurance</strong> associated with the cost of QIVIGY only. The program does not cover costs associated with administration or supplies.</p>
+    </div>
   </div>
 );

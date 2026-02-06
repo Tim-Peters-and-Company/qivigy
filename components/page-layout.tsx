@@ -16,7 +16,7 @@ export default function PageLayout({ children, pageTitle }: { children: React.Re
       <main className="relative -mt-5 pt-10">
         <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full"></div>
 
-        <div className="page-width relative z-10">
+        <div className="relative z-10">
           {children}
         </div>
       </main>

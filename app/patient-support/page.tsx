@@ -14,14 +14,23 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { RightAngleIcon } from "@/components/icons/rightAngle";
-import { PatientSupportContent } from "@/content/patient-support";
+import { PatientSupportCopayProgram, PatientSupportCopayReimbursement } from "@/content/patient-support";
 
 export default function PatientSupport() {
   const [open, setOpen] = useState(true);
 
   return (
     <PageLayout pageTitle="Patient Support">
-      <PatientSupportContent />
+
+      <div className="page-width">
+        <PatientSupportCopayProgram />
+      </div>
+
+      <div className="patient-support-copay-reimbursement relative h-screen">
+        <PatientSupportCopayReimbursement />
+        {/* <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div> */}
+      </div>
+
       <Dialog open={open} onOpenChange={setOpen}>
         {/* <DialogTrigger asChild>
           <Button>Open dialog</Button>

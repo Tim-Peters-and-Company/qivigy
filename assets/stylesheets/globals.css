@@ -132,14 +132,16 @@
   }
 }
 
-.max-width {
-  @apply w-full max-w-6xl mx-auto;
-  @apply px-4;
-}
+@layer components {
+  .max-width {
+    @apply w-full max-w-6xl mx-auto;
+    @apply px-4;
+  }
 
-.page-width {
-  @apply w-full max-w-5xl mx-auto;
-  @apply px-4;
+  .page-width {
+    @apply w-full max-w-5xl mx-auto;
+    @apply px-4;
+  }
 }
 
 .page-title {
