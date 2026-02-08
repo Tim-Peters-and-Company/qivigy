@@ -8,14 +8,10 @@ import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -144,6 +140,7 @@ export function ContactForm() {
       privacyNotice: false,
       receiveEmails: false,
     },
+    mode: "onChange",
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
@@ -151,7 +148,7 @@ export function ContactForm() {
   }
 
   return (
-    <Card className="w-full sm:max-w-md mx-auto my-8 bg-linear-to-b from-deep-orange-light to-white">
+    <Card className="w-full sm:max-w-2xl mx-auto my-8 bg-linear-to-b from-deep-orange-light to-white">
       <CardContent>
         <form id={formId} onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
@@ -161,14 +158,14 @@ export function ContactForm() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor={`${formId}-nameFirst`}>
-                    First name
+                    FIRST NAME*
                   </FieldLabel>
                   <Input
                     {...field}
                     id={`${formId}-nameFirst`}
                     aria-invalid={fieldState.invalid}
-                    placeholder="Jane"
                     autoComplete="given-name"
+                    required={true}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -182,14 +179,14 @@ export function ContactForm() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor={`${formId}-nameLast`}>
-                    Last name
+                    LAST NAME*
                   </FieldLabel>
                   <Input
                     {...field}
                     id={`${formId}-nameLast`}
                     aria-invalid={fieldState.invalid}
-                    placeholder="Doe"
                     autoComplete="family-name"
+                    required={true}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -202,14 +199,15 @@ export function ContactForm() {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={`${formId}-email`}>Email</FieldLabel>
+                  <FieldLabel htmlFor={`${formId}-email`}>EMAIL*</FieldLabel>
                   <Input
                     {...field}
                     id={`${formId}-email`}
                     type="email"
                     aria-invalid={fieldState.invalid}
-                    placeholder="jane@example.com"
+                    placeholder="name@example.com"
                     autoComplete="email"
+                    required={true}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -222,17 +220,17 @@ export function ContactForm() {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={`${formId}-phone`}>Phone</FieldLabel>
+                  <FieldLabel htmlFor={`${formId}-phone`}>PHONE*</FieldLabel>
                   <Input
                     {...field}
                     id={`${formId}-phone`}
                     type="tel"
                     aria-invalid={fieldState.invalid}
-                    placeholder="5551234567"
+                    placeholder="000-000-0000"
                     autoComplete="tel"
                     maxLength={10}
+                    required={true}
                   />
-                  <FieldDescription>10 digits, no formatting</FieldDescription>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -244,13 +242,13 @@ export function ContactForm() {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={`${formId}-city`}>City</FieldLabel>
+                  <FieldLabel htmlFor={`${formId}-city`}>CITY*</FieldLabel>
                   <Input
                     {...field}
                     id={`${formId}-city`}
                     aria-invalid={fieldState.invalid}
-                    placeholder="San Francisco"
                     autoComplete="address-level2"
+                    required={true}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -258,70 +256,75 @@ export function ContactForm() {
                 </Field>
               )}
             />
-            <Controller
-              name="state"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={`${formId}-state`}>State</FieldLabel>
-                  <Select
-                    value={field.value ?? ""}
-                    onValueChange={(v) => field.onChange(v || undefined)}
-                  >
-                    <SelectTrigger
-                      id={`${formId}-state`}
-                      aria-invalid={fieldState.invalid}
-                      className="w-full"
+            <div className="lg:flex lg:gap-4">
+
+
+              <Controller
+                name="state"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`${formId}-state`}>STATE*</FieldLabel>
+                    <Select
+                      value={field.value ?? ""}
+                      onValueChange={(v) => field.onChange(v || undefined)}
+                      required={true}
                     >
-                      <SelectValue placeholder="Select state" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {US_STATES.map((s) => (
-                        <SelectItem key={s.value} value={s.value}>
-                          {s.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
-            <Controller
-              name="zip"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={`${formId}-zip`}>ZIP code</FieldLabel>
-                  <Input
-                    {...field}
-                    id={`${formId}-zip`}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="94102"
-                    autoComplete="postal-code"
-                    maxLength={10}
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                      <SelectTrigger
+                        id={`${formId}-state`}
+                        aria-invalid={fieldState.invalid}
+                        className="w-full"
+                      >
+                        <SelectValue placeholder="Select state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {US_STATES.map((s) => (
+                          <SelectItem key={s.value} value={s.value}>
+                            {s.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="zip"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`${formId}-zip`}>ZIP CODE*</FieldLabel>
+                    <Input
+                      {...field}
+                      id={`${formId}-zip`}
+                      aria-invalid={fieldState.invalid}
+                      autoComplete="postal-code"
+                      maxLength={10}
+                      required={true}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </div>
             <Controller
               name="communicationPreference"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Preferred contact method</FieldLabel>
+                  <FieldLabel className="font-bold text-lg normal-case text-navy">Preferred method of communication*</FieldLabel>
                   <RadioGroup
                     value={field.value ?? ""}
                     onValueChange={field.onChange}
                     aria-invalid={fieldState.invalid}
-                    className="flex gap-4"
+                    className="flex gap-8"
                   >
-                    <Field orientation="horizontal" className="items-center gap-2">
+                    <Field orientation="horizontal" className="items-center gap-2 w-min">
                       <RadioGroupItem
                         value="email"
                         id={`${formId}-comm-email`}
@@ -330,7 +333,7 @@ export function ContactForm() {
                         Email
                       </FieldLabel>
                     </Field>
-                    <Field orientation="horizontal" className="items-center gap-2">
+                    <Field orientation="horizontal" className="items-center gap-2 w-min">
                       <RadioGroupItem
                         value="phone"
                         id={`${formId}-comm-phone`}
@@ -350,17 +353,16 @@ export function ContactForm() {
               name="privacyNotice"
               control={form.control}
               render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid} className="flex items-start gap-2">
+                <Field data-invalid={fieldState.invalid} orientation="horizontal" className="flex flex-row items-start gap-2">
                   <Checkbox
                     id={`${formId}-privacy`}
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     aria-invalid={fieldState.invalid}
-                    className="mt-0.5"
                   />
                   <div className="grid gap-1.5 leading-none">
                     <FieldLabel htmlFor={`${formId}-privacy`} className="font-normal cursor-pointer">
-                      I have read and accept the privacy notice / terms of service.
+                      I acknowledge that I have received and read Kedrion’s Privacy Notice and that information provided is subject to that policy.*
                     </FieldLabel>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -373,17 +375,16 @@ export function ContactForm() {
               name="receiveEmails"
               control={form.control}
               render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid} className="flex items-start gap-2">
+                <Field data-invalid={fieldState.invalid} orientation="horizontal" className="flex flex-row items-start gap-2">
                   <Checkbox
                     id={`${formId}-receiveEmails`}
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     aria-invalid={fieldState.invalid}
-                    className="mt-0.5"
                   />
                   <div className="grid gap-1.5 leading-none">
                     <FieldLabel htmlFor={`${formId}-receiveEmails`} className="font-normal cursor-pointer">
-                      I would like to receive email updates.
+                      By checking this box, you agree to receive communications relating to QIVIGY and its indicated conditions. The information you provide will be used solely for this purpose. You can stop communications from Kedrion at any time by following the instructions on the communications.*
                     </FieldLabel>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -397,9 +398,6 @@ export function ContactForm() {
       </CardContent>
       <CardFooter>
         <Field orientation="horizontal">
-          <Button type="button" variant="outline" onClick={() => form.reset()}>
-            Reset
-          </Button>
           <Button type="submit" form={formId}>
             Submit
           </Button>
