@@ -397,11 +397,14 @@ export function ContactForm() {
         </form>
       </CardContent>
       <CardFooter>
-        <Field orientation="horizontal">
-          <Button type="submit" form={formId}>
-            Submit
-          </Button>
-        </Field>
+        <div className="flex flex-col gap-2 w-full">
+          <Field orientation="horizontal">
+            <Button type="submit" form={formId} className="w-full">
+              Submit
+            </Button>
+          </Field>
+          <p><span className="text-xs text-navy">*Indicates required field.</span></p>
+        </div>
       </CardFooter>
     </Card>
   )
