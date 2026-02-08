@@ -1,6 +1,6 @@
 import PageLayout from "@/components/page-layout";
 import { ConnectWithARep } from "@/content/connect-with-a-rep";
-import { ContactForm } from "@/components/contactForm";
+import { ContactForm } from "@/components/ContactForm";
 
 export default function Page() {
   return (
