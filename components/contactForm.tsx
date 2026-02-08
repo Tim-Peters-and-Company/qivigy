@@ -28,6 +28,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox"
 
 const US_STATES = [
@@ -127,9 +132,10 @@ const formId = "contact-form"
 
 function formatPhoneDisplay(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 10)
-  if (digits.length <= 3) return digits
-  if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`
-  return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+  if (digits.length === 0) return ""
+  if (digits.length <= 3) return digits.length === 3 ? `(${digits})` : `(${digits}`
+  if (digits.length <= 6) return `(${digits.slice(0, 3)})-${digits.slice(3)}`
+  return `(${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6)}`
 }
 
 export function ContactForm() {
@@ -228,21 +234,27 @@ export function ContactForm() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor={`${formId}-phone`}>PHONE*</FieldLabel>
-                  <Input
-                    id={`${formId}-phone`}
-                    type="tel"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="000-000-0000"
-                    autoComplete="tel"
-                    required={true}
-                    value={formatPhoneDisplay(field.value)}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/\D/g, "").slice(0, 10)
-                      field.onChange(digits)
-                    }}
-                    onBlur={field.onBlur}
-                    ref={field.ref}
-                  />
+                  <InputGroup className="">
+                    <InputGroupInput id={`${formId}-phone`}
+                      type="tel"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="(000)-000-0000"
+                      autoComplete="tel"
+                      required={true}
+                      value={formatPhoneDisplay(field.value)}
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, "").slice(0, 10)
+                        field.onChange(digits)
+                      }}
+                      onBlur={field.onBlur}
+                      ref={field.ref} />
+                    <InputGroupAddon
+                      align="inline-start"
+                      className="bg-[#D9D9D9] pe-3 h-12 text-foreground font-bold border-r-2 border-navy"
+                    >
+                      +1
+                    </InputGroupAddon>
+                  </InputGroup>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
