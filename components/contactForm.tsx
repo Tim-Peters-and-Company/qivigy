@@ -99,8 +99,8 @@ const formSchema = z.object({
     .email("Invalid email address."),
   phone: z
     .string()
-    .min(10, "Phone must be at least 10 characters.")
-    .max(10, "Phone must be at most 10 characters."),
+    .min(10, "Phone must be at least 10 numbers.")
+    .max(10, "Phone must be at most 10 numbers."),
   city: z
     .string()
     .min(2, "City must be at least 2 characters.")
@@ -124,6 +124,13 @@ const formSchema = z.object({
 })
 
 const formId = "contact-form"
+
+function formatPhoneDisplay(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 10)
+  if (digits.length <= 3) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`
+  return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+}
 
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -222,14 +229,19 @@ export function ContactForm() {
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor={`${formId}-phone`}>PHONE*</FieldLabel>
                   <Input
-                    {...field}
                     id={`${formId}-phone`}
                     type="tel"
                     aria-invalid={fieldState.invalid}
                     placeholder="000-000-0000"
                     autoComplete="tel"
-                    maxLength={10}
                     required={true}
+                    value={formatPhoneDisplay(field.value)}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, "").slice(0, 10)
+                      field.onChange(digits)
+                    }}
+                    onBlur={field.onBlur}
+                    ref={field.ref}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
