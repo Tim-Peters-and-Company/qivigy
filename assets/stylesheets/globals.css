@@ -3,6 +3,7 @@
 @import "./header.css";
 @import "./safety-information.css";
 @import "./patient-support.css";
+@import "./connect-with-a-rep.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));

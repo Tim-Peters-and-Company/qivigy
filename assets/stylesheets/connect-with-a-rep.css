@@ -1,0 +1,14 @@
+.connect-with-a-rep {
+}
+
+.connect-with-a-rep {
+  @apply text-lg space-y-4 font-sans py-4;
+}
+
+.connect-with-a-rep h2 {
+  @apply font-bold text-3xl;
+}
+
+.connect-with-a-rep h3 {
+  @apply font-semibold text-2xl;
+}
