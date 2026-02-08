@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { RightAngleIcon } from "@/components/icons/rightAngle";
+import { DialogLeavingSiteData, DialogUSOnlyData } from "@/content/dialogs";
 
 const STORAGE_KEY = "qivigy-us-only-acknowledged";
 
@@ -53,7 +54,7 @@ export const DialogUSOnly = () => {
 
   const handleLeaveSite = () => {
     setLeavingOpen(false);
-    window.location.href = "https://google.com";
+    window.location.href = DialogLeavingSiteData.url;
   };
 
   const handleStayOnSite = () => {
@@ -71,9 +72,9 @@ export const DialogUSOnly = () => {
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           <DialogHeader>
-            <DialogTitle>This website is intended for US audiences only.</DialogTitle>
+            <DialogTitle>{DialogUSOnlyData.title}</DialogTitle>
             <DialogDescription>
-              If you are a US-based healthcare professional, caregiver, or consumer, click OK to continue; if not, click CANCEL.
+              {DialogUSOnlyData.description}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="">
@@ -82,10 +83,10 @@ export const DialogUSOnly = () => {
               variant="secondary"
               onClick={handleCancel}
             >
-              Cancel <RightAngleIcon className="size-5" />
+              {DialogUSOnlyData.cancelText} <RightAngleIcon className="size-5" />
             </Button>
             <Button type="button" variant="default" onClick={handleOk}>
-              Ok <RightAngleIcon className="size-5" />
+              {DialogUSOnlyData.okText} <RightAngleIcon className="size-5" />
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -99,9 +100,9 @@ export const DialogUSOnly = () => {
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           <DialogHeader>
-            <DialogTitle>You are now leaving QIVIGY.com/hcp.</DialogTitle>
+            <DialogTitle>{DialogLeavingSiteData.title}</DialogTitle>
             <DialogDescription>
-              Would you like to proceed?
+              {DialogLeavingSiteData.description}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -110,10 +111,10 @@ export const DialogUSOnly = () => {
               variant="secondary"
               onClick={handleStayOnSite}
             >
-              Stay on site <RightAngleIcon className="size-5" />
+              {DialogLeavingSiteData.cancelText} <RightAngleIcon className="size-5" />
             </Button>
             <Button type="button" variant="default" onClick={handleLeaveSite}>
-              Leave Site <RightAngleIcon className="size-5" />
+              {DialogLeavingSiteData.okText} <RightAngleIcon className="size-5" />
             </Button>
           </DialogFooter>
         </DialogContent>

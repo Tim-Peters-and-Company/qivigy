@@ -177,7 +177,12 @@ export function ContactForm() {
     <>
       <Card className="w-full sm:max-w-2xl mx-auto my-8 bg-linear-to-b from-deep-orange-light to-white">
         <CardContent>
-          <form id={formId} onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            id={formId}
+            onSubmit={form.handleSubmit(onSubmit)}
+            data-netlify-recaptcha="true"
+            data-netlify="true"
+          >
             <FieldGroup>
               <Controller
                 name="nameFirst"
@@ -434,6 +439,7 @@ export function ContactForm() {
         </CardContent>
         <CardFooter>
           <div className="flex flex-col gap-2 w-full">
+            <div data-netlify-recaptcha="true"></div>
             <Field orientation="horizontal">
               <Button type="submit" form={formId} className="w-full">
                 Submit
