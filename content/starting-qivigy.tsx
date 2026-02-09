@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { INFUSION_PROVIDERS, type InfusionProvider } from "@/content/infusion-providers";
+import { INFUSION_PROVIDERS } from "@/content/infusion-providers";
 import { ProviderSection } from "@/components/Providers";
 import Characteristics1 from "@/assets/images/characteristics-1.png";
 import Characteristics2 from "@/assets/images/characteristics-2.png";
 import Characteristics3 from "@/assets/images/characteristics-3.png";
 import Characteristics4 from "@/assets/images/characteristics-4.png";
+import CustomerService1 from "@/assets/images/custserv-1.png";
+import CustomerService2 from "@/assets/images/custserv-2.png";
 
 export const StartingQivigyDosingProductInformationData = () => {
   return (
@@ -32,7 +34,7 @@ export const StartingQivigyDosingProductInformationData = () => {
       </dl>
 
       <h3 className="mt-16!">Quality characteristics</h3>
-      <h4>QIVIGY IS:</h4>
+      <h4 className="font-bold">QIVIGY IS:</h4>
       <ul className="starting-qivigy__characteristics">
         <li>
           <Image className="mr-2" src={Characteristics1} alt="Characteristics 1" width={80} height={80} />
@@ -61,29 +63,29 @@ export const StartingQivigyDosingProductInformationData = () => {
       </ul>
 
       <h3 className="mt-16!">National Drug Codes (NDC) for QIVIGY<sup>1</sup></h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Presentations</th>
-            <th>NDC Number of Carton</th>
-            <th>NDC Number of Label</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>50 mL vial containing 5 grams of protein</td>
-            <td>76179-010-01</td>
-            <td>76179-010-02</td>
-          </tr>
-          <tr>
-            <td>100 mL vial containing 10 grams of protein</td>
-            <td>76179-010-03</td>
-            <td>76179-010-04</td>
-          </tr>
-        </tbody>
-
-      </table >
-
+      <div className="starting-qivigy__ndc-table-wrapper">
+        <table className="starting-qivigy__ndc-table">
+          <thead>
+            <tr>
+              <th>Presentations</th>
+              <th>NDC Number of Carton</th>
+              <th>NDC Number of Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>50 mL vial containing 5 grams of protein</td>
+              <td>76179-010-01</td>
+              <td>76179-010-02</td>
+            </tr>
+            <tr>
+              <td>100 mL vial containing 10 grams of protein</td>
+              <td>76179-010-03</td>
+              <td>76179-010-04</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
@@ -113,6 +115,28 @@ export const StartingQivigyCustomerService = () => {
   return (
     <>
       <h2 id="customer-service">Customer service</h2>
+      <p>The Kedrion customer service team is here to help</p>
+
+      <ul className="starting-qivigy__customer-service">
+        <li>
+          <Image className="mr-2" src={CustomerService1} alt="" width={80} height={80} />
+          <span>
+            <h2>GENERAL INFORMATION</h2>
+            <p>For more information, call <strong><a href="tel:1-866-398-0825">1-866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com">US_CustomerService@kedrion.com</a></strong> </p>
+          </span>
+        </li>
+        <li>
+          <Image className="mr-2" src={CustomerService2} alt="" width={80} height={80} />
+          <span>
+            <h2>MEDICAL INFORMATION</h2>
+            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825">1-866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com">US_MedicalInfo@kedrion.com</a></strong>.</p>
+          </span>
+        </li>
+
+      </ul>
+
+      <h3 className="mt-16! text-navy!">Sign up to receive more information about QIVIGY </h3>
+
     </>
   );
 };

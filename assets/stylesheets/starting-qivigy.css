@@ -49,3 +49,68 @@
 .starting-qivigy .starting-qivigy__characteristics strong {
   @apply text-deep-orange;
 }
+
+.starting-qivigy__ndc-table-wrapper {
+  @apply inline-block border-2 border-navy rounded-[10px] shadow-lg overflow-hidden;
+}
+
+.starting-qivigy__ndc-table {
+  @apply w-full text-base border-separate border-spacing-0;
+}
+
+.starting-qivigy__ndc-table thead th {
+  @apply bg-navy text-white font-semibold px-8 py-4 text-center;
+}
+
+.starting-qivigy__ndc-table thead th:first-child {
+  @apply text-left;
+}
+
+.starting-qivigy__ndc-table thead th:not(:last-child) {
+  @apply border-r border-white;
+}
+
+.starting-qivigy__ndc-table tbody tr {
+  @apply bg-white;
+}
+
+.starting-qivigy__ndc-table tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.starting-qivigy__ndc-table tbody td {
+  @apply px-8 py-4 align-middle border-b-2 border-r-2 border-navy;
+}
+
+.starting-qivigy__ndc-table tbody td:last-child {
+  @apply border-r-0;
+}
+
+.starting-qivigy__ndc-table tbody td:nth-child(2),
+.starting-qivigy__ndc-table tbody td:nth-child(3) {
+  @apply text-center font-semibold;
+}
+
+.starting-qivigy .starting-qivigy__customer-service {
+  @apply flex flex-col md:grid md:grid-cols-2 gap-8 text-base;
+}
+
+.starting-qivigy .starting-qivigy__customer-service h2 {
+  @apply font-bold text-xl text-deep-orange;
+}
+
+.starting-qivigy .starting-qivigy__customer-service li {
+  @apply flex items-center gap-4;
+}
+
+.starting-qivigy .starting-qivigy__customer-service p {
+  @apply leading-tight;
+}
+
+.starting-qivigy .starting-qivigy__customer-service a {
+  @apply break-all;
+}
+
+.starting-qivigy .starting-qivigy__customer-service strong {
+  @apply text-deep-orange;
+}
