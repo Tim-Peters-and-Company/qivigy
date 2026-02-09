@@ -10,6 +10,6 @@ export const DialogLeavingSiteData = {
   description: "Would you like to proceed?",
   okText: "Leave Site",
   cancelText: "Stay on Site",
-  url: "https://google.com",
+  url: "https://www.kedrion.com/",
 }
 

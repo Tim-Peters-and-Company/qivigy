@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <!-- Netlify Forms: static form for deploy-time detection (Next.js workaround). See https://opennext.js.org/netlify/forms -->
+    <form
+      name="contact"
+      data-netlify="true"
+      data-netlify-recaptcha="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hidden">
+        <label
+          >Don't fill this out if you're human:
+          <input name="bot-field" type="text"
+        /></label>
+      </p>
+      <input name="nameFirst" type="text" />
+      <input name="nameLast" type="text" />
+      <input name="email" type="email" />
+      <input name="phone" type="text" />
+      <input name="city" type="text" />
+      <input name="state" type="text" />
+      <input name="zip" type="text" />
+      <input name="communicationPreference" type="text" />
+      <input name="privacyNotice" type="checkbox" />
+      <input name="receiveEmails" type="checkbox" />
+      <div data-netlify-recaptcha="true"></div>
+    </form>
+  </body>
+</html>

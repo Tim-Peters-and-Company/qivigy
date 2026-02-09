@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
+import Script from "next/script"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import * as z from "zod"
@@ -101,33 +102,35 @@ const US_STATES = [
 ] as const
 
 const stateValues = US_STATES.map((s) => s.value)
+const zipRegex = /^\d{5}(-\d{4})?$/
 const formSchema = z.object({
   nameFirst: z
     .string()
-    .min(2, "Name must be at least 2 characters.")
-    .max(100, "Name must be at most 100 characters."),
+    .transform((s) => s.trim())
+    .pipe(z.string().min(2, "Name must be at least 2 characters.").max(100, "Name must be at most 100 characters.")),
   nameLast: z
     .string()
-    .min(2, "Name must be at least 2 characters.")
-    .max(100, "Name must be at most 100 characters."),
+    .transform((s) => s.trim())
+    .pipe(z.string().min(2, "Name must be at least 2 characters.").max(100, "Name must be at most 100 characters.")),
   email: z
     .string()
-    .email("Invalid email address."),
+    .transform((s) => s.trim().toLowerCase())
+    .pipe(z.string().email("Invalid email address.")),
   phone: z
     .string()
-    .min(10, "Phone must be at least 10 numbers.")
-    .max(10, "Phone must be at most 10 numbers."),
+    .transform((s) => s.replace(/\D/g, "").slice(0, 10))
+    .pipe(z.string().length(10, "Phone must be exactly 10 digits.")),
   city: z
     .string()
-    .min(2, "City must be at least 2 characters.")
-    .max(100, "City must be at most 100 characters."),
+    .transform((s) => s.trim())
+    .pipe(z.string().min(2, "City must be at least 2 characters.").max(100, "City must be at most 100 characters.")),
   state: z.enum(stateValues as [string, ...string[]], {
     message: "Please select a state.",
   }),
   zip: z
     .string()
-    .min(5, "ZIP must be at least 5 characters.")
-    .max(10, "ZIP must be at most 10 characters."),
+    .transform((s) => s.trim().replace(/\s+/g, ""))
+    .pipe(z.string().regex(zipRegex, "ZIP must be 5 digits or 5+4 (e.g. 12345-6789).")),
   communicationPreference: z.enum(["email", "phone"], {
     message: "Please select a communication preference.",
   }),
@@ -140,6 +143,12 @@ const formSchema = z.object({
 })
 
 const formId = "contact-form"
+/** Must match form name in public/__forms.html for Netlify Forms */
+const NETLIFY_FORM_NAME = "contact"
+/** reCAPTCHA v2 site key (set NEXT_PUBLIC_SITE_RECAPTCHA_KEY). Netlify uses SITE_RECAPTCHA_KEY for server-side verify. */
+const RECAPTCHA_SITE_KEY = typeof process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY === "string"
+  ? process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY
+  : ""
 
 function formatPhoneDisplay(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 10)
@@ -149,8 +158,18 @@ function formatPhoneDisplay(value: string): string {
   return `(${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6)}`
 }
 
+declare global {
+  interface Window {
+    grecaptcha?: { render: (container: HTMLElement, options: { sitekey: string }) => number }
+    __contactRecaptchaOnLoad?: () => void
+  }
+}
+
 export function ContactForm() {
   const [successDialogOpen, setSuccessDialogOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -168,9 +187,71 @@ export function ContactForm() {
     mode: "onChange",
   })
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data)
-    setSuccessDialogOpen(true)
+  useEffect(() => {
+    if (!RECAPTCHA_SITE_KEY || !recaptchaContainerRef.current) return
+    const render = () => {
+      if (recaptchaContainerRef.current && window.grecaptcha) {
+        try {
+          window.grecaptcha.render(recaptchaContainerRef.current, { sitekey: RECAPTCHA_SITE_KEY })
+        } catch {
+          // already rendered or container gone
+        }
+      }
+    }
+    window.__contactRecaptchaOnLoad = render
+    if (window.grecaptcha) render()
+    return () => {
+      delete window.__contactRecaptchaOnLoad
+    }
+  }, [])
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    setSubmitError(null)
+    setIsSubmitting(true)
+    try {
+      const recaptcha = document.querySelector<HTMLTextAreaElement>('[name="g-recaptcha-response"]')?.value?.trim()
+      if (RECAPTCHA_SITE_KEY && !recaptcha) {
+        setSubmitError("Please complete the security check before submitting.")
+        setIsSubmitting(false)
+        return
+      }
+
+      const formEl = document.getElementById(formId) as HTMLFormElement | null
+      const honeypot = formEl?.elements.namedItem("bot-field") as HTMLInputElement | null
+      if (honeypot?.value?.trim()) {
+        setSubmitError("Something went wrong. Please try again or call 1-855-353-7466.")
+        setIsSubmitting(false)
+        return
+      }
+
+      const params = new URLSearchParams()
+      params.set("form-name", NETLIFY_FORM_NAME)
+      params.set("bot-field", honeypot?.value ?? "")
+      params.set("nameFirst", data.nameFirst.trim())
+      params.set("nameLast", data.nameLast.trim())
+      params.set("email", data.email.trim().toLowerCase())
+      params.set("phone", data.phone)
+      params.set("city", data.city.trim())
+      params.set("state", data.state)
+      params.set("zip", data.zip.trim())
+      params.set("communicationPreference", data.communicationPreference)
+      if (data.privacyNotice) params.set("privacyNotice", "on")
+      if (data.receiveEmails) params.set("receiveEmails", "on")
+      if (recaptcha) params.set("g-recaptcha-response", recaptcha)
+
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      })
+      if (!res.ok) throw new Error("Submission failed.")
+      setSuccessDialogOpen(true)
+      form.reset()
+    } catch {
+      setSubmitError("Something went wrong. Please try again or call 1-855-353-7466.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -179,10 +260,15 @@ export function ContactForm() {
         <CardContent>
           <form
             id={formId}
+            name={NETLIFY_FORM_NAME}
             onSubmit={form.handleSubmit(onSubmit)}
-            data-netlify-recaptcha="true"
-            data-netlify="true"
           >
+            <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+            {/* Honeypot: hidden from users, bots fill it; Netlify rejects if non-empty */}
+            <div className="absolute -left-[9999px] top-0 opacity-0 pointer-events-none" aria-hidden="true">
+              <label htmlFor={`${formId}-bot-field`}>Don&apos;t fill this out if you&apos;re human</label>
+              <input id={`${formId}-bot-field`} name="bot-field" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
             <FieldGroup>
               <Controller
                 name="nameFirst"
@@ -439,10 +525,28 @@ export function ContactForm() {
         </CardContent>
         <CardFooter>
           <div className="flex flex-col gap-2 w-full">
-            <div data-netlify-recaptcha="true"></div>
+            {RECAPTCHA_SITE_KEY && (
+              <>
+                <Script
+                  src={`https://www.google.com/recaptcha/api.js?onload=__contactRecaptchaOnLoad&render=explicit`}
+                  strategy="lazyOnload"
+                />
+                <div ref={recaptchaContainerRef} data-netlify-recaptcha="true" aria-label="Security check" />
+              </>
+            )}
+            {submitError && (
+              <p className="text-destructive text-sm" role="alert">
+                {submitError}
+              </p>
+            )}
             <Field orientation="horizontal">
-              <Button type="submit" form={formId} className="w-full">
-                Submit
+              <Button
+                type="submit"
+                form={formId}
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting…" : "Submit"}
               </Button>
             </Field>
             <Button
@@ -450,6 +554,7 @@ export function ContactForm() {
               variant="outline"
               className="w-full"
               onClick={() => setSuccessDialogOpen(true)}
+              disabled={isSubmitting}
             >
               Test submit dialog
             </Button>
