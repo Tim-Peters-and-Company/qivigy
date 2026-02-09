@@ -1,0 +1,55 @@
+.home-content {
+  @apply flex flex-col items-center justify-center;
+}
+
+.home-content h1 span {
+  @apply block;
+  @apply text-deep-orange font-bold text-2xl tracking-widest;
+}
+
+.home-content h2 {
+  @apply text-xl font-bold text-deep-orange tracking-wide;
+}
+
+.home-content__callout {
+  @apply flex flex-row items-center justify-center gap-4;
+  @apply bg-white/90 border-3 border-navy p-4 rounded-[10px] mb-4 mt-2;
+}
+
+.home-content__callout p {
+  @apply text-lg leading-tight;
+}
+
+.home-content__callout p strong {
+  @apply font-bold text-2xl;
+}
+
+.home-content__callout__number {
+  @apply text-[96px] font-bold text-deep-orange leading-none;
+}
+
+.home-content__triptych {
+  @apply grid grid-cols-3 gap-4;
+  @apply max-w-4xl mx-auto;
+}
+
+.home-content__triptych__item {
+  @apply p-4;
+}
+
+.home-content__triptych__item h2 {
+  @apply text-lg leading-tight;
+}
+
+.home-content__triptych__item__number {
+  @apply text-6xl leading-none font-bold text-deep-orange;
+  @apply flex flex-row items-start justify-center;
+}
+
+.home-content__triptych__item__number span {
+  @apply text-4xl;
+}
+
+.home-content__triptych__item__focus {
+  @apply block text-2xl font-bold text-navy leading-none mb-1;
+}

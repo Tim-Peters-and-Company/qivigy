@@ -1,10 +1,10 @@
 import Link from "next/link";
+import { HomeData } from "@/content/home";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Home TKTK</h1>
-      <Link href="/calculator" className="text-blue-500 hover:text-blue-700">Calculator</Link>
+    <div className="bg-deep-orange-light flex-1 text-center py-8">
+      <HomeData />
     </div>
   );
 }
