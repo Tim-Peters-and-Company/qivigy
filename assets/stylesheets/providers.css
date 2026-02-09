@@ -1,0 +1,33 @@
+/* Infusion providers directory */
+.infusion-providers {
+  @apply mt-8 space-y-10;
+}
+
+.infusion-providers__section-title {
+  @apply text-xl font-bold text-navy uppercase mb-6;
+}
+
+.infusion-providers__grid {
+  @apply w-full grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.infusion-providers__card {
+  @apply flex min-w-0 flex-col gap-2 overflow-hidden p-6 rounded-xl bg-white shadow-lg w-full;
+  background: linear-gradient(180deg, #fde6de 0%, #fff 100%);
+}
+
+.infusion-providers__name {
+  @apply font-bold text-navy text-lg leading-tight;
+}
+
+.infusion-providers__phone {
+  @apply text-lg;
+}
+
+.infusion-providers__phone a {
+  @apply text-navy hover:underline hover:text-deep-orange;
+}
+
+.infusion-providers__btn {
+  @apply mt-auto w-full truncate;
+}

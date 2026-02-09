@@ -1,0 +1,39 @@
+.starting-qivigy {
+  @apply text-lg space-y-4;
+}
+
+.starting-qivigy h2 {
+  @apply font-bold text-3xl;
+}
+
+.starting-qivigy h3 {
+  @apply font-semibold text-2xl text-deep-orange;
+}
+
+.starting-qivigy dl {
+  @apply md:grid md:grid-cols-[1fr_3fr];
+  @apply border-2 border-navy;
+  @apply rounded-[10px] shadow-lg bg-white;
+  @apply overflow-hidden text-base;
+}
+
+.starting-qivigy dl dt {
+  @apply bg-navy text-white p-8 md:text-center leading-tight;
+}
+
+.starting-qivigy dl dt:not(:last-child),
+.starting-qivigy dl dd:not(:last-child) {
+  @apply border-b-2 border-navy;
+}
+
+.starting-qivigy dl dt strong {
+  @apply block md:text-xl leading-tight;
+}
+
+.starting-qivigy dl dd {
+  @apply font-normal p-8 leading-tight;
+}
+
+.starting-qivigy dl dd strong {
+  @apply block md:text-xl leading-tight;
+}

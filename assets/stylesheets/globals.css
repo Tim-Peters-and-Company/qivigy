@@ -5,6 +5,8 @@
 @import "./patient-support.css";
 @import "./connect-with-a-rep.css";
 @import "./home-content.css";
+@import "./starting-qivigy.css";
+@import "./providers.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
