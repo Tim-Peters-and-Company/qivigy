@@ -1,15 +1,15 @@
 export const headerUtilityLinksData = [
   {
     label: "Prescribing Information",
-    href: "/login",
+    href: "https://www.qivigy.com/download/QIVIGI-PI-US-K00.pdf",
   },
   {
     label: "Important Safety Information",
-    href: "/login",
+    href: "#important-safety-information",
   },
   {
     label: "About Kedrion",
-    href: "/login",
+    href: "https://www.kedrion.us/about-us/",
   },
 ];
 

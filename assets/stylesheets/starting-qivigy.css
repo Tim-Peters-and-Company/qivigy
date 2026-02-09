@@ -18,7 +18,7 @@
 }
 
 .starting-qivigy dl dt {
-  @apply bg-navy text-white p-8 md:text-center leading-tight;
+  @apply bg-navy text-white p-8 md:text-center leading-tight text-balance;
 }
 
 .starting-qivigy dl dt:not(:last-child),
@@ -43,7 +43,7 @@
 }
 
 .starting-qivigy .starting-qivigy__characteristics li {
-  @apply flex items-center gap-4;
+  @apply flex items-center gap-4 text-balance;
 }
 
 .starting-qivigy .starting-qivigy__characteristics strong {

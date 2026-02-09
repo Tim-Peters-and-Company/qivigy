@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function PageLayout({ children, pageTitle }: { children: React.ReactNode, pageTitle: string }) {
+export default function PageLayout({ children, pageTitle }: { children: React.ReactNode, pageTitle: React.ReactNode }) {
   return (
     <div>
       <div className={cn(

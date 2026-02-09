@@ -5,7 +5,7 @@ import CalculatorSection from "@/components/calculator/calculator-section";
 
 export default function Page() {
   return (
-    <PageLayout pageTitle="Starting QIVIGY">
+    <PageLayout pageTitle={<>Starting QIVIGY<sup>®</sup></>}>
       <div className="page-width starting-qivigy pb-14">
         <StartingQivigyDosingProductInformationData />
       </div>

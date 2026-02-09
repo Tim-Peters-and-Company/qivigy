@@ -34,7 +34,9 @@ export default function Footer() {
               <p>{footerCopyrightData.version}</p>
             </div>
           </div>
-          <Image src={KedrionLogo} alt="Kedrion Logo" width={212} height={80} className="mx-auto md:mx-0" />
+          <a href="https://www.kedrion.us/" target="_blank" rel="noopener noreferrer">
+            <Image src={KedrionLogo} alt="Kedrion Logo" width={212} height={80} className="mx-auto md:mx-0" />
+          </a>
         </div>
       </footer>
     </div>

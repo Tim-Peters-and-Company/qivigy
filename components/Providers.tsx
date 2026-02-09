@@ -4,7 +4,7 @@ import { InfusionProvider } from "@/content/infusion-providers";
 
 export const ProviderCard = ({ name, phone, websiteUrl, websiteLabel }: InfusionProvider) => (
   <div className="infusion-providers__card">
-    <p className="infusion-providers__name">{name}</p>
+    <p className="infusion-providers__name" dangerouslySetInnerHTML={{ __html: name }} />
     {phone && (
       <p className="infusion-providers__phone">
         <a href={`tel:${phone.replace(/\s/g, "")}`}>{phone}</a>

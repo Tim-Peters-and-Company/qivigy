@@ -17,7 +17,7 @@ export const StartingQivigyDosingProductInformationData = () => {
       <dl>
         <dt>
           <strong>DOSE</strong>
-          300-800 mg/kg (3-8 mL/kg) every 3-4 weeks
+          300-800 mg/kg <span className="whitespace-nowrap">(3-8 mL/kg)</span> every 3-4 weeks
         </dt>
         <dd>
           <strong>FIRST INFUSION</strong>
@@ -25,7 +25,7 @@ export const StartingQivigyDosingProductInformationData = () => {
         </dd>
         <dt>
           <strong>MAXIMUM INFUSION RATE</strong>
-          8 mg/kg/min (4.8 mL/kg/h)
+          8 mg/kg/min <span className="whitespace-nowrap">(4.8 mL/kg/h)</span>
         </dt>
         <dd>
           <strong>SUBSEQUENT INFUSIONS</strong>
@@ -45,13 +45,13 @@ export const StartingQivigyDosingProductInformationData = () => {
         <li>
           <Image src={Characteristics3} alt="Characteristics 3" width={80} height={80} />
           <span>
-            <strong>Supplied in 5- and 10-gram single-dose vials</strong><sup>1</sup>
+            <strong>Supplied in 5- and <span className="whitespace-nowrap">10-gram</span> single-dose vials</strong><sup>1</sup>
           </span>
         </li>
         <li>
           <Image src={Characteristics2} alt="Characteristics 2" width={80} height={80} />
           <span>
-            <strong>A high-purity (≥96 IgG)</strong> IVIG that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
+            A <strong>high-purity (≥96 IgG) IVIG</strong> that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
           </span>
         </li>
         <li>
@@ -122,14 +122,14 @@ export const StartingQivigyCustomerService = () => {
           <Image className="mr-2" src={CustomerService1} alt="" width={80} height={80} />
           <span>
             <h2>GENERAL INFORMATION</h2>
-            <p>For more information, call <strong><a href="tel:1-866-398-0825">1-866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com">US_CustomerService@kedrion.com</a></strong> </p>
+            <p>For more information, call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">1-866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com" className="whitespace-nowrap">US_CustomerService@kedrion.com</a></strong> </p>
           </span>
         </li>
         <li>
           <Image className="mr-2" src={CustomerService2} alt="" width={80} height={80} />
           <span>
             <h2>MEDICAL INFORMATION</h2>
-            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825">1-866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com">US_MedicalInfo@kedrion.com</a></strong>.</p>
+            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">1-866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com" className="whitespace-nowrap">US_MedicalInfo@kedrion.com</a></strong>.</p>
           </span>
         </li>
 

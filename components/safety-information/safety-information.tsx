@@ -23,7 +23,7 @@ const CloseWidget = ({ onClick }: { onClick: () => void }) => {
 
 export default function SafetyInformation() {
   return (
-    <div className="relative z-50">
+    <div className="relative z-50" id="important-safety-information">
       <Disclosure>
         {({ open, close }) => (
           <>

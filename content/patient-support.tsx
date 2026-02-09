@@ -22,7 +22,7 @@ const CheckmarkIcon = () => (
 
 export const PatientSupportCopayProgram = () => (
   <div className="patient-support-copay">
-    <h2>QIVIGY® copay program</h2>
+    <h2>QIVIGY<sup>®</sup> copay program</h2>
     <h3>Copay assistance is available for QIVIGY patients covered under both pharmacy and medical benefits.</h3>
 
     <div className="patient-support-copay__callout">
@@ -30,20 +30,20 @@ export const PatientSupportCopayProgram = () => (
       <p className="patient-support-copay__callout__description">The program covers the <strong>copay, deductible, and/or co-insurance</strong> associated with the cost of QIVIGY only. The program does not cover costs associated with administration or supplies.</p>
     </div>
 
-    <h4>Copay benefit:</h4>
+    <h4>COPAY BENEFIT:</h4>
     <ul>
       <li>$10,000 per patient per year</li>
       <li>Electronic processing; no patient cards necessary</li>
     </ul>
 
-    <h4>Program and patient eligibility guidelines:</h4>
+    <h4>PROGRAM AND PATIENT ELIGIBILITY GUIDELINES:</h4>
     <ul>
       <li>Patients must be commercially insured</li>
       <li>Patients must express a financial need</li>
       <li>Patients’ health plan permits members to participate in copay assistance programs</li>
     </ul>
 
-    <h4>Program RESTRICTIONS:</h4>
+    <h4>PROGRAM RESTRICTIONS:</h4>
     <ul>
       <li>Not valid for prescriptions eligible for reimbursement by any federal or state healthcare programs, such as Medicare, Medicaid, Medigap, Veterans Affairs, Department of Defense, TRICARE, or any other federal or state-funded programs</li>
     </ul>
@@ -57,8 +57,8 @@ export const PatientSupportCopayReimbursement = () => (
     <h4>THIS SUPPORT INCLUDES: </h4>
     <ul className="patient-support-copay-reimbursement__support">
       <li><CheckmarkIcon /> Patient-specific benefit verification claims</li>
-      <li><CheckmarkIcon /> Payer coverage and coding research</li>
       <li><CheckmarkIcon /> Assistance with claims questions</li>
+      <li><CheckmarkIcon /> Payer coverage and coding research</li>
       <li><CheckmarkIcon /> Appeal support for denied prior authorizations</li>
     </ul>
     <h4 className="mt-15!">TO CONNECT WITH A REIMBURSEMENT SPECIALIST:</h4>

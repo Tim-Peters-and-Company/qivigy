@@ -20,7 +20,7 @@ export const INFUSION_PROVIDERS = {
       websiteLabel: "aiscaregroup.com",
     },
     {
-      name: "American Outcomes Management, LP.",
+      name: "American Outcomes Management, LP",
       phone: "1-800-746-9089",
       websiteUrl: "https://www.aominfusionrx.com",
       websiteLabel: "aominfusionrx.com",
@@ -53,7 +53,7 @@ export const INFUSION_PROVIDERS = {
       websiteLabel: "ciiclinics.org",
     },
     {
-      name: "CVS Health®",
+      name: "CVS Health<sup>®</sup>",
       phone: "1-866-899-1661",
       websiteUrl: "https://www.cvshealth.com",
       websiteLabel: "www.cvshealth.com",
@@ -83,7 +83,7 @@ export const INFUSION_PROVIDERS = {
       websiteLabel: "nufactor.com",
     },
     {
-      name: "Option Care Health®",
+      name: "Option Care Health<sup>®</sup>",
       phone: "1-877-974-4844",
       websiteUrl: "https://www.optioncarehealth.com",
       websiteLabel: "optioncarehealth.com",

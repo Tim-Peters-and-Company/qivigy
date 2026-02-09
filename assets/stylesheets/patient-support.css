@@ -34,11 +34,11 @@
 
 .patient-support-copay__callout__block {
   @apply bg-white border-3 border-navy p-8 rounded-xl mb-4;
-  @apply text-xl text-deep-orange;
+  @apply text-xl text-deep-orange text-balance;
 }
 
 .patient-support-copay__callout__description {
-  @apply text-base;
+  @apply text-base text-balance;
 }
 
 /* REIMBURSEMENT */

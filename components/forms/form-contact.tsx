@@ -487,9 +487,9 @@ export function ContactForm() {
                       onCheckedChange={field.onChange}
                       aria-invalid={fieldState.invalid}
                     />
-                    <div className="grid gap-1.5 leading-none">
-                      <FieldLabel htmlFor={`${formId}-privacy`} className="font-normal cursor-pointer">
-                        I acknowledge that I have received and read Kedrion’s Privacy Notice and that information provided is subject to that policy.*
+                    <div className="leading-none">
+                      <FieldLabel htmlFor={`${formId}-privacy`} className="font-normal cursor-pointer block" >
+                        I acknowledge that I have received and read Kedrion’s <a href="https://www.kedrion.us/privacy-notice/" target="_blank" rel="noopener noreferrer" className="underline">Privacy Notice</a> and that information provided is subject to that policy.*
                       </FieldLabel>
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />

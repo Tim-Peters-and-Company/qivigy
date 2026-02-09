@@ -12,12 +12,12 @@ export const HomeData = () => {
       </h1>
 
       <article>
-        <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY® achieved quality patient outcomes<sup>1,2*</sup>: </p>
+        <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY<sup>®</sup> achieved quality patient outcomes<sup>1,2*</sup>: </p>
         <div className="home-content__callout">
           <div className="home-content__callout__number">0</div>
           <p>
             <strong>ACUTE SERIOUS BACTERIAL INFECTIONS</strong><br />
-            per person-year<br />
+            per <span className="whitespace-nowrap">person-year</span><br />
             (99% confidence limit: 0.10; N=47)<sup>1,2</sup>
           </p>
           <Image src={Bacteria} alt="Bacteria" width={76} height={76} />
@@ -47,7 +47,7 @@ export const HomeData = () => {
           <p>
             <span className="item__number">93<span>%</span></span>{" "}
             <span className="item__focus">
-              <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2, †</sup></strong>
+              <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2,†</sup></strong>
             </span>
           </p>
         </article>
@@ -61,7 +61,7 @@ export const HomeData = () => {
       </Button>
       <div className="text-xs text-left max-w-xl mx-auto mt-8 space-y-2 px-4">
         <p><strong>*STUDY DESIGN:</strong> The efficacy of QIVIGY was evaluated in an open-label, prospective clinical study in adult patients with primary    humoral immunodeficiency. A total of 47 patients received intravenous infusion of QIVIGY at a dose of 266 mg/kg to 826 mg/kg on a   4-week (n=39) or a 3-week (n=8) infusion cycle for 12 months.<sup>1</sup><br />
-          <sup>†:</sup> In the same study-specific patient questionnaire, 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup>
+          <sup>†</sup>In the same study-specific patient questionnaire, 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup>
         </p>
         <p><strong>References:</strong> <strong>1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. <strong>2.</strong> Data on file. REF-01262. Kedrion Biopharma Inc.; 2024.
         </p>
