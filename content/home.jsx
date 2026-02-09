@@ -59,7 +59,7 @@ export const HomeData = () => {
         <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
         <RightAngleIcon className="w-4 h-4" />
       </Button>
-      <div className="text-xs text-left max-w-xl mx-auto mt-8 space-y-2">
+      <div className="text-xs text-left max-w-xl mx-auto mt-8 space-y-2 px-4">
         <p><strong>*STUDY DESIGN:</strong> The efficacy of QIVIGY was evaluated in an open-label, prospective clinical study in adult patients with primary    humoral immunodeficiency. A total of 47 patients received intravenous infusion of QIVIGY at a dose of 266 mg/kg to 826 mg/kg on a   4-week (n=39) or a 3-week (n=8) infusion cycle for 12 months.<sup>1</sup><br />
           <sup>†:</sup> In the same study-specific patient questionnaire, 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup>
         </p>

@@ -17,7 +17,7 @@ export default function Page() {
       </div>
 
       <div className="arched-top relative pt-14">
-        <div className="page-width starting-qivigy">
+        <div className="page-width starting-qivigy pb-14">
           <StartingQivigyOrderingQivigy />
           <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div>
         </div>

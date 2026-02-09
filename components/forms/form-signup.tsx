@@ -190,7 +190,7 @@ export function SignupForm() {
   return (
     <>
       <Card className="w-full mx-auto my-8 bg-linear-to-b from-deep-orange-light to-white border-0 shadow-xl">
-        <CardContent className="pt-0 px-16">
+        <CardContent className="pt-0 md:px-16 px-4">
           <p className="mb-6 text-sm text-navy">
             Please fill in the information below.
           </p>

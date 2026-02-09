@@ -47,7 +47,7 @@
 }
 
 .patient-support-copay-reimbursement__support {
-  @apply grid grid-cols-2 gap-4 max-w-2xl;
+  @apply flex flex-col md:grid md:grid-cols-2 gap-4 max-w-2xl;
 }
 
 .patient-support-copay-reimbursement__support li {
@@ -56,13 +56,21 @@
 }
 
 .patient-support-copay-reimbursement__connect {
-  @apply flex flex-row items-center justify-start;
-  @apply divide-navy divide-x-2;
+  @apply flex flex-col gap-4 md:flex-row items-start md:items-center justify-start;
+  @apply md:divide-navy md:divide-x-2;
+}
+
+.patient-support-copay-reimbursement__connect img {
+  @apply w-10 h-10;
 }
 
 .patient-support-copay-reimbursement__connect li {
-  @apply px-8 first:pl-0 last:pr-0;
+  @apply md:px-8 md:first:pl-0 md:last:pr-0;
   @apply flex flex-row items-center justify-start gap-4;
   @apply leading-tight;
-  @apply text-deep-orange text-2xl font-bold;
+  @apply text-deep-orange text-lg md:text-2xl font-bold;
+}
+
+.patient-support-copay-reimbursement__connect a {
+  @apply break-all;
 }

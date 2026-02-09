@@ -3,6 +3,7 @@ import PhoneIcon from "@/assets/images/phone.png";
 import EmailIcon from "@/assets/images/email.png";
 import { Button } from "@/components/ui/button";
 import { RightAngleIcon } from "@/components/icons/rightAngle";
+import { cn } from "@/lib/utils";
 
 const CheckmarkIcon = () => (
   <svg className="size-10 shrink-0" width="43" height="39" viewBox="0 0 43 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,8 +73,21 @@ export const PatientSupportCopayReimbursement = () => (
         <a href="mailto:reimbursementsupport@medmonk.com">reimbursementsupport@medmonk.com</a>
       </li>
     </ul>
-    <p className="mt-15! mb-20! text-center">
+    <p className="mt-15! mb-20! text-center hidden md:block">
       <Button href="https://qivigy.medmonk.com/" variant="large">Visit <strong>QIVIGY.medmonk.com</strong> for full Terms and Conditions <RightAngleIcon className="size-5" /></Button>
+
     </p>
-  </div >
+    <p className="mt-8! block md:hidden">
+      <div
+        className={cn(
+          "bg-navy text-white text-lg rounded-full px-6! py-5!  shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
+        )}
+      >
+        <a href="https://qivigy.medmonk.com/" className="leading-none flex flex-row items-center justify-start gap-2">
+          <span>Visit <strong>QIVIGY.medmonk.com</strong> for full Terms and Conditions</span>
+          <RightAngleIcon className="size-3" />
+        </a>
+      </div>
+    </p>
+  </div>
 );

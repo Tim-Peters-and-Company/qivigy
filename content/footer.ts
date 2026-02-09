@@ -9,7 +9,7 @@ export const footerLinksData = [
   },
   {
     label: "Contact us",
-    href: "/contact-us",
+    href: "/connect",
   },
 ];
 

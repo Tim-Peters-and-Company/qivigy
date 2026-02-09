@@ -30,7 +30,7 @@ export default function SafetyInformation() {
             {!open && (
               <DisclosureButton
                 className={cn(
-                  "bg-navy text-white font-bold py-2 w-full uppercase text-base md:text-lg font-open-sans",
+                  "bg-navy hover:bg-navy-dark transition-all text-white font-bold py-2 w-full uppercase text-base md:text-lg font-open-sans",
                   "flex items-center justify-center gap-4 md:gap-6"
                 )}
               >
