@@ -45,7 +45,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox"
-import { RightAngleIcon } from "./icons/rightAngle"
+import { RightAngleIcon } from "@/components/icons/rightAngle"
 
 const US_STATES = [
   { value: "AL", label: "Alabama" },
