@@ -1,5 +1,10 @@
+import Image from "next/image";
 import { INFUSION_PROVIDERS, type InfusionProvider } from "@/content/infusion-providers";
 import { ProviderSection } from "@/components/Providers";
+import Characteristics1 from "@/assets/images/characteristics-1.png";
+import Characteristics2 from "@/assets/images/characteristics-2.png";
+import Characteristics3 from "@/assets/images/characteristics-3.png";
+import Characteristics4 from "@/assets/images/characteristics-4.png";
 
 export const StartingQivigyDosingProductInformationData = () => {
   return (
@@ -26,22 +31,36 @@ export const StartingQivigyDosingProductInformationData = () => {
         </dd>
       </dl>
 
-      <h3>Quality characteristics</h3>
+      <h3 className="mt-16!">Quality characteristics</h3>
       <h4>QIVIGY IS:</h4>
-      <ul>
+      <ul className="starting-qivigy__characteristics">
         <li>
-          Glycine-stabilized and does not contain any sugars or preservatives<sup>1</sup>
+          <Image className="mr-2" src={Characteristics1} alt="Characteristics 1" width={80} height={80} />
+          <span>
+            <strong>Glycine-stabilized</strong> and <strong>does not contain any sugars or preservatives</strong><sup>1</sup>
+          </span>
         </li>
         <li>
-          A high-purity (≥96 IgG) IVIG that contains only trace amounts of IgA (≤50 mg/L)<sup>1</sup>
+          <Image src={Characteristics3} alt="Characteristics 3" width={80} height={80} />
+          <span>
+            <strong>Supplied in 5- and 10-gram single-dose vials</strong><sup>1</sup>
+          </span>
         </li>
-        <li>Supplied in 5- and 10-gram single-dose vials<sup>1</sup></li>
         <li>
-          Manufactured with 4 steps of viral removal/inactivation<sup>1</sup>
+          <Image src={Characteristics2} alt="Characteristics 2" width={80} height={80} />
+          <span>
+            <strong>A high-purity (≥96 IgG)</strong> IVIG that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
+          </span>
+        </li>
+        <li>
+          <Image src={Characteristics4} alt="Characteristics 4" width={80} height={80} />
+          <span>
+            Manufactured with <strong>4 steps of viral removal/inactivation</strong><sup>1</sup>
+          </span>
         </li>
       </ul>
 
-      <h3>National Drug Codes (NDC) for QIVIGY1</h3>
+      <h3 className="mt-16!">National Drug Codes (NDC) for QIVIGY<sup>1</sup></h3>
       <table>
         <thead>
           <tr>

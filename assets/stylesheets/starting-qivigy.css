@@ -37,3 +37,15 @@
 .starting-qivigy dl dd strong {
   @apply block md:text-xl leading-tight;
 }
+
+.starting-qivigy .starting-qivigy__characteristics {
+  @apply flex flex-col md:grid md:grid-cols-2 gap-8;
+}
+
+.starting-qivigy .starting-qivigy__characteristics li {
+  @apply flex items-center gap-4;
+}
+
+.starting-qivigy .starting-qivigy__characteristics strong {
+  @apply text-deep-orange;
+}
