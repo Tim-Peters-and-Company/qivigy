@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "@/assets/stylesheets/globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import { DialogUSOnly } from "@/components/DialogUSOnly";
+import { DialogUSOnly } from "@/components/dialog/dialog-us-only";
 
 const openSans = Open_Sans({
   subsets: ["latin"],

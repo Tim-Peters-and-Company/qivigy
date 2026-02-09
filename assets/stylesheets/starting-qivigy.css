@@ -51,7 +51,7 @@
 }
 
 .starting-qivigy__ndc-table-wrapper {
-  @apply inline-block border-2 border-navy rounded-[10px] shadow-lg overflow-hidden;
+  @apply inline-block border-2 border-navy rounded-[10px] shadow-lg overflow-scroll w-full;
 }
 
 .starting-qivigy__ndc-table {
@@ -59,7 +59,7 @@
 }
 
 .starting-qivigy__ndc-table thead th {
-  @apply bg-navy text-white font-semibold px-8 py-4 text-center;
+  @apply bg-navy text-white font-semibold md:px-8 px-4 md:py-4 py-2 text-center;
 }
 
 .starting-qivigy__ndc-table thead th:first-child {
@@ -79,7 +79,7 @@
 }
 
 .starting-qivigy__ndc-table tbody td {
-  @apply px-8 py-4 align-middle border-b-2 border-r-2 border-navy;
+  @apply md:px-8 px-4 md:py-4 py-2 align-middle border-b-2 border-r-2 border-navy;
 }
 
 .starting-qivigy__ndc-table tbody td:last-child {
