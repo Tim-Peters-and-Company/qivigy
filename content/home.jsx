@@ -3,8 +3,8 @@ import { RightAngleIcon } from "@/components/icons/rightAngle";
 
 export const HomeData = () => {
   return (
-    <div className="home-content">
-      <h1>
+    <div className="home-content relative z-10">
+      <h1 className="sr-only">
         <span>NOW AVAILABLE</span>
         EXPECTATIONS ELEVATED
       </h1>
@@ -22,25 +22,25 @@ export const HomeData = () => {
 
       <section className="home-content__triptych">
         <article className="home-content__triptych__item">
-          <h3>
+          <p>
             <span className="home-content__triptych__item__number">0</span>
             <span className="home-content__triptych__item__focus">DAYS OF HOSPITALIZATION</span>
             <span>due to infection per person-year<sup>1</sup></span>
-          </h3>
+          </p>
         </article>
         <article className="home-content__triptych__item">
-          <h3>
+          <p>
             <span className="home-content__triptych__item__number">97<span>%</span></span>
             <span>of the year</span>
             <span className="home-content__triptych__item__focus">ANTIBIOTIC-FREE<sup>1</sup></span>
-          </h3>
+          </p>
         </article>
         <article className="home-content__triptych__item">
-          <h3>
+          <p>
             <span className="home-content__triptych__item__number">93<span>%</span></span>
             <span className="home-content__triptych__item__focus">OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2, †</sup></span>
             <span>due to infection per person-year<sup>1</sup></span>
-          </h3>
+          </p>
         </article>
 
       </section>
