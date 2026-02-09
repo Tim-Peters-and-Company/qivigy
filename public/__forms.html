@@ -32,5 +32,27 @@
       <input name="receiveEmails" type="checkbox" />
       <div data-netlify-recaptcha="true"></div>
     </form>
+    <form
+      name="signup"
+      data-netlify="true"
+      data-netlify-recaptcha="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="signup" />
+      <p class="hidden">
+        <label>
+          Don't fill this out if you're human:
+          <input name="bot-field" type="text" />
+        </label>
+      </p>
+      <input name="nameFirst" type="text" />
+      <input name="nameLast" type="text" />
+      <input name="email" type="email" />
+      <input name="specialty" type="text" />
+      <input name="privacyNotice" type="checkbox" />
+      <input name="receiveCommunications" type="checkbox" />
+      <div data-netlify-recaptcha="true"></div>
+    </form>
   </body>
 </html>
