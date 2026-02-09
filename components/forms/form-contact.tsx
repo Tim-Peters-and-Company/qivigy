@@ -549,15 +549,6 @@ export function ContactForm() {
                 {isSubmitting ? "Submitting…" : "Submit"}
               </Button>
             </Field>
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full"
-              onClick={() => setSuccessDialogOpen(true)}
-              disabled={isSubmitting}
-            >
-              Test submit dialog
-            </Button>
             <p><span className="text-xs text-navy">*Indicates required field.</span></p>
           </div>
         </CardFooter>
