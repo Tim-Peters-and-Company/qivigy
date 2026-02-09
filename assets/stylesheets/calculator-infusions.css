@@ -1,5 +1,5 @@
 .calculator-infusions {
-  @apply text-lg space-y-4 my-8;
+  @apply text-base space-y-4 my-8;
 }
 
 .calculator-infusions h2 {

@@ -9,8 +9,16 @@ import {
   type WeightUnit,
   type FirstInfusionResult,
 } from "@/lib/qivigy-calc";
-
-type InfusionMode = "first" | "subsequent";
+import { InfusionModeTabs, type InfusionMode } from "./calculator-infusion-mode-tabs";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const DOSE_MIN = 300;
 const DOSE_MAX = 800;
@@ -92,51 +100,31 @@ export default function Calculator() {
     return (
       <div className="p-6 print:p-0">
         <div className="mx-auto">
-          <div className="mb-2 flex gap-4 border-b border-gray-300">
-            <button
-              type="button"
-              onClick={() => handleTabClick("first")}
-              className={
-                resultMode === "first"
-                  ? "border-b-2 border-blue-600 pb-2 font-semibold"
-                  : "pb-2 text-gray-500"
-              }
-            >
-              FIRST INFUSION
-            </button>
-            <button
-              type="button"
-              onClick={() => handleTabClick("subsequent")}
-              className={
-                resultMode === "subsequent"
-                  ? "border-b-2 border-blue-600 pb-2 font-semibold"
-                  : "pb-2 text-gray-500"
-              }
-            >
-              SUBSEQUENT INFUSIONS
-            </button>
-          </div>
+          <InfusionModeTabs
+            activeMode={resultMode}
+            onChange={handleTabClick}
+          />
 
           <div className="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
             <div>
               <div className="text-2xl font-semibold">
                 {parseFloat(weight)} {weightUnit}
               </div>
-              <div className="text-sm text-gray-600">Patient weight</div>
+              <div className="text-sm ">Patient weight</div>
             </div>
             <div>
               <div className="text-2xl font-semibold">{dose} mg/kg</div>
-              <div className="text-sm text-gray-600">Dose</div>
+              <div className="text-sm ">Dose</div>
             </div>
             <div>
               <div className="text-2xl font-semibold">{result.totalDoseG.toFixed(1)} g</div>
-              <div className="text-sm text-gray-600">Total dose</div>
+              <div className="text-sm ">Total dose</div>
             </div>
             <div>
               <div className="text-2xl font-semibold">
                 {formatInfusionTime(result.infusionTimeMinutes)}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm ">
                 Estimated total infusion time
               </div>
             </div>
@@ -167,12 +155,12 @@ export default function Calculator() {
               </div>
             </div>
 
-            <table className="w-full border-collapse border border-gray-300 text-left">
+            <table className="w-full border-collapse border border-navy text-left">
               <thead>
-                <tr className="bg-gray-100">
-                  <th className="border border-gray-300 p-2"></th>
+                <tr className="bg-navy/10">
+                  <th className="border border-navy/50 p-2"></th>
                   {displayRows.map((row) => (
-                    <th key={row.interval} className="border border-gray-300 p-2">
+                    <th key={row.interval} className="border border-navy/50 p-2">
                       {row.interval}
                     </th>
                   ))}
@@ -180,33 +168,33 @@ export default function Calculator() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-300 p-2 font-medium">Infusion rate (mL/kg/min)</td>
+                  <td className="border border-navy/50 p-2 font-medium">Infusion rate (mL/kg/min)</td>
                   {displayRows.map((row) => (
-                    <td key={row.interval} className="border border-gray-300 p-2">
+                    <td key={row.interval} className="border border-navy/50 p-2">
                       {row.rateMlPerKgMin.toFixed(2)}
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 p-2 font-medium">Infusion rate (mg/kg/min)</td>
+                  <td className="border border-navy/50 p-2 font-medium">Infusion rate (mg/kg/min)</td>
                   {displayRows.map((row) => (
-                    <td key={row.interval} className="border border-gray-300 p-2">
+                    <td key={row.interval} className="border border-navy/50 p-2">
                       {row.rateMgPerKgMin.toFixed(1)}
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 p-2 font-medium">Grams infused per interval</td>
+                  <td className="border border-navy/50 p-2 font-medium">Grams infused per interval</td>
                   {displayRows.map((row) => (
-                    <td key={row.interval} className="border border-gray-300 p-2">
+                    <td key={row.interval} className="border border-navy/50 p-2">
                       {row.gramsPerInterval.toFixed(1)}
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 p-2 font-medium">Cumulative grams infused</td>
+                  <td className="border border-navy/50 p-2 font-medium">Cumulative grams infused</td>
                   {displayRows.map((row) => (
-                    <td key={row.interval} className="border border-gray-300 p-2">
+                    <td key={row.interval} className="border border-navy/50 p-2">
                       {(row.interval === lastFullInterval
                         ? Math.min(row.cumulativeGrams, result.totalDoseG)
                         : row.cumulativeGrams
@@ -217,11 +205,12 @@ export default function Calculator() {
               </tbody>
             </table>
 
-            <p className="mt-4 text-sm text-gray-600">
+            <p className="mt-4 text-sm ">
               Table based on the infusion rate schedule used in the pivotal
               trial for QIVIGY.1
             </p>
 
+            {process.env.NEXT_PUBLIC_DEBUG === "true" && (
             <section className="no-print mt-8 rounded border border-amber-200 bg-amber-50 p-4 font-mono text-sm">
               <h3 className="mb-3 font-semibold text-amber-900">
                 Debug: calculation steps
@@ -388,6 +377,7 @@ export default function Calculator() {
                 </dd>
               </dl>
             </section>
+            )}
           </div>
         </div>
       </div>
@@ -398,32 +388,9 @@ export default function Calculator() {
     <div className="">
       <div className="mx-auto">
 
-        <div className="mb-2 flex gap-4 border-b border-gray-300">
-          <button
-            type="button"
-            onClick={() => handleTabClick("first")}
-            className={
-              mode === "first"
-                ? "border-b-2 border-blue-600 pb-2 font-semibold"
-                : "pb-2 text-gray-500"
-            }
-          >
-            FIRST INFUSION
-          </button>
-          <button
-            type="button"
-            onClick={() => handleTabClick("subsequent")}
-            className={
-              mode === "subsequent"
-                ? "border-b-2 border-blue-600 pb-2 font-semibold"
-                : "pb-2 text-gray-500"
-            }
-          >
-            SUBSEQUENT INFUSIONS
-          </button>
-        </div>
+        <InfusionModeTabs activeMode={mode} onChange={handleTabClick} />
 
-        <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
+        <div className="rounded-lg border-2 border-navy bg-deep-orange-light p-6 mb-8">
           <p className="mb-6 text-sm">
             The dose of QIVIGY for the treatment of PI is 300-800 mg/kg every
             3-4 weeks
@@ -443,51 +410,48 @@ export default function Calculator() {
               <label htmlFor="weight" className="mb-1 block font-semibold">
                 WEIGHT
               </label>
-              <input
+              <Input
                 id="weight"
                 type="number"
-                min="0"
+                min={0}
                 step="any"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
-                className="w-full rounded border border-gray-300 px-3 py-2"
               />
               <div className="mt-1">
                 <span className="text-sm">UNITS: </span>
-                <select
+                <Select
                   value={weightUnit}
-                  onChange={(e) => setWeightUnit(e.target.value as WeightUnit)}
-                  className="rounded border border-gray-300 px-2 py-1 text-sm"
-                  aria-label="Weight units"
+                  onValueChange={(v) => setWeightUnit(v as WeightUnit)}
                 >
-                  <option value="kg">kg</option>
-                  <option value="lbs">lbs</option>
-                </select>
+                  <SelectTrigger size="sm" aria-label="Weight units" className="w-fit">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="kg">kg</SelectItem>
+                    <SelectItem value="lbs">lbs</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="flex-1 min-w-[140px]">
               <label htmlFor="dose" className="mb-1 block font-semibold">
                 DESIRED DOSE
               </label>
-              <input
+              <Input
                 id="dose"
                 type="number"
-                min="0"
+                min={0}
                 step="any"
                 value={dose}
                 onChange={(e) => setDose(e.target.value)}
-                className="w-full rounded border border-gray-300 px-3 py-2"
               />
               <div className="mt-1 text-sm">mg/kg</div>
             </div>
-            <div className="flex items-end">
-              <button
-                type="button"
-                onClick={handleCalculate}
-                className="rounded bg-orange-400 px-6 py-2 font-semibold text-white hover:bg-orange-500"
-              >
+            <div className="flex items-start mt-[30px]">
+              <Button type="button" onClick={handleCalculate}>
                 CALCULATE
-              </button>
+              </Button>
             </div>
           </div>
         </div>
