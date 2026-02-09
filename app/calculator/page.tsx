@@ -1,5 +1,5 @@
-import QivigyCalculator from "@/components/QivigyCalculator";
+import Calculator from "@/components/calculator/calculator-calculator";
 
 export default function Home() {
-  return <QivigyCalculator />;
+  return <Calculator />;
 }

@@ -17,7 +17,7 @@ const DOSE_MAX = 800;
 const DOSE_ERROR =
   "The dose is not within the FDA-approved range of 300 to 800 mg/kg. Please enter a dose within that range.";
 
-export default function QivigyCalculator() {
+export default function Calculator() {
   const [mode, setMode] = useState<InfusionMode>("first");
   const [weight, setWeight] = useState("");
   const [weightUnit, setWeightUnit] = useState<WeightUnit>("kg");
@@ -90,12 +90,8 @@ export default function QivigyCalculator() {
       minuteRows.push({ minute: t, rate, gramsThisMinute: grams, cumulativeGrams: cum });
     }
     return (
-      <div className="min-h-screen p-6 print:p-0">
-        <div className="mx-auto max-w-4xl">
-          <h1 className="mb-6 text-2xl font-bold">
-            QIVIGY Infusion Time Calculator
-          </h1>
-
+      <div className="p-6 print:p-0">
+        <div className="mx-auto">
           <div className="mb-2 flex gap-4 border-b border-gray-300">
             <button
               type="button"
@@ -399,11 +395,8 @@ export default function QivigyCalculator() {
   }
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="mb-6 text-2xl font-bold">
-          QIVIGY Infusion Time Calculator
-        </h1>
+    <div className="">
+      <div className="mx-auto">
 
         <div className="mb-2 flex gap-4 border-b border-gray-300">
           <button

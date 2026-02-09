@@ -1,6 +1,7 @@
 import PageLayout from "@/components/page-layout";
 import { StartingQivigyDosingProductInformationData, StartingQivigyDosingCalculator, StartingQivigyOrderingQivigy, StartingQivigyCustomerService } from "@/content/starting-qivigy";
 import { SignupForm } from "@/components/forms/form-signup";
+import CalculatorSection from "@/components/calculator/calculator-section";
 
 export default function Page() {
   return (
@@ -10,8 +11,11 @@ export default function Page() {
       </div>
 
       <div className="arched-top relative pt-14 min-h-[500px]">
-        <div className="page-width starting-qivigy">
-          <StartingQivigyDosingCalculator />
+        <div className="page-width">
+          <div className="starting-qivigy mb-8">
+            <StartingQivigyDosingCalculator />
+          </div>
+          <CalculatorSection />
           <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div>
         </div>
       </div>
