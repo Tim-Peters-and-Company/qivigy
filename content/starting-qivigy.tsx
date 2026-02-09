@@ -93,7 +93,7 @@ export const StartingQivigyDosingProductInformationData = () => {
 export const StartingQivigyDosingCalculator = () => {
   return (
     <>
-      <h2 id="dosing-calculator">Dosing calculator</h2>
+      <h2 id="dosing-calculator">Dosing calculator TKTK</h2>
     </>
   );
 };
