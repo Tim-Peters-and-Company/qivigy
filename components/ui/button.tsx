@@ -25,7 +25,7 @@ const buttonVariants = cva(
         default: "border-2 border-navy bg-navy text-white text-lg rounded-full px-6! py-5! uppercase font-bold shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
         secondary: "border-2 border-navy text-navy text-lg rounded-full px-6! py-5! uppercase font-bold shadow-lg hover:border-navy-dark hover:text-navy-dark transition-all",
         large: "border-2 border-navy bg-navy font-normal text-white text-2xl rounded-full px-6! py-5! shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
-        home: "border-2 border-navy bg-navy text-white text-lg rounded-[20px] px-6! py-7! shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
+        home: "border-2 border-navy bg-navy text-white text-lg rounded-[20px] px-6! md:px-13! py-6! shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all whitespace-normal! text-left! leading-none!",
 
       },
       size: {
