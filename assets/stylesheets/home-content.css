@@ -25,11 +25,11 @@
 }
 
 .home-content__callout__number {
-  @apply text-[96px] font-bold text-deep-orange leading-none;
+  @apply text-[96px] font-extrabold text-deep-orange leading-none;
 }
 
 .home-content__triptych {
-  @apply lg:grid lg:grid-cols-3 lg:gap-4;
+  @apply lg:grid lg:grid-cols-3 lg:gap-4 items-start;
   @apply max-w-4xl mx-auto;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .home-content .item__number {
-  @apply text-6xl leading-none font-bold text-deep-orange;
+  @apply text-6xl leading-none font-extrabold text-deep-orange;
   @apply block float-left;
   @apply flex flex-row items-start justify-center;
 }

@@ -8,6 +8,7 @@
 @import "./starting-qivigy.css";
 @import "./providers.css";
 @import "./calculator-infusions.css";
+@import "./study-design.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));

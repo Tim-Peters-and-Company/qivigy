@@ -5,67 +5,62 @@ import Bacteria from "@/assets/images/bacteria@2x.png";
 
 export const HomeData = () => {
   return (
-    <div className="home-content relative z-10">
-      <h1 className="sr-only">
-        <span>NOW AVAILABLE</span>
-        EXPECTATIONS ELEVATED
-      </h1>
+    <>
+      <div className="home-content relative z-10">
+        <h1 className="sr-only">
+          <span>NOW AVAILABLE</span>
+          EXPECTATIONS ELEVATED
+        </h1>
 
-      <article>
-        <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY<sup>®</sup> achieved quality patient outcomes<sup>1,2*</sup>: </p>
-        <div className="home-content__callout">
-          <div className="home-content__callout__number">0</div>
-          <p>
-            <strong>ACUTE SERIOUS BACTERIAL INFECTIONS</strong><br />
-            per <span className="whitespace-nowrap">person-year</span><br />
-            (99% confidence limit: 0.10; N=47)<sup>1,2</sup>
-          </p>
-          <Image src={Bacteria} alt="Bacteria" width={76} height={76} />
-        </div>
-      </article>
+        <article>
+          <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY<sup>®</sup> achieved quality patient outcomes<sup>1,2*</sup>: </p>
+          <div className="home-content__callout">
+            <div className="home-content__callout__number">0</div>
+            <p>
+              <strong>ACUTE SERIOUS BACTERIAL INFECTIONS</strong><br />
+              per <span className="whitespace-nowrap">person-year</span><br />
+              (99% confidence limit: 0.10; N=47)<sup>1,2</sup>
+            </p>
+            <Image src={Bacteria} alt="Bacteria" width={76} height={76} />
+          </div>
+        </article>
 
-      <section className="home-content__triptych">
-        <article className="item">
-          <p>
-            <span className="item__number">0</span>{" "}
-            <span className="item__focus">
-              <strong>DAYS OF HOSPITALIZATION</strong>{" "}
-              due to infection per person-year<sup>1</sup>
-            </span>
-          </p>
-        </article>
-        <article className="item">
-          <p>
-            <span className="item__number">97<span>%</span></span>{" "}
-            <span className="item__focus">
-              of the year{" "}
-              <strong>ANTIBIOTIC-FREE<sup>1</sup></strong>
-            </span>
-          </p>
-        </article>
-        <article className="item">
-          <p>
-            <span className="item__number">93<span>%</span></span>{" "}
-            <span className="item__focus">
-              <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2,†</sup></strong>
-            </span>
-          </p>
-        </article>
-      </section>
+        <section className="home-content__triptych">
+          <article className="item">
+            <p>
+              <span className="item__number">0</span>{" "}
+              <span className="item__focus">
+                <strong>DAYS OF HOSPITALIZATION</strong>{" "}
+                due to infection per <span className="whitespace-nowrap">person-year</span><sup>1</sup>
+              </span>
+            </p>
+          </article>
+          <article className="item">
+            <p>
+              <span className="item__number">97<span>%</span></span>{" "}
+              <span className="item__focus">
+                of the year{" "}
+                <strong>ANTIBIOTIC-FREE<sup>1</sup></strong>
+              </span>
+            </p>
+          </article>
+          <article className="item">
+            <p>
+              <span className="item__number">93<span>%</span></span>{" "}
+              <span className="item__focus">
+                <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2,†</sup></strong>
+              </span>
+            </p>
+          </article>
+        </section>
 
-      <h2 className="mt-8 mb-4">EXPECT MORE WITH QIVIGY.</h2>
-      <Button href="/starting-qivigy" variant="home" className="mx-2! md:mx-0">
-        <span className="text-2xl font-bold leading-none">Start QIVIGY</span>
-        <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
-        <RightAngleIcon className="w-4 h-4" />
-      </Button>
-      <div className="text-xs text-left max-w-xl mx-auto mt-8 space-y-2 px-4">
-        <p><strong>*STUDY DESIGN:</strong> The efficacy of QIVIGY was evaluated in an open-label, prospective clinical study in adult patients with primary    humoral immunodeficiency. A total of 47 patients received intravenous infusion of QIVIGY at a dose of 266 mg/kg to 826 mg/kg on a   4-week (n=39) or a 3-week (n=8) infusion cycle for 12 months.<sup>1</sup><br />
-          <sup>†</sup>In the same study-specific patient questionnaire, 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup>
-        </p>
-        <p><strong>References:</strong> <strong>1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. <strong>2.</strong> Data on file. REF-01262. Kedrion Biopharma Inc.; 2024.
-        </p>
+        <h2 className="mt-8 mb-4">EXPECT MORE WITH QIVIGY.</h2>
+        <Button href="/starting-qivigy" variant="home" className="mx-2! md:mx-0">
+          <span className="text-2xl font-bold leading-none">Start QIVIGY</span>
+          <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
+          <RightAngleIcon className="w-4 h-4" />
+        </Button>
       </div>
-    </div >
+    </>
   )
 }
