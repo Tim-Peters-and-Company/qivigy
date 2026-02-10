@@ -15,8 +15,7 @@ export const CalculatorInfusionRatesData = () => {
     <div className="calculator-infusions">
       <h2>QIVIGY: A new horizon in IVIG therapy</h2>
       <ul className="list-disc list-outside pl-8">
-        <li>In the pivotal trial, QIVIGY was studied using a 30-minute infusion rate escalation protocol for the first infusion and a 15-minute infusion rate escalation protocol for
-          subsequent infusions.1
+        <li>In the pivotal trial, QIVIGY was studied using a 30-minute infusion rate escalation protocol for the first infusion and a 15-minute infusion rate escalation protocol for subsequent infusions.<sup>1</sup>
         </li>
         <li>Infusion rates should be increased only if the infusion is well tolerated.<sup>1</sup></li>
       </ul>
@@ -33,8 +32,7 @@ export const CalculatorInfusionRatesData = () => {
 
       <p><Button onClick={handleClick}>Calculate Infusion Rates for a Patient</Button></p>
 
-      <p className="text-sm"><strong>References: 1.</strong> Data on file, Kedrion Biopharma Inc. 2. QIVIGY® (Immune globulin intravenous, human-kthm) Prescribing Information. Fort Lee, NJ: Kedrion
-        Biopharma Inc. 2025.</p>
+      <p className="text-sm"><strong>References: 1.</strong> Data on file, Kedrion Biopharma Inc. <strong>2.</strong> QIVIGY [prescribing information], Kedrion Biopharma Inc.; 2025.</p>
     </div>
   )
 }

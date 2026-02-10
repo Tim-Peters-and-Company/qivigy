@@ -15,7 +15,7 @@
 }
 
 .safety-information__warning h2 {
-  @apply font-bold uppercase text-navy!;
+  @apply font-bold text-navy! normal-case!;
 }
 
 .safety-information__warning ul {

@@ -13,13 +13,13 @@ export const HomeData = () => {
         </h1>
 
         <article>
-          <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY<sup>®</sup> achieved quality patient outcomes<sup>1,2*</sup>: </p>
+          <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY<sup>®</sup> achieved quality patient outcomes<sup>1,2</sup>: </p>
           <div className="home-content__callout">
             <div className="home-content__callout__number">0</div>
             <p>
               <strong>ACUTE SERIOUS BACTERIAL INFECTIONS</strong><br />
               per <span className="whitespace-nowrap">person-year</span><br />
-              (99% confidence limit: 0.10; N=47)<sup>1,2</sup>
+              (99% confidence limit: 0.10; n=47)<sup>1,2</sup>
             </p>
             <Image src={Bacteria} alt="Bacteria" width={76} height={76} />
           </div>
@@ -37,10 +37,9 @@ export const HomeData = () => {
           </article>
           <article className="item">
             <p>
-              <span className="item__number">97<span>%</span></span>{" "}
+              <span className="item__number">3<span>%</span></span>{" "}
               <span className="item__focus">
-                of the year{" "}
-                <strong>ANTIBIOTIC-FREE<sup>1</sup></strong>
+                <strong>of the year on antibiotics<sup className="font-normal! text-sm!">1*</sup></strong>
               </span>
             </p>
           </article>
@@ -48,7 +47,7 @@ export const HomeData = () => {
             <p>
               <span className="item__number">93<span>%</span></span>{" "}
               <span className="item__focus">
-                <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup>2,†</sup></strong>
+                <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup className="font-normal! text-sm!">2†</sup></strong>
               </span>
             </p>
           </article>

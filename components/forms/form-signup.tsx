@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Script from "next/script"
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import * as z from "zod"
@@ -38,8 +37,8 @@ const formSchema = z.object({
     .pipe(
       z
         .string()
-        .min(2, "First name must be at least 2 characters.")
-        .max(100, "First name must be at most 100 characters."),
+        .min(1, "Please enter first name.")
+        .max(100, "Please enter first name."),
     ),
   nameLast: z
     .string()
@@ -47,57 +46,42 @@ const formSchema = z.object({
     .pipe(
       z
         .string()
-        .min(2, "Last name must be at least 2 characters.")
-        .max(100, "Last name must be at most 100 characters."),
+        .min(1, "Please enter last name.")
+        .max(100, "Please enter last name."),
     ),
   email: z
     .string()
     .transform((s) => s.trim().toLowerCase())
-    .pipe(z.string().email("Invalid email address.")),
+    .pipe(z.string().email("Please enter email address.")),
   specialty: z
     .string()
     .transform((s) => s.trim())
     .pipe(
       z
         .string()
-        .min(2, "Please enter at least 2 characters.")
-        .max(100, "Please enter at most 100 characters."),
+        .min(2, "Please select a specialty.")
+        .max(100, "Please select a specialty."),
     ),
   privacyNotice: z
     .boolean()
     .refine((val) => val === true, {
-      message: "You must acknowledge the Privacy Notice.",
+      message: "Please check this box if you want to proceed.",
     }),
   receiveCommunications: z
     .boolean()
     .refine((val) => val === true, {
-      message: "You must agree to receive communications.",
+      message: "Please check this box if you want to proceed.",
     }),
 })
 
 const formId = "signup-form"
 /** Must match form name in public/__forms.html for Netlify Forms */
 const NETLIFY_FORM_NAME = "signup"
-/** reCAPTCHA v2 site key (set NEXT_PUBLIC_SITE_RECAPTCHA_KEY). Netlify uses SITE_RECAPTCHA_KEY for server-side verify. */
-const RECAPTCHA_SITE_KEY =
-  typeof process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY === "string"
-    ? process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY
-    : ""
-
-declare global {
-  interface Window {
-    grecaptcha?: {
-      render: (container: HTMLElement, options: { sitekey: string }) => number
-    }
-    __signupRecaptchaOnLoad?: () => void
-  }
-}
 
 export function SignupForm() {
   const [successDialogOpen, setSuccessDialogOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const recaptchaContainerRef = useRef<HTMLDivElement>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -112,40 +96,10 @@ export function SignupForm() {
     mode: "onChange",
   })
 
-  useEffect(() => {
-    if (!RECAPTCHA_SITE_KEY || !recaptchaContainerRef.current) return
-    const render = () => {
-      if (recaptchaContainerRef.current && window.grecaptcha) {
-        try {
-          window.grecaptcha.render(recaptchaContainerRef.current, {
-            sitekey: RECAPTCHA_SITE_KEY,
-          })
-        } catch {
-          // already rendered or container gone
-        }
-      }
-    }
-    window.__signupRecaptchaOnLoad = render
-    if (window.grecaptcha) render()
-    return () => {
-      delete window.__signupRecaptchaOnLoad
-    }
-  }, [])
-
   async function onSubmit(data: z.infer<typeof formSchema>) {
     setSubmitError(null)
     setIsSubmitting(true)
     try {
-      const recaptcha =
-        document
-          .querySelector<HTMLTextAreaElement>('[name="g-recaptcha-response"]')
-          ?.value?.trim() ?? ""
-      if (RECAPTCHA_SITE_KEY && !recaptcha) {
-        setSubmitError("Please complete the security check before submitting.")
-        setIsSubmitting(false)
-        return
-      }
-
       const formEl = document.getElementById(formId) as HTMLFormElement | null
       const honeypot = formEl?.elements.namedItem(
         "bot-field",
@@ -168,7 +122,6 @@ export function SignupForm() {
       if (data.privacyNotice) params.set("privacyNotice", "on")
       if (data.receiveCommunications)
         params.set("receiveCommunications", "on")
-      if (recaptcha) params.set("g-recaptcha-response", recaptcha)
 
       const res = await fetch("/__forms.html", {
         method: "POST",
@@ -388,20 +341,6 @@ export function SignupForm() {
                 </div>
 
                 <div className="mt-4 flex flex-col items-stretch gap-2">
-                  {RECAPTCHA_SITE_KEY && (
-                    <>
-                      <Script
-                        src={`https://www.google.com/recaptcha/api.js?onload=__signupRecaptchaOnLoad&render=explicit`}
-                        strategy="lazyOnload"
-                      />
-                      <div
-                        ref={recaptchaContainerRef}
-                        data-netlify-recaptcha="true"
-                        aria-label="Security check"
-                        className="mb-2"
-                      />
-                    </>
-                  )}
                   {submitError && (
                     <p className="text-destructive text-sm" role="alert">
                       {submitError}
@@ -429,18 +368,20 @@ export function SignupForm() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              Thank you for signing up to receive more information about
-              QIVIGY®.
+              Thank you for requesting more information about QIVIGY<sup>®</sup>.
             </DialogTitle>
             <DialogDescription>
-              You may also call Kedrion Biopharma toll-free at{" "}
-              <a
+              For Medical Information requests, including AMCP Dossier requests, please call <a
                 href="tel:+18553537466"
-                className="font-semibold text-navy underline focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded"
+                className="font-semibold focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded"
               >
-                1-855-353-7466
-              </a>{" "}
-              for assistance.
+                1-866-398-0825
+              </a>, or email <a
+                href="mailto:US_MedicalInfo@kedrion.com"
+                className="font-semibold focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded"
+              >
+                US_MedicalInfo@kedrion.com
+              </a>.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

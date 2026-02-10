@@ -12,7 +12,8 @@ export const StartingQivigyDosingProductInformationData = () => {
   return (
     <>
       <h2 id="dosing-product-information">Dosing and product information</h2>
-      <h3>Recommended dosage<sup>1</sup></h3>
+      <h3 className="mb-0!">Recommended dosage<sup>1</sup></h3>
+      <p><em>For intravenous use only.</em></p>
 
       <dl>
         <dt>
@@ -21,7 +22,7 @@ export const StartingQivigyDosingProductInformationData = () => {
         </dt>
         <dd>
           <strong>FIRST INFUSION</strong>
-          1 mg/kg/min (0.01 mL/kg/min) for 30 minutes; increase every 30 minutes to a maximum of 8 mg/kg/min (0.08 mL/kg/min)
+          1 mg/kg/min (0.01 mL/kg/min) for 30 minutes; increase every 30 minutes to a maximum of 8 mg/kg/min (0.08 mL/kg/min) as tolerated
         </dd>
         <dt>
           <strong>MAXIMUM INFUSION RATE</strong>
@@ -29,7 +30,7 @@ export const StartingQivigyDosingProductInformationData = () => {
         </dt>
         <dd>
           <strong>SUBSEQUENT INFUSIONS</strong>
-          2 mg/kg/min (0.02 mL/kg/min) for 15 minutes; increase every 15 minutes to a maximum of 8 mg/kg/min (0.08 mL/kg/min)
+          2 mg/kg/min (0.02 mL/kg/min) for 15 minutes; increase every 15 minutes to a maximum of 8 mg/kg/min (0.08 mL/kg/min) as tolerated
         </dd>
       </dl>
 
@@ -51,7 +52,7 @@ export const StartingQivigyDosingProductInformationData = () => {
         <li>
           <Image src={Characteristics2} alt="Characteristics 2" width={80} height={80} />
           <span>
-            A <strong>high-purity (≥96 IgG) IVIG</strong> that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
+            A <strong>high-purity (≥96% IgG) IVIG</strong> that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
           </span>
         </li>
         <li>
@@ -93,7 +94,7 @@ export const StartingQivigyDosingProductInformationData = () => {
 export const StartingQivigyDosingCalculator = () => {
   return (
     <>
-      <h2 id="dosing-calculator">Dosing calculator TKTK</h2>
+      <h2 id="dosing-calculator">Dosing calculator</h2>
     </>
   );
 };
@@ -104,7 +105,9 @@ export const StartingQivigyOrderingQivigy = () => {
       <h2 id="ordering-qivigy">Ordering QIVIGY</h2>
       <h3>QIVIGY is available through a limited network of distributors and specialty pharmacies</h3>
       <div className="infusion-providers">
-        <ProviderSection title="Distributors" providers={INFUSION_PROVIDERS.distributors} />
+        <ProviderSection title="Distributor" providers={INFUSION_PROVIDERS.distributors} />
+        <ProviderSection title="Acute GPO" providers={INFUSION_PROVIDERS.acuteGpos} />
+        <ProviderSection title="Non-acute GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} />
         <ProviderSection title="Specialty pharmacies" providers={INFUSION_PROVIDERS.specialtyPharmacies} />
       </div>
     </>

@@ -4,6 +4,7 @@ import "@/assets/stylesheets/globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import { DialogUSOnly } from "@/components/dialog/dialog-us-only";
+import { DialogLeavingSite } from "@/components/dialog/dialog-leaving-site";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <DialogUSOnly />
+        <DialogLeavingSite />
       </body>
     </html>
   );
