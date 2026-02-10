@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/forms/form-contact";
 
 export default function Page() {
   return (
-    <PageLayout pageTitle="Connect with a Rep">
+    <PageLayout pageTitle="Connect With a Rep">
       <div className="page-width">
         <ConnectWithARep />
         <ContactForm />

@@ -317,7 +317,7 @@ export function ContactForm() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={`${formId}-email`}>EMAIL*</FieldLabel>
+                    <FieldLabel htmlFor={`${formId}-email`}>EMAIL ADDRESS*</FieldLabel>
                     <Input
                       {...field}
                       id={`${formId}-email`}
@@ -402,7 +402,7 @@ export function ContactForm() {
                           aria-invalid={fieldState.invalid}
                           className="w-full"
                         >
-                          <SelectValue placeholder="Select state" />
+                          <SelectValue placeholder="Select one" />
                         </SelectTrigger>
                         <SelectContent>
                           {US_STATES.map((s) => (
@@ -531,7 +531,7 @@ export function ContactForm() {
                   src={`https://www.google.com/recaptcha/api.js?onload=__contactRecaptchaOnLoad&render=explicit`}
                   strategy="lazyOnload"
                 />
-                <div ref={recaptchaContainerRef} data-netlify-recaptcha="true" aria-label="Security check" />
+                <div className="mx-auto" ref={recaptchaContainerRef} data-netlify-recaptcha="true" aria-label="Security check" />
               </>
             )}
             {submitError && (

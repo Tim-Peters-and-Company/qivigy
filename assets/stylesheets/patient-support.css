@@ -47,12 +47,20 @@
 }
 
 .patient-support-copay-reimbursement__support {
-  @apply flex flex-col md:grid md:grid-cols-2 gap-4 max-w-2xl;
+  @apply flex flex-col md:flex-row gap-4;
+}
+
+.patient-support-copay-reimbursement__support h4 {
+  @apply font-bold leading-none text-2xl flex-1;
+}
+
+.patient-support-copay-reimbursement__support ul {
+  @apply flex flex-col gap-4;
 }
 
 .patient-support-copay-reimbursement__support li {
   @apply flex flex-row items-center gap-4;
-  @apply leading-tight;
+  @apply leading-tight font-bold;
 }
 
 .patient-support-copay-reimbursement__connect {

@@ -23,7 +23,7 @@ const CheckmarkIcon = () => (
 export const PatientSupportCopayProgram = () => (
   <div className="patient-support-copay">
     <h2>QIVIGY<sup>®</sup> copay program</h2>
-    <h3>Copay assistance is available for QIVIGY patients covered under both pharmacy and medical benefits.</h3>
+    <h3>Copay assistance is available for eligible patients on QIVIGY covered under both pharmacy and medical benefits.</h3>
 
     <div className="patient-support-copay__callout">
       <p className="patient-support-copay__callout__block">Eligible patients can receive up to <strong>$10,000 per calendar year</strong> to use on out-of-pocket costs for QIVIGY.</p>
@@ -54,13 +54,16 @@ export const PatientSupportCopayReimbursement = () => (
   <div className="patient-support-copay-reimbursement">
     <h2>Copay and reimbursement support</h2>
     <h3 className="text-deep-orange">QIVIGY offers comprehensive reimbursement support</h3>
-    <h4>THIS SUPPORT INCLUDES: </h4>
-    <ul className="patient-support-copay-reimbursement__support">
-      <li><CheckmarkIcon /> Patient-specific benefit verification claims</li>
-      <li><CheckmarkIcon /> Assistance with claims questions</li>
-      <li><CheckmarkIcon /> Payer coverage and coding research</li>
-      <li><CheckmarkIcon /> Appeal support for denied prior authorizations</li>
-    </ul>
+
+    <div className="patient-support-copay-reimbursement__support">
+      <h4>This support includes: </h4>
+      <ul className="">
+        <li><CheckmarkIcon /> Patient-specific benefit verification claims</li>
+        <li><CheckmarkIcon /> Payer coverage and coding research</li>
+        <li><CheckmarkIcon /> Assistance with claims questions and appeal support for denied prior authorizations</li>
+      </ul>
+    </div>
+
     <h4 className="mt-15!">TO CONNECT WITH A REIMBURSEMENT SPECIALIST:</h4>
     <ul className="patient-support-copay-reimbursement__connect">
       <li>
