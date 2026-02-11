@@ -51,7 +51,7 @@
 }
 
 .starting-qivigy__ndc-table-wrapper {
-  @apply inline-block border-2 border-navy rounded-[10px] shadow-lg overflow-scroll w-full;
+  @apply inline-block border-2 border-navy rounded-[10px] shadow-lg overflow-hidden w-full;
 }
 
 .starting-qivigy__ndc-table {
