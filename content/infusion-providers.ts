@@ -8,12 +8,6 @@ export type InfusionProvider = {
 export const INFUSION_PROVIDERS = {
   distributors: [
     {
-      name: "AIC",
-      phone: "1-877-443-4006",
-      websiteUrl: "https://www.aiscaregroup.com",
-      websiteLabel: "aiscaregroup.com",
-    },
-    {
       name: "CuraScript SD by Evernorth",
       phone: "1-877-599-7748",
       websiteUrl: "https://www.curascriptsd.com",
@@ -40,6 +34,12 @@ export const INFUSION_PROVIDERS = {
   ] satisfies InfusionProvider[],
 
   specialtyPharmacies: [
+    {
+      name: "AIC",
+      phone: "1-877-443-4006",
+      websiteUrl: "https://www.aiscaregroup.com",
+      websiteLabel: "aiscaregroup.com",
+    },
     {
       name: "American Outcomes Management, LP",
       phone: "1-800-746-9089",

@@ -3,8 +3,12 @@
   @apply mt-8 space-y-10;
 }
 
-.infusion-providers__section-title {
+h4.infusion-providers__section-title {
   @apply text-xl font-bold text-navy uppercase mb-6;
+}
+
+h5.infusion-providers__section-title {
+  @apply text-lg font-bold text-navy uppercase mb-6;
 }
 
 .infusion-providers__grid {

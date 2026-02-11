@@ -16,9 +16,13 @@ export const ProviderCard = ({ name, phone, websiteUrl, websiteLabel }: Infusion
   </div>
 );
 
-export const ProviderSection = ({ title, providers }: { title: string; providers: readonly InfusionProvider[] }) => (
+export const ProviderSection = ({ title, providers, headingLevel = 'h4' }: { title: string; providers: readonly InfusionProvider[]; headingLevel?: 'h4' | 'h5' }) => (
   <section className="infusion-providers__section">
-    <h4 className="infusion-providers__section-title">{title}</h4>
+    {headingLevel === 'h4' ? (
+      <h4 className="infusion-providers__section-title">{title}</h4>
+    ) : (
+      <h5 className="infusion-providers__section-title">{title}</h5>
+    )}
     <div className="infusion-providers__grid">
       {providers.map((provider) => (
         <ProviderCard key={provider.name} {...provider} />
