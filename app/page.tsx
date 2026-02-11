@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <StudyDesignContent />
 
-      <div className="bg-deep-orange-light flex-1 text-center py-8 pt-[34.821428571%]  md:pt-64 relative">
+      <div className="bg-deep-orange-light flex-1 text-center py-8 pt-[34.821428571%] md:pt-56 xl:pt-56 relative">
         <p className={cn(
           "absolute top-4 md:top-10 left-0 w-full text-center z-50 text-deep-orange font-bold text-xl md:text-3xl tracking-widest"
         )}>NOW AVAILABLE</p>

@@ -8,7 +8,7 @@
 }
 
 .home-content h2 {
-  @apply text-xl font-bold text-deep-orange tracking-wide leading-tight;
+  @apply text-xl font-extrabold text-deep-orange tracking-wide leading-tight;
 }
 
 .home-content__callout {
@@ -29,8 +29,8 @@
 }
 
 .home-content__triptych {
-  @apply lg:grid lg:grid-cols-3 lg:gap-4 items-start;
-  @apply max-w-4xl mx-auto;
+  @apply lg:grid lg:grid-cols-3 lg:gap-0 items-start;
+  @apply max-w-3xl mx-auto;
 }
 
 .home-content .item {

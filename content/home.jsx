@@ -53,7 +53,7 @@ export const HomeData = () => {
           </article>
         </section>
 
-        <h2 className="mt-8 mb-4">EXPECT MORE WITH QIVIGY.</h2>
+        <h2 className="mt-0 mb-4">EXPECT MORE WITH QIVIGY.</h2>
         <Button href="/starting-qivigy" variant="home" className="mx-2! md:mx-0">
           <span className="text-2xl font-bold leading-none">Start QIVIGY</span>
           <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
