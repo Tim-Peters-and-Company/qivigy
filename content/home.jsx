@@ -59,6 +59,14 @@ export const HomeData = () => {
           <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
           <RightAngleIcon className="w-4 h-4" />
         </Button>
+
+        <div className="text-xs text-left max-w-xl mx-auto mt-8 space-y-2 px-4">
+          <p>*The median (min, max) duration of antibiotic treatment of any kind of infection was 10 days (1, 334). A total of 36 (76.6%) patients used at least 1 course of concomitant antibiotic therapy for treatment of infections. Eleven patients (23.4%) did not require antibiotic treatment.<sup>2</sup></p>
+
+          <p>†A study-specific patient satisfaction questionnaire was an exploratory endpoint in the trial and collected from all 47 treated patients at Week 24. Questionnaire results also showed 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup></p>
+
+          <p><strong>References: 1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. <strong>2.</strong> Data on file. REF-01262. Kedrion Biopharma Inc.; 2024.</p>
+        </div>
       </div>
     </>
   )

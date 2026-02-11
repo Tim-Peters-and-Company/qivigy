@@ -58,7 +58,7 @@ export const PatientSupportCopayReimbursement = () => (
     <div className="patient-support-copay-reimbursement__support">
       <h4>This support includes: </h4>
       <ul className="">
-        <li><CheckmarkIcon /> Patient-specific benefit verification claims</li>
+        <li><CheckmarkIcon /> Patient-specific benefit verifications claims</li>
         <li><CheckmarkIcon /> Payer coverage and coding research</li>
         <li><CheckmarkIcon /> Assistance with claims questions and appeal support for denied prior authorizations</li>
       </ul>

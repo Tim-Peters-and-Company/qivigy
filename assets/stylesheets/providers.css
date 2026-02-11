@@ -4,11 +4,11 @@
 }
 
 h4.infusion-providers__section-title {
-  @apply text-xl font-bold text-navy uppercase mb-6;
+  @apply text-xl font-bold text-navy mb-6;
 }
 
 h5.infusion-providers__section-title {
-  @apply text-lg font-bold text-navy uppercase mb-6;
+  @apply text-lg font-bold text-navy mb-6;
 }
 
 .infusion-providers__grid {

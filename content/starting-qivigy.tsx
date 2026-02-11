@@ -105,11 +105,11 @@ export const StartingQivigyOrderingQivigy = () => {
       <h2 id="ordering-qivigy">Ordering QIVIGY</h2>
       <h3>QIVIGY is available through a limited network of distributors and specialty pharmacies</h3>
       <div className="infusion-providers">
-        <ProviderSection title="Distributor" providers={INFUSION_PROVIDERS.distributors} />
-        <h4 className="infusion-providers__section-title">Group Purchasing Organizations (GPOs)</h4>
-        <ProviderSection title="Acute GPO" providers={INFUSION_PROVIDERS.acuteGpos} headingLevel="h5" />
-        <ProviderSection title="Non-acute GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} headingLevel="h5" />
-        <ProviderSection title="Specialty pharmacies" providers={INFUSION_PROVIDERS.specialtyPharmacies} />
+        <ProviderSection title="DISTRIBUTOR" providers={INFUSION_PROVIDERS.distributors} />
+        <h4 className="infusion-providers__section-title">GROUP PURCHASING ORGANIZATIONS (GPOs)</h4>
+        <ProviderSection title="ACUTE GPO" providers={INFUSION_PROVIDERS.acuteGpos} headingLevel="h5" />
+        <ProviderSection title="NON-ACUTE GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} headingLevel="h5" />
+        <ProviderSection title="SPECIALTY PHARMACIES" providers={INFUSION_PROVIDERS.specialtyPharmacies} />
       </div>
     </>
   );
