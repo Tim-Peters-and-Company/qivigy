@@ -107,38 +107,38 @@ const formSchema = z.object({
   nameFirst: z
     .string()
     .transform((s) => s.trim())
-    .pipe(z.string().min(2, "Name must be at least 2 characters.").max(100, "Name must be at most 100 characters.")),
+    .pipe(z.string().min(2, "Please enter first name.").max(100, "Please enter first name.")),
   nameLast: z
     .string()
     .transform((s) => s.trim())
-    .pipe(z.string().min(2, "Name must be at least 2 characters.").max(100, "Name must be at most 100 characters.")),
+    .pipe(z.string().min(2, "Please enter last name.").max(100, "Please enter last name.")),
   email: z
     .string()
     .transform((s) => s.trim().toLowerCase())
-    .pipe(z.string().email("Invalid email address.")),
+    .pipe(z.string().email("Please enter email address.")),
   phone: z
     .string()
     .transform((s) => s.replace(/\D/g, "").slice(0, 10))
-    .pipe(z.string().length(10, "Phone must be exactly 10 digits.")),
+    .pipe(z.string().length(10, "Please enter phone number.")),
   city: z
     .string()
     .transform((s) => s.trim())
-    .pipe(z.string().min(2, "City must be at least 2 characters.").max(100, "City must be at most 100 characters.")),
+    .pipe(z.string().min(2, "Please enter city.").max(100, "Please enter city.")),
   state: z.enum(stateValues as [string, ...string[]], {
-    message: "Please select a state.",
+    message: "Please enter state.",
   }),
   zip: z
     .string()
     .transform((s) => s.trim().replace(/\s+/g, ""))
-    .pipe(z.string().regex(zipRegex, "ZIP must be 5 digits or 5+4 (e.g. 12345-6789).")),
+    .pipe(z.string().regex(zipRegex, "Please enter zip code.")),
   communicationPreference: z.enum(["email", "phone"], {
-    message: "Please select a communication preference.",
+    message: "Please enter preferred method of communication.",
   }),
-  privacyNotice: z.boolean({
-    message: "You must accept the terms of service.",
+  privacyNotice: z.boolean().refine((val) => val === true, {
+    message: "Please check this box if you want to proceed.",
   }),
-  receiveEmails: z.boolean({
-    message: "You must opt in to receive emails.",
+  receiveEmails: z.boolean().refine((val) => val === true, {
+    message: "Please check this box if you want to proceed.",
   }),
 })
 
@@ -184,7 +184,7 @@ export function ContactForm() {
       privacyNotice: false,
       receiveEmails: false,
     },
-    mode: "onChange",
+    mode: "all",
   })
 
   useEffect(() => {
@@ -283,7 +283,6 @@ export function ContactForm() {
                       id={`${formId}-nameFirst`}
                       aria-invalid={fieldState.invalid}
                       autoComplete="given-name"
-                      required={true}
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -304,7 +303,6 @@ export function ContactForm() {
                       id={`${formId}-nameLast`}
                       aria-invalid={fieldState.invalid}
                       autoComplete="family-name"
-                      required={true}
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -325,7 +323,6 @@ export function ContactForm() {
                       aria-invalid={fieldState.invalid}
                       placeholder="name@example.com"
                       autoComplete="email"
-                      required={true}
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -345,7 +342,6 @@ export function ContactForm() {
                         aria-invalid={fieldState.invalid}
                         placeholder="(000)-000-0000"
                         autoComplete="tel"
-                        required={true}
                         value={formatPhoneDisplay(field.value)}
                         onChange={(e) => {
                           const digits = e.target.value.replace(/\D/g, "").slice(0, 10)
@@ -377,7 +373,6 @@ export function ContactForm() {
                       id={`${formId}-city`}
                       aria-invalid={fieldState.invalid}
                       autoComplete="address-level2"
-                      required={true}
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -395,7 +390,6 @@ export function ContactForm() {
                       <Select
                         value={field.value ?? ""}
                         onValueChange={(v) => field.onChange(v || undefined)}
-                        required={true}
                       >
                         <SelectTrigger
                           id={`${formId}-state`}
@@ -430,7 +424,6 @@ export function ContactForm() {
                         aria-invalid={fieldState.invalid}
                         autoComplete="postal-code"
                         maxLength={10}
-                        required={true}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -557,7 +550,7 @@ export function ContactForm() {
       <Dialog open={successDialogOpen} onOpenChange={setSuccessDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Thank you for requesting more information about QIVIGY®. </DialogTitle>
+            <DialogTitle>Thank you for requesting more information about QIVIGY<sup>®</sup>.</DialogTitle>
             <DialogDescription>
               You may also call Kedrion Biopharma toll-free at <a href="tel:+18553537466" className="font-semibold text-navy underline focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded">1-855-353-7466</a> for assistance.{" "}
             </DialogDescription>
