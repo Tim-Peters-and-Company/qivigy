@@ -1,8 +1,9 @@
 "use client"
 
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { safetyInformationData } from '@/content/safety-information';
+import Link from 'next/link';
 
 const AngleIcon = ({ className }: { className?: string }) => {
   return (
@@ -12,50 +13,57 @@ const AngleIcon = ({ className }: { className?: string }) => {
   );
 };
 
-const CloseWidget = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <button className="bg-navy text-white p-2 rounded-full absolute top-0 right-2" onClick={onClick}>
-      <AngleIcon className="size-4" />
-      <span className="sr-only">Close widget</span>
-    </button>
-  );
-};
-
 export default function SafetyInformation() {
+  const [isVisible, setIsVisible] = useState(true);
+  const contentRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const contentElement = contentRef.current;
+    if (!contentElement) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When the top of the content enters the viewport, fade out the header
+        setIsVisible(!entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(contentElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="relative z-50" id="important-safety-information">
-      <Disclosure>
-        {({ open, close }) => (
-          <>
-            {!open && (
-              <DisclosureButton
-                className={cn(
-                  "bg-navy hover:bg-navy-dark transition-all text-white font-bold py-2 w-full uppercase text-base md:text-lg font-open-sans",
-                  "flex items-center justify-center gap-4 md:gap-6"
-                )}
-              >
-                {safetyInformationData.title}
-                <span className="border borer-white rounded-full p-1">
-                  <AngleIcon className="size-2" />
-                </span>
-              </DisclosureButton>
-            )}
+    <>
+      <Link
+        href="#important-safety-information-content"
+        id="important-safety-information"
+        className={cn(
+          "sticky bottom-0 z-50",
+          "bg-navy hover:bg-navy-dark transition-all text-white font-bold py-2 w-full uppercase text-base md:text-lg font-open-sans",
+          "flex items-center justify-center gap-4 md:gap-6",
+          "transition-opacity duration-500",
+          isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}>
+        {safetyInformationData.title}
+        <span className="border borer-white rounded-full p-1">
+          <AngleIcon className="size-2" />
+        </span>
+      </Link>
 
-            <div className="overflow-hidden">
-              <DisclosurePanel
-                transition
-                className="origin-top transition duration-200 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
-              >
-                <div className="page-width relative py-6">
-
-                  <CloseWidget onClick={close} />
-                  {safetyInformationData.content}
-                </div>
-              </DisclosurePanel>
-            </div>
-          </>
-        )}
-      </Disclosure>
-    </div>
+      <section ref={contentRef} className="page-width py-6 relative" id="important-safety-information-content">
+        <Link href="#top" className="bg-navy text-white p-2 rounded-full absolute top-0 right-2">
+          <AngleIcon className="size-4" />
+          <span className="sr-only">Back to Top</span>
+        </Link>
+        {safetyInformationData.content}
+      </section>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "@/assets/stylesheets/globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import SafetyInformation from "@/components/safety-information/safety-information";
 import { DialogUSOnly } from "@/components/dialog/dialog-us-only";
 import { DialogLeavingSite } from "@/components/dialog/dialog-leaving-site";
 
@@ -23,9 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable} scroll-smooth`}>
-      <body className="antialiased font-sans min-h-screen flex flex-col">
+      <body className="antialiased font-sans min-h-screen flex flex-col relative" id="top">
         <Header />
         {children}
+        <SafetyInformation />
         <Footer />
         <DialogUSOnly />
         <DialogLeavingSite />

@@ -2,7 +2,7 @@ import { footerLinksData, footerCopyrightData } from "@/content/footer";
 import Link from "next/link";
 import Image from "next/image";
 import KedrionLogo from "@/assets/images/kedrion-logo.png";
-import SafetyInformation from "@/components/safety-information/safety-information";
+import SafetyInformation from "@/components/safety-information/safety-information-disclosure";
 
 const FooterLink = ({ label, href }: { label: string; href: string }) => {
   return (
@@ -23,7 +23,7 @@ const FooterLinks = () => {
 export default function Footer() {
   return (
     <div className="relative z-50 mt-auto">
-      <SafetyInformation />
+      {/* <SafetyInformation /> */}
       <footer className="border-t border-b-36 border-navy py-8">
         <div className="page-width flex flex-col md:flex-row items-start justify-between gap-8 md:gap-0">
           <div className="space-y-6 flex flex-col items-start justify-center">
