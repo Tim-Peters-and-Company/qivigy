@@ -35,7 +35,7 @@ export const StartingQivigyDosingProductInformationData = () => {
       </dl>
 
       <h3 className="mt-16!">Quality characteristics</h3>
-      <h4 className="font-bold">QIVIGY IS:</h4>
+      <h4 className="font-bold">QIVIGY is:</h4>
       <ul className="starting-qivigy__characteristics">
         <li>
           <Image className="mr-2" src={Characteristics1} alt="Characteristics 1" width={80} height={80} />
@@ -52,7 +52,7 @@ export const StartingQivigyDosingProductInformationData = () => {
         <li>
           <Image src={Characteristics2} alt="Characteristics 2" width={80} height={80} />
           <span>
-            A <strong>high-purity (≥96% IgG) IVIG</strong> that <strong>contains only trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
+            A <strong>high-purity (≥96% IgG) IVIG</strong> that <strong>contains trace amounts of IgA (≤50 mg/L)</strong><sup>1</sup>
           </span>
         </li>
         <li>
@@ -103,12 +103,14 @@ export const StartingQivigyOrderingQivigy = () => {
   return (
     <>
       <h2 id="ordering-qivigy">Ordering QIVIGY</h2>
-      <h3>QIVIGY is available through a limited network of distributors and specialty pharmacies</h3>
+      <h3>QIVIGY is available through a limited network of distributors, group purchase organizations, and specialty pharmacies</h3>
       <div className="infusion-providers">
         <ProviderSection title="DISTRIBUTOR" providers={INFUSION_PROVIDERS.distributors} />
         <h4 className="infusion-providers__section-title">GROUP PURCHASING ORGANIZATIONS (GPOs)</h4>
-        <ProviderSection title="ACUTE GPO" providers={INFUSION_PROVIDERS.acuteGpos} headingLevel="h5" />
-        <ProviderSection title="NON-ACUTE GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} headingLevel="h5" />
+        <div className="flex gap-4">
+          <ProviderSection title="ACUTE GPO" providers={INFUSION_PROVIDERS.acuteGpos} headingLevel="h5" />
+          <ProviderSection title="NON-ACUTE GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} headingLevel="h5" />
+        </div>
         <ProviderSection title="SPECIALTY PHARMACIES" providers={INFUSION_PROVIDERS.specialtyPharmacies} />
       </div>
     </>

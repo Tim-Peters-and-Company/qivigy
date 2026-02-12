@@ -14,7 +14,7 @@
   @apply md:grid md:grid-cols-[1fr_3fr];
   @apply border-2 border-navy;
   @apply rounded-[10px] shadow-lg bg-white;
-  @apply overflow-hidden text-base;
+  @apply overflow-hidden text-base mr-2;
 }
 
 .starting-qivigy dl dt {
@@ -31,15 +31,15 @@
 }
 
 .starting-qivigy dl dd {
-  @apply font-normal p-8 leading-tight;
+  @apply font-normal p-8 leading-tight flex flex-col items-start justify-center;
 }
 
 .starting-qivigy dl dd strong {
-  @apply block md:text-xl leading-tight;
+  @apply block md:text-xl leading-tight mb-2.5;
 }
 
 .starting-qivigy .starting-qivigy__characteristics {
-  @apply flex flex-col md:grid md:grid-cols-2 gap-8;
+  @apply flex flex-col md:grid md:grid-cols-[5fr_4fr] gap-8 gap-x-0;
 }
 
 .starting-qivigy .starting-qivigy__characteristics li {
