@@ -32,7 +32,7 @@ export const CalculatorInfusionRatesData = () => {
 
       <p><Button onClick={handleClick} className="whitespace-normal! leading-none!">Calculate Infusion Rates for a Patient</Button></p>
 
-      <p className="text-sm"><strong>References: 1.</strong> Data on file, Kedrion Biopharma Inc. <strong>2.</strong> QIVIGY [prescribing information], Kedrion Biopharma Inc.; 2025.</p>
+      <p className="reference-text"><strong>References: 1.</strong> Data on file, Kedrion Biopharma Inc. <strong>2.</strong> QIVIGY [prescribing information], Kedrion Biopharma Inc.; 2025.</p>
     </div>
   )
 }

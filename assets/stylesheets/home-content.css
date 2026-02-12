@@ -13,7 +13,7 @@
 
 .home-content__callout {
   @apply flex flex-row items-center justify-center gap-4 mx-2 lg:mx-0;
-  @apply bg-white/90 border-3 border-navy p-4 rounded-[10px] mb-4 mt-2;
+  @apply bg-white/90 border-3 border-navy p-4 rounded-[10px] mb-2 mt-2;
 }
 
 .home-content__callout p {
@@ -51,6 +51,10 @@
 
 .home-content .item__number span {
   @apply text-4xl;
+}
+
+.home-content .item__focus {
+  @apply tracking-[-0.02em] leading-none;
 }
 
 .home-content .item__focus strong {

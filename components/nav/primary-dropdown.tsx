@@ -27,7 +27,7 @@ export default function PrimaryDropdown() {
               <ul className={cn(
                 "hidden group-hover:flex",
                 "flex-col gap-3 p-3",
-                "absolute top-full left-[-17px] right-[-17px] mt-[16px]",
+                "absolute top-full left-[-17px] right-[-17px] mt-[12px]",
                 "bg-deep-orange-light text-foreground",
                 "border border-deep-orange",
                 "rounded-b-xl",

@@ -15,7 +15,8 @@ const headerUtilityLinks = headerUtilityLinksData.map((link) => headerUtilityLin
 export default function HeaderUtility() {
   return (
     <div className={cn(
-      "bg-navy text-white py-2.5 w-full",
+      "bg-navy text-white h-[30px] w-full",
+      "flex items-center justify-center",
       "font-open-sans text-[9px] md:text-xs",
       "header-shadow"
     )}>

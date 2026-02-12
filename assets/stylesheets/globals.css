@@ -73,6 +73,8 @@
   --color-foreground: var(--foreground);
   --font-sans: "Chesna Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-open-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-acumin:
+    "acumin-pro-semi-condensed", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
 
   /* QIVIGY Brand Colors */
@@ -136,6 +138,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  p {
+    @apply tracking-[-0.02em];
+  }
 }
 
 @layer components {
@@ -184,6 +189,10 @@
 
   .input-inset-shadow {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
+  }
+
+  .reference-text {
+    @apply text-[13px] leading-[14px] font-acumin;
   }
 }
 

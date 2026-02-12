@@ -11,7 +11,7 @@ export default function HeaderDesktop() {
     >
       <HeaderUtility />
 
-      <div className="max-width pt-6 pb-1 flex flex-row items-stretch justify-between">
+      <div className="max-width pt-3 pb-0 flex flex-row items-stretch justify-between">
         <HeaderLogo />
 
         <div className="flex flex-col justify-between items-end self-stretch">

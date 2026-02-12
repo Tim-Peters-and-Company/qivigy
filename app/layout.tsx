@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable} scroll-smooth`}>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/pfy6pop.css" />
+      </head>
       <body className="antialiased font-sans min-h-screen flex flex-col relative" id="top">
         <Header />
         {children}

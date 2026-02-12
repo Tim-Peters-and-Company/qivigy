@@ -9,7 +9,7 @@ export const footerLinksData = [
   },
   {
     label: "Contact us",
-    href: "/connect",
+    href: "https://www.kedrion.us/kedrion-in-the-world/",
   },
 ];
 
