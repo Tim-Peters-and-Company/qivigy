@@ -7,6 +7,7 @@ import Characteristics3 from "@/assets/images/characteristics-3.png";
 import Characteristics4 from "@/assets/images/characteristics-4.png";
 import CustomerService1 from "@/assets/images/custserv-1.png";
 import CustomerService2 from "@/assets/images/custserv-2.png";
+import { ProviderCard } from "@/components/Providers";
 
 export const StartingQivigyDosingProductInformationData = () => {
   return (
@@ -107,9 +108,19 @@ export const StartingQivigyOrderingQivigy = () => {
       <div className="infusion-providers">
         <ProviderSection title="DISTRIBUTOR" providers={INFUSION_PROVIDERS.distributors} />
         <h4 className="infusion-providers__section-title">GROUP PURCHASING ORGANIZATIONS (GPOs)</h4>
-        <div className="flex gap-4">
-          <ProviderSection title="ACUTE GPO" providers={INFUSION_PROVIDERS.acuteGpos} headingLevel="h5" />
-          <ProviderSection title="NON-ACUTE GPO" providers={INFUSION_PROVIDERS.nonAcuteGpos} headingLevel="h5" />
+        <div className="w-full grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <h5 className="infusion-providers__section-title">ACUTE GPO</h5>
+            {INFUSION_PROVIDERS.acuteGpos.map((provider) => (
+              <ProviderCard key={provider.name} {...provider} />
+            ))}
+          </div>
+          <div>
+            <h5 className="infusion-providers__section-title">NON-ACUTE GPO</h5>
+            {INFUSION_PROVIDERS.nonAcuteGpos.map((provider) => (
+              <ProviderCard key={provider.name} {...provider} />
+            ))}
+          </div>
         </div>
         <ProviderSection title="SPECIALTY PHARMACIES" providers={INFUSION_PROVIDERS.specialtyPharmacies} />
       </div>
@@ -121,21 +132,21 @@ export const StartingQivigyCustomerService = () => {
   return (
     <>
       <h2 id="customer-service">Customer service</h2>
-      <p>The Kedrion customer service team is here to help</p>
+      <p>The Kedrion customer service team is here to help.</p>
 
       <ul className="starting-qivigy__customer-service">
         <li>
           <Image className="mr-2" src={CustomerService1} alt="" width={80} height={80} />
           <span>
             <h2>GENERAL INFORMATION</h2>
-            <p>For more information, call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">1-866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com" className="whitespace-nowrap">US_CustomerService@kedrion.com</a></strong> </p>
+            <p>For more information, call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com" className="whitespace-nowrap">US_CustomerService@kedrion.com</a></strong> </p>
           </span>
         </li>
         <li>
           <Image className="mr-2" src={CustomerService2} alt="" width={80} height={80} />
           <span>
             <h2>MEDICAL INFORMATION</h2>
-            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">1-866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com" className="whitespace-nowrap">US_MedicalInfo@kedrion.com</a></strong>.</p>
+            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com" className="whitespace-nowrap">US_MedicalInfo@kedrion.com</a></strong></p>
           </span>
         </li>
 

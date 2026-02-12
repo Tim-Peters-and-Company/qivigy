@@ -69,7 +69,7 @@
 }
 
 .patient-support-copay-reimbursement__connect img {
-  @apply w-10 h-10;
+  @apply w-[74px] h-[74px];
 }
 
 .patient-support-copay-reimbursement__connect li {

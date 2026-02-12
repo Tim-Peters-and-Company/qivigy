@@ -12,7 +12,7 @@
 }
 
 .home-content__callout {
-  @apply flex flex-row items-center justify-center gap-4 mx-2 lg:mx-0;
+  @apply flex flex-row items-center justify-center gap-4 mx-4 md:mx-2 lg:mx-0;
   @apply bg-white/90 border-3 border-navy p-4 rounded-[10px] mb-2 mt-2;
 }
 
@@ -31,6 +31,7 @@
 .home-content__triptych {
   @apply lg:grid lg:grid-cols-3 lg:gap-0 items-start;
   @apply max-w-3xl mx-auto;
+  @apply mx-5 md:mx-0;
 }
 
 .home-content .item {
@@ -47,6 +48,10 @@
   @apply text-6xl leading-none font-extrabold text-deep-orange;
   @apply block float-left;
   @apply flex flex-row items-start justify-center;
+}
+
+.home-content .item__break {
+  @apply block md:hidden;
 }
 
 .home-content .item__number span {

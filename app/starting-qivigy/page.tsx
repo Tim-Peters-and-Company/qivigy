@@ -31,7 +31,7 @@ export default function Page() {
         <div className="page-width starting-qivigy">
           <StartingQivigyCustomerService />
           <SignupForm />
-          <p className="reference-text mt-8"><strong>Reference: 1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. </p>
+          <p className="reference-text mt-8!"><strong>References: 1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. <strong>2.</strong> Data on file. REF-XXXX. Kedrion Biopharma Inc.; 20XX. </p>
           <div className="bg-linear-to-b from-deep-orange-light to-white absolute top-0 left-0 h-[300px] w-full -z-10"></div>
         </div>
       </div>

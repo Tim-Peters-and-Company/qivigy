@@ -69,7 +69,7 @@ export const PatientSupportCopayReimbursement = () => (
       <li>
         <Image src={PhoneIcon} alt="Phone" width={74} height={74} />
         <a href="tel:1-888-262-8040">
-          1-888-262-8040</a>
+          888-262-8040</a>
       </li>
       <li>
         <Image src={EmailIcon} alt="Email" width={74} height={74} />

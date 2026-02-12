@@ -93,7 +93,8 @@ export function SignupForm() {
       privacyNotice: false,
       receiveCommunications: false,
     },
-    mode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onChange",
   })
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
@@ -185,7 +186,6 @@ export function SignupForm() {
                         id={`${formId}-nameFirst`}
                         aria-invalid={fieldState.invalid}
                         autoComplete="given-name"
-                        required={true}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -207,7 +207,6 @@ export function SignupForm() {
                         id={`${formId}-nameLast`}
                         aria-invalid={fieldState.invalid}
                         autoComplete="family-name"
-                        required={true}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -231,7 +230,6 @@ export function SignupForm() {
                         aria-invalid={fieldState.invalid}
                         placeholder="EMAIL ADDRESS"
                         autoComplete="email"
-                        required={true}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -253,7 +251,6 @@ export function SignupForm() {
                         id={`${formId}-specialty`}
                         aria-invalid={fieldState.invalid}
                         placeholder="ENTER YOUR SPECIALTY"
-                        required={true}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -261,9 +258,6 @@ export function SignupForm() {
                     </Field>
                   )}
                 />
-                <p className="text-xs text-navy">
-                  *Indicates required field.
-                </p>
               </FieldGroup>
 
               <div className="mt-8 md:mt-0 flex flex-col justify-between gap-6">
@@ -350,7 +344,7 @@ export function SignupForm() {
                     <Button
                       type="submit"
                       form={formId}
-                      className="min-w-[8rem] w-full"
+                      className="min-w-32 w-full"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Submitting…" : "Submit"}
@@ -360,6 +354,9 @@ export function SignupForm() {
               </div>
             </div>
           </form>
+          <p className="text-xs text-navy mt-8!">
+            *Indicates required field.
+          </p>
         </CardContent>
         <CardFooter />
       </Card>

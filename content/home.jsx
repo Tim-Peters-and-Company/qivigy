@@ -12,7 +12,7 @@ export const HomeData = () => {
         </h1>
 
         <article>
-          <p className="font-bold text-lg leading-tight">In a 12-month study, QIVIGY achieved quality patient outcomes<sup>1,2</sup>: </p>
+          <p className="font-bold text-lg leading-tight text-balance">In a 12-month study, QIVIGY achieved quality patient outcomes<sup>1,2</sup>: </p>
           <div className="home-content__callout">
             <div className="home-content__callout__number">0</div>
             <p>
@@ -29,7 +29,7 @@ export const HomeData = () => {
             <p>
               <span className="item__number">0</span>{" "}
               <span className="item__focus">
-                <strong>DAYS OF HOSPITALIZATION</strong>{" "}
+                <strong>DAYS OF HOSPITALIZATION</strong>{" "}<br className="item__break" />
                 due to infection per <span className="whitespace-nowrap">person-year</span><sup>1</sup>
               </span>
             </p>

@@ -96,11 +96,11 @@
 }
 
 .starting-qivigy .starting-qivigy__customer-service h2 {
-  @apply font-bold text-xl text-deep-orange;
+  @apply font-bold text-xl text-deep-orange mb-2;
 }
 
 .starting-qivigy .starting-qivigy__customer-service li {
-  @apply flex items-center gap-4;
+  @apply flex items-start gap-4;
 }
 
 .starting-qivigy .starting-qivigy__customer-service p {
