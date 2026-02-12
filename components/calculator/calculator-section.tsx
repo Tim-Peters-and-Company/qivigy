@@ -13,7 +13,7 @@ export default function CalculatorSection() {
     <CalculatorTabProvider setSelectedIndex={setSelectedIndex}>
       <TabGroup selectedIndex={selectedIndex} onChange={setSelectedIndex}>
         <TabList
-          className="flex gap-2"
+          className="flex flex-col md:flex-row gap-2 leading-none"
         >
           {CalculatorTabs.map((tab) => (
             <Tab

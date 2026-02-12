@@ -13,7 +13,6 @@ export const CalculatorInfusionRatesData = () => {
 
   return (
     <div className="calculator-infusions">
-      <h2>QIVIGY: A new horizon in IVIG therapy</h2>
       <ul className="list-disc list-outside pl-8">
         <li>In the pivotal trial, QIVIGY was studied using a 30-minute infusion rate escalation protocol for the first infusion and a 15-minute infusion rate escalation protocol for subsequent infusions.<sup>2</sup>
         </li>

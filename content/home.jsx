@@ -30,7 +30,7 @@ export const HomeData = () => {
               <span className="item__number">0</span>{" "}
               <span className="item__focus">
                 <strong>DAYS OF HOSPITALIZATION</strong>{" "}<br className="item__break" />
-                due to infection per <span className="whitespace-nowrap">person-year</span><sup>1</sup>
+                due to infection per <span className="whitespace-nowrap">person-year</span><sup className="-top-0.5">1</sup>
               </span>
             </p>
           </article>
@@ -60,9 +60,9 @@ export const HomeData = () => {
         </Button>
 
         <div className="reference-text text-left mx-auto mt-8 space-y-2 px-4 md:px-0 max-w-[655px]">
-          <p><span className="float-left -ml-2!">*</span>The median (min, max) duration of antibiotic treatment of any kind of infection was 10 days (1, 334). A total of 36 (76.6%) patients used at least 1 course of concomitant antibiotic therapy for treatment of infections. Eleven patients (23.4%) did not require antibiotic treatment.<sup>2</sup></p>
+          <p><span className="float-left -ml-1.5!">*</span>The median (min, max) duration of antibiotic treatment of any kind of infection was 10 days (1,334). A total of 36 (76.6%) patients used at least 1 course of concomitant antibiotic therapy for treatment of infections. Eleven patients (23.4%) did not require antibiotic treatment.<sup>2</sup></p>
 
-          <p><span className="float-left -ml-2!">†</span>A study-specific patient satisfaction questionnaire was an exploratory endpoint in the trial and collected from all 47 treated patients at Week 24. Questionnaire results also showed 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup></p>
+          <p><span className="float-left -ml-1.5!">†</span>A study-specific patient satisfaction questionnaire was an exploratory endpoint in the trial and collected from all 47 treated patients at Week 24. Questionnaire results also showed 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup></p>
 
           <p><strong>References: 1.</strong> QIVIGY [prescribing information]. Kedrion Biopharma Inc.; 2025. <strong>2.</strong> Data on file. REF-01262. Kedrion Biopharma Inc.; 2024.</p>
         </div>

@@ -43,7 +43,11 @@
 }
 
 .starting-qivigy .starting-qivigy__characteristics li {
-  @apply flex items-center gap-4 text-balance;
+  @apply flex items-start md:items-center gap-4 text-balance leading-none md:leading-normal;
+}
+
+.starting-qivigy .starting-qivigy__characteristics img {
+  @apply mr-2 w-12 h-12 md:w-[80px] md:h-[80px];
 }
 
 .starting-qivigy .starting-qivigy__characteristics strong {
@@ -55,7 +59,7 @@
 }
 
 .starting-qivigy__ndc-table {
-  @apply w-full text-base border-separate border-spacing-0;
+  @apply w-full text-sm md:text-base border-separate border-spacing-0;
 }
 
 .starting-qivigy__ndc-table thead th {
@@ -96,19 +100,23 @@
 }
 
 .starting-qivigy .starting-qivigy__customer-service h2 {
-  @apply font-bold text-xl text-deep-orange mb-2;
+  @apply font-bold text-base md:text-xl text-deep-orange mb-2;
 }
 
 .starting-qivigy .starting-qivigy__customer-service li {
-  @apply flex items-start gap-4;
+  @apply flex items-start gap-1 md:gap-4;
+}
+
+.starting-qivigy .starting-qivigy__customer-service li img {
+  @apply w-10 h-10 md:w-[80px] md:h-[80px];
 }
 
 .starting-qivigy .starting-qivigy__customer-service p {
-  @apply leading-tight;
+  @apply leading-tight text-base md:text-lg;
 }
 
 .starting-qivigy .starting-qivigy__customer-service a {
-  @apply break-all;
+  @apply break-all whitespace-break-spaces;
 }
 
 .starting-qivigy .starting-qivigy__customer-service strong {
