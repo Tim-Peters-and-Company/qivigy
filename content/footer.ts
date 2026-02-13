@@ -8,6 +8,10 @@ export const footerLinksData = [
     href: "https://www.kedrion.us/terms-use/",
   },
   {
+    label: "ACCESSIBILITY STATEMENT",
+    href: "https://www.kedrion.us/accessibility-statement/",
+  },
+  {
     label: "Contact us",
     href: "https://www.kedrion.us/kedrion-in-the-world/",
   },

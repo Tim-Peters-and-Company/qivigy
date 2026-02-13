@@ -1,6 +1,6 @@
 export const DialogUSOnlyData = {
   title: "This website is intended for US audiences only.",
-  description: "If you are a US-based healthcare professional, caregiver, or consumer, click OK to continue; if not, click CANCEL.",
+  description: "If you are a US-based healthcare professional click OK to continue; if not, click CANCEL.",
   okText: "Ok",
   cancelText: "Cancel",
 }
