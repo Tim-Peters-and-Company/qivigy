@@ -93,7 +93,7 @@ export function DialogLeavingSite() {
             Would you like to proceed?
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="flex flex-col md:flex-row">
           <Button type="button" variant="secondary" onClick={handleCancel}>
             Cancel <RightAngleIcon className="size-5" />
           </Button>

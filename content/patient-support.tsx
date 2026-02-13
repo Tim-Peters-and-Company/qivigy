@@ -79,17 +79,17 @@ export const PatientSupportCopayReimbursement = () => (
     <p className="mt-15! mb-20! text-center hidden md:block">
       <Button href="https://qivigy.medmonk.com/" variant="large">Visit <strong>QIVIGY.medmonk.com</strong> for full Terms and Conditions <RightAngleIcon className="size-5" /></Button>
     </p>
-    <p className="mt-8! block md:hidden">
-      <div
+    <div className="mt-8! inline-block md:hidden text-center">
+      <a href="https://qivigy.medmonk.com/"
         className={cn(
           "bg-navy text-white text-lg rounded-full px-6! py-5! shadow-lg hover:bg-navy-dark hover:border-navy-dark transition-all",
+          "leading-tight text-balance inline-flex flex-row items-center justify-start gap-2",
+          "w-3/4"
         )}
       >
-        <a href="https://qivigy.medmonk.com/" className="leading-tight text-balance flex flex-row items-center justify-start gap-2">
-          <span>Visit <strong>QIVIGY.medmonk.com</strong> for full Terms and Conditions</span>
-          <RightAngleIcon className="size-3" />
-        </a>
-      </div>
-    </p>
+        <span>Visit <strong>QIVIGY.medmonk.com</strong> for full Terms and Conditions</span>
+        <RightAngleIcon className="size-3" />
+      </a>
+    </div>
   </div>
 );
