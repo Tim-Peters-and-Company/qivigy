@@ -46,7 +46,7 @@ export const HomeData = () => {
             <p>
               <span className="item__number">93<span>%</span></span>{" "}
               <span className="item__focus">
-                <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup className="font-normal! text-sm!">2†</sup></strong>
+                <strong>OF PATIENTS WERE SATISFIED WITH QIVIGY<sup className="font-normal! text-sm! -top-1">2†</sup></strong>
               </span>
             </p>
           </article>
@@ -54,7 +54,7 @@ export const HomeData = () => {
 
         <h2 className="mt-0 mb-4">EXPECT MORE WITH QIVIGY.</h2>
         <Button href="/starting-qivigy" variant="home" className="mx-2! md:mx-0 max-w-[655px] w-full">
-          <span className="text-2xl font-bold leading-none">Start QIVIGY</span>
+          <span className="text-2xl font-bold leading-none whitespace-nowrap">Start QIVIGY</span>
           <span className="text-base md:text-lg font-bold leading-none border-l-2 border-white pl-4 ml-2">See dosing and ordering information</span>
           <RightAngleIcon className="w-4 h-4" />
         </Button>

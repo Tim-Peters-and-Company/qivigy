@@ -207,176 +207,176 @@ export default function Calculator() {
 
             <p className="mt-4 text-sm ">
               Table based on the infusion rate schedule used in the pivotal
-              trial for QIVIGY.1
+              trial for QIVIGY.<sup>1</sup>
             </p>
 
             {process.env.NEXT_PUBLIC_DEBUG === "true" && (
-            <section className="no-print mt-8 rounded border border-amber-200 bg-amber-50 p-4 font-mono text-sm">
-              <h3 className="mb-3 font-semibold text-amber-900">
-                Debug: calculation steps
-              </h3>
-              <dl className="grid gap-2 [&>dt]:font-medium [&>dt]:text-amber-900">
-                <dt>Weight entered</dt>
-                <dd className="ml-0 text-amber-800">
-                  {weight} {weightUnit}
-                  {weightUnit === "lbs" && (
-                    <span className="text-amber-700">
-                      {" "}
-                      → {weightKg.toFixed(4)} kg (÷ 2.2)
-                    </span>
-                  )}
-                </dd>
-                <dt>Weight in kg (W)</dt>
-                <dd className="ml-0 text-amber-800">
-                  {weightKg.toFixed(4)} kg
-                </dd>
-                <dt>Dose (D)</dt>
-                <dd className="ml-0 text-amber-800">{dose} mg/kg</dd>
-                <dt>Total dose (TD)</dt>
-                <dd className="ml-0 text-amber-800">
-                  TD = W × D / 1000 = {weightKg.toFixed(4)} × {dose} / 1000 ={" "}
-                  {result.totalDoseG.toFixed(4)} g
-                </dd>
-                <dt>Infusion time (IT)</dt>
-                <dd className="ml-0 text-amber-800">
-                  {result.infusionTimeMinutes} minutes (loop: T=0, CD=0; each minute add to CD by rate; when CD ≥ TD, IT = T)
-                  <br />
-                  {formatInfusionTime(result.infusionTimeMinutes)}
-                  <br />
-                  {isSubsequent ? (
-                    result.infusionTimeMinutes >= 45 ? (
+              <section className="no-print mt-8 rounded border border-amber-200 bg-amber-50 p-4 font-mono text-sm">
+                <h3 className="mb-3 font-semibold text-amber-900">
+                  Debug: calculation steps
+                </h3>
+                <dl className="grid gap-2 [&>dt]:font-medium [&>dt]:text-amber-900">
+                  <dt>Weight entered</dt>
+                  <dd className="ml-0 text-amber-800">
+                    {weight} {weightUnit}
+                    {weightUnit === "lbs" && (
+                      <span className="text-amber-700">
+                        {" "}
+                        → {weightKg.toFixed(4)} kg (÷ 2.2)
+                      </span>
+                    )}
+                  </dd>
+                  <dt>Weight in kg (W)</dt>
+                  <dd className="ml-0 text-amber-800">
+                    {weightKg.toFixed(4)} kg
+                  </dd>
+                  <dt>Dose (D)</dt>
+                  <dd className="ml-0 text-amber-800">{dose} mg/kg</dd>
+                  <dt>Total dose (TD)</dt>
+                  <dd className="ml-0 text-amber-800">
+                    TD = W × D / 1000 = {weightKg.toFixed(4)} × {dose} / 1000 ={" "}
+                    {result.totalDoseG.toFixed(4)} g
+                  </dd>
+                  <dt>Infusion time (IT)</dt>
+                  <dd className="ml-0 text-amber-800">
+                    {result.infusionTimeMinutes} minutes (loop: T=0, CD=0; each minute add to CD by rate; when CD ≥ TD, IT = T)
+                    <br />
+                    {formatInfusionTime(result.infusionTimeMinutes)}
+                    <br />
+                    {isSubsequent ? (
+                      result.infusionTimeMinutes >= 45 ? (
+                        <>
+                          Calculation: 15 + 15 + 15 + {result.infusionTimeMinutes - 45} = 45 + {result.infusionTimeMinutes - 45} = {result.infusionTimeMinutes} min
+                          <br />
+                          (0-14: 15 min; 15-29: 15 min; 30-44: 15 min; 45+: {result.infusionTimeMinutes - 45} min partial)
+                        </>
+                      ) : result.infusionTimeMinutes >= 30 ? (
+                        <>Calculation: 15 + 15 + {result.infusionTimeMinutes - 30} = 30 + {result.infusionTimeMinutes - 30} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: 15; 30-44: {result.infusionTimeMinutes - 30} min partial)</>
+                      ) : result.infusionTimeMinutes >= 15 ? (
+                        <>Calculation: 15 + {result.infusionTimeMinutes - 15} = 15 + {result.infusionTimeMinutes - 15} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: {result.infusionTimeMinutes - 15} min partial)</>
+                      ) : (
+                        <>Calculation: {result.infusionTimeMinutes} min (0-14: {result.infusionTimeMinutes} min partial)</>
+                      )
+                    ) : result.infusionTimeMinutes >= 120 ? (
                       <>
-                        Calculation: 15 + 15 + 15 + {result.infusionTimeMinutes - 45} = 45 + {result.infusionTimeMinutes - 45} = {result.infusionTimeMinutes} min
+                        Calculation: 30 + 30 + 30 + 30 + {result.infusionTimeMinutes - 120} = 120 + {result.infusionTimeMinutes - 120} = {result.infusionTimeMinutes} min
                         <br />
-                        (0-14: 15 min; 15-29: 15 min; 30-44: 15 min; 45+: {result.infusionTimeMinutes - 45} min partial)
+                        (0-29: 30 min; 30-59: 30 min; 60-89: 30 min; 90-119: 30 min; 120+: {result.infusionTimeMinutes - 120} min partial)
                       </>
+                    ) : result.infusionTimeMinutes >= 90 ? (
+                      <>Calculation: 30 + 30 + 30 + {result.infusionTimeMinutes - 90} = 90 + {result.infusionTimeMinutes - 90} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: 30; 60-89: 30; 90-119: {result.infusionTimeMinutes - 90} min partial)</>
+                    ) : result.infusionTimeMinutes >= 60 ? (
+                      <>Calculation: 30 + 30 + {result.infusionTimeMinutes - 60} = 60 + {result.infusionTimeMinutes - 60} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: 30; 60-89: {result.infusionTimeMinutes - 60} min partial)</>
                     ) : result.infusionTimeMinutes >= 30 ? (
-                      <>Calculation: 15 + 15 + {result.infusionTimeMinutes - 30} = 30 + {result.infusionTimeMinutes - 30} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: 15; 30-44: {result.infusionTimeMinutes - 30} min partial)</>
-                    ) : result.infusionTimeMinutes >= 15 ? (
-                      <>Calculation: 15 + {result.infusionTimeMinutes - 15} = 15 + {result.infusionTimeMinutes - 15} = {result.infusionTimeMinutes} min (0-14: 15; 15-29: {result.infusionTimeMinutes - 15} min partial)</>
+                      <>Calculation: 30 + {result.infusionTimeMinutes - 30} = 30 + {result.infusionTimeMinutes - 30} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: {result.infusionTimeMinutes - 30} min partial)</>
                     ) : (
-                      <>Calculation: {result.infusionTimeMinutes} min (0-14: {result.infusionTimeMinutes} min partial)</>
-                    )
-                  ) : result.infusionTimeMinutes >= 120 ? (
-                    <>
-                      Calculation: 30 + 30 + 30 + 30 + {result.infusionTimeMinutes - 120} = 120 + {result.infusionTimeMinutes - 120} = {result.infusionTimeMinutes} min
-                      <br />
-                      (0-29: 30 min; 30-59: 30 min; 60-89: 30 min; 90-119: 30 min; 120+: {result.infusionTimeMinutes - 120} min partial)
-                    </>
-                  ) : result.infusionTimeMinutes >= 90 ? (
-                    <>Calculation: 30 + 30 + 30 + {result.infusionTimeMinutes - 90} = 90 + {result.infusionTimeMinutes - 90} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: 30; 60-89: 30; 90-119: {result.infusionTimeMinutes - 90} min partial)</>
-                  ) : result.infusionTimeMinutes >= 60 ? (
-                    <>Calculation: 30 + 30 + {result.infusionTimeMinutes - 60} = 60 + {result.infusionTimeMinutes - 60} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: 30; 60-89: {result.infusionTimeMinutes - 60} min partial)</>
-                  ) : result.infusionTimeMinutes >= 30 ? (
-                    <>Calculation: 30 + {result.infusionTimeMinutes - 30} = 30 + {result.infusionTimeMinutes - 30} = {result.infusionTimeMinutes} min (0-29: 30; 30-59: {result.infusionTimeMinutes - 30} min partial)</>
-                  ) : (
-                    <>Calculation: {result.infusionTimeMinutes} min (0-29: {result.infusionTimeMinutes} min partial)</>
-                  )}
-                </dd>
-                <dt>Rates by interval</dt>
-                <dd className="ml-0">
-                  <table className="mt-1 w-full border-collapse border border-amber-200 text-left text-amber-800">
-                    <thead>
-                      <tr className="bg-amber-100">
-                        <th className="border border-amber-200 p-2">Interval (min)</th>
-                        <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
-                        <th className="border border-amber-200 p-2">{isSubsequent ? "Grams per 15 min" : "Grams per 30 min"}</th>
-                        <th className="border border-amber-200 p-2">Math</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {displayRows.map((r) => (
-                        <tr key={r.interval}>
-                          <td className="border border-amber-200 p-2">{r.interval}</td>
-                          <td className="border border-amber-200 p-2">{r.rateMgPerKgMin.toFixed(1)}</td>
-                          <td className="border border-amber-200 p-2">
-                            {isSubsequent && r.interval === "45+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : !isSubsequent && r.interval === "120+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : `${r.gramsPerInterval.toFixed(2)} g`}
-                          </td>
-                          <td className="border border-amber-200 p-2 text-xs">
-                            {isSubsequent ? (
-                              r.interval === "45+" ? (
-                                <>TD − cumulative(0–44) = {result.totalDoseG.toFixed(2)} − {displayRows[2].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
-                              ) : (
-                                <>{r.rateMgPerKgMin} × 15 × W / 1000 = {r.rateMgPerKgMin} × 15 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
-                              )
-                            ) : r.interval === "120+" ? (
-                              <>TD − cumulative(0–119) = {result.totalDoseG.toFixed(2)} − {displayRows[3].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
-                            ) : (
-                              <>{r.rateMgPerKgMin} × 30 × W / 1000 = {r.rateMgPerKgMin} × 30 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
-                            )}
-                          </td>
+                      <>Calculation: {result.infusionTimeMinutes} min (0-29: {result.infusionTimeMinutes} min partial)</>
+                    )}
+                  </dd>
+                  <dt>Rates by interval</dt>
+                  <dd className="ml-0">
+                    <table className="mt-1 w-full border-collapse border border-amber-200 text-left text-amber-800">
+                      <thead>
+                        <tr className="bg-amber-100">
+                          <th className="border border-amber-200 p-2">Interval (min)</th>
+                          <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
+                          <th className="border border-amber-200 p-2">{isSubsequent ? "Grams per 15 min" : "Grams per 30 min"}</th>
+                          <th className="border border-amber-200 p-2">Math</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </dd>
-                <dt>Schedule table (grams per interval)</dt>
-                <dd className="ml-0">
-                  <table className="mt-1 w-full border-collapse border border-amber-200 text-left text-amber-800">
-                    <thead>
-                      <tr className="bg-amber-100">
-                        <th className="border border-amber-200 p-2">Interval (min)</th>
-                        <th className="border border-amber-200 p-2">Grams per interval</th>
-                        <th className="border border-amber-200 p-2">Cumulative grams</th>
-                        <th className="border border-amber-200 p-2">Math</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {displayRows.map((r, i) => {
-                        const prevCumulative = i === 0 ? 0 : displayRows[i - 1].cumulativeGrams;
-                        const capCumulative = (r.interval === lastFullInterval ? Math.min(r.cumulativeGrams, result.totalDoseG) : r.cumulativeGrams);
-                        return (
+                      </thead>
+                      <tbody>
+                        {displayRows.map((r) => (
                           <tr key={r.interval}>
                             <td className="border border-amber-200 p-2">{r.interval}</td>
-                            <td className="border border-amber-200 p-2">{r.gramsPerInterval.toFixed(2)} g</td>
-                            <td className="border border-amber-200 p-2">{capCumulative.toFixed(2)} g</td>
+                            <td className="border border-amber-200 p-2">{r.rateMgPerKgMin.toFixed(1)}</td>
+                            <td className="border border-amber-200 p-2">
+                              {isSubsequent && r.interval === "45+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : !isSubsequent && r.interval === "120+" ? `${r.gramsPerInterval.toFixed(2)} g (partial)` : `${r.gramsPerInterval.toFixed(2)} g`}
+                            </td>
                             <td className="border border-amber-200 p-2 text-xs">
-                              {i === 0 ? (
-                                <>{r.rateMgPerKgMin} × {isSubsequent ? "15" : "30"} × W / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
-                              ) : (isSubsequent && r.interval === "45+") || (!isSubsequent && r.interval === "120+") ? (
-                                <>cumulative(0–{isSubsequent ? "44" : "119"}) + partial = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g = TD</>
+                              {isSubsequent ? (
+                                r.interval === "45+" ? (
+                                  <>TD − cumulative(0–44) = {result.totalDoseG.toFixed(2)} − {displayRows[2].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
+                                ) : (
+                                  <>{r.rateMgPerKgMin} × 15 × W / 1000 = {r.rateMgPerKgMin} × 15 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
+                                )
+                              ) : r.interval === "120+" ? (
+                                <>TD − cumulative(0–119) = {result.totalDoseG.toFixed(2)} − {displayRows[3].cumulativeGrams.toFixed(2)} = {r.gramsPerInterval.toFixed(2)} g</>
                               ) : (
-                                <>cumulative(prev) + this = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g</>
+                                <>{r.rateMgPerKgMin} × 30 × W / 1000 = {r.rateMgPerKgMin} × 30 × {weightKg.toFixed(2)} / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
                               )}
                             </td>
                           </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </dd>
-                <dt className="mt-2">Minute-by-minute</dt>
-                <dd className="ml-0">
-                  <details className="rounded border border-amber-200 bg-amber-100/50">
-                    <summary className="cursor-pointer select-none px-3 py-2 font-medium text-amber-900 hover:bg-amber-100">
-                      Grams infused each minute and cumulative grams
-                    </summary>
-                    <div className="px-2 pb-2">
-                      <table className="mt-2 w-full border-collapse border border-amber-200 text-left text-amber-800">
-                        <thead>
-                          <tr className="bg-amber-100 sticky top-0">
-                            <th className="border border-amber-200 p-2">Minute</th>
-                            <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
-                            <th className="border border-amber-200 p-2">Grams this minute</th>
-                            <th className="border border-amber-200 p-2">Cumulative grams</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {minuteRows.map((row) => (
-                            <tr key={row.minute}>
-                              <td className="border border-amber-200 p-2">{row.minute}</td>
-                              <td className="border border-amber-200 p-2">{row.rate.toFixed(1)}</td>
-                              <td className="border border-amber-200 p-2">{row.gramsThisMinute.toFixed(4)}</td>
-                              <td className="border border-amber-200 p-2">{row.cumulativeGrams.toFixed(4)}</td>
+                        ))}
+                      </tbody>
+                    </table>
+                  </dd>
+                  <dt>Schedule table (grams per interval)</dt>
+                  <dd className="ml-0">
+                    <table className="mt-1 w-full border-collapse border border-amber-200 text-left text-amber-800">
+                      <thead>
+                        <tr className="bg-amber-100">
+                          <th className="border border-amber-200 p-2">Interval (min)</th>
+                          <th className="border border-amber-200 p-2">Grams per interval</th>
+                          <th className="border border-amber-200 p-2">Cumulative grams</th>
+                          <th className="border border-amber-200 p-2">Math</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {displayRows.map((r, i) => {
+                          const prevCumulative = i === 0 ? 0 : displayRows[i - 1].cumulativeGrams;
+                          const capCumulative = (r.interval === lastFullInterval ? Math.min(r.cumulativeGrams, result.totalDoseG) : r.cumulativeGrams);
+                          return (
+                            <tr key={r.interval}>
+                              <td className="border border-amber-200 p-2">{r.interval}</td>
+                              <td className="border border-amber-200 p-2">{r.gramsPerInterval.toFixed(2)} g</td>
+                              <td className="border border-amber-200 p-2">{capCumulative.toFixed(2)} g</td>
+                              <td className="border border-amber-200 p-2 text-xs">
+                                {i === 0 ? (
+                                  <>{r.rateMgPerKgMin} × {isSubsequent ? "15" : "30"} × W / 1000 = {r.gramsPerInterval.toFixed(2)} g</>
+                                ) : (isSubsequent && r.interval === "45+") || (!isSubsequent && r.interval === "120+") ? (
+                                  <>cumulative(0–{isSubsequent ? "44" : "119"}) + partial = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g = TD</>
+                                ) : (
+                                  <>cumulative(prev) + this = {prevCumulative.toFixed(2)} + {r.gramsPerInterval.toFixed(2)} = {r.cumulativeGrams.toFixed(2)} g</>
+                                )}
+                              </td>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </details>
-                </dd>
-              </dl>
-            </section>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </dd>
+                  <dt className="mt-2">Minute-by-minute</dt>
+                  <dd className="ml-0">
+                    <details className="rounded border border-amber-200 bg-amber-100/50">
+                      <summary className="cursor-pointer select-none px-3 py-2 font-medium text-amber-900 hover:bg-amber-100">
+                        Grams infused each minute and cumulative grams
+                      </summary>
+                      <div className="px-2 pb-2">
+                        <table className="mt-2 w-full border-collapse border border-amber-200 text-left text-amber-800">
+                          <thead>
+                            <tr className="bg-amber-100 sticky top-0">
+                              <th className="border border-amber-200 p-2">Minute</th>
+                              <th className="border border-amber-200 p-2">Rate (mg/kg/min)</th>
+                              <th className="border border-amber-200 p-2">Grams this minute</th>
+                              <th className="border border-amber-200 p-2">Cumulative grams</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {minuteRows.map((row) => (
+                              <tr key={row.minute}>
+                                <td className="border border-amber-200 p-2">{row.minute}</td>
+                                <td className="border border-amber-200 p-2">{row.rate.toFixed(1)}</td>
+                                <td className="border border-amber-200 p-2">{row.gramsThisMinute.toFixed(4)}</td>
+                                <td className="border border-amber-200 p-2">{row.cumulativeGrams.toFixed(4)}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </details>
+                  </dd>
+                </dl>
+              </section>
             )}
           </div>
         </div>

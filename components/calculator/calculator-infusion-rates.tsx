@@ -14,9 +14,9 @@ export const CalculatorInfusionRatesData = () => {
   return (
     <div className="calculator-infusions">
       <ul className="list-disc list-outside pl-8">
-        <li>In the pivotal trial, QIVIGY was studied using a 30-minute infusion rate escalation protocol for the first infusion and a 15-minute infusion rate escalation protocol for subsequent infusions.<sup>2</sup>
+        <li>In the pivotal trial, QIVIGY was studied using a 30-minute infusion rate escalation protocol for the first infusion and a 15-minute infusion rate escalation protocol for subsequent infusions.<sup>1</sup>
         </li>
-        <li>Infusion rates should be increased only if the infusion is well tolerated.<sup>2</sup></li>
+        <li>Infusion rates should be increased only if the infusion is well tolerated.<sup>1</sup></li>
       </ul>
 
       <h2>Infusion Considerations<sup>1</sup></h2>
