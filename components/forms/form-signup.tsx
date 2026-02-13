@@ -107,7 +107,7 @@ export function SignupForm() {
       ) as HTMLInputElement | null
       if (honeypot?.value?.trim()) {
         setSubmitError(
-          "Something went wrong. Please try again or call 1-855-353-7466.",
+          "Something went wrong. Please try again or call 855-353-7466.",
         )
         setIsSubmitting(false)
         return
@@ -372,7 +372,7 @@ export function SignupForm() {
                 href="tel:+18553537466"
                 className="font-semibold focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded"
               >
-                1-866-398-0825
+                866-398-0825
               </a>, or email <a
                 href="mailto:US_MedicalInfo@kedrion.com"
                 className="font-semibold focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded"

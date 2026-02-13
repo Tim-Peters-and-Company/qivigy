@@ -17,7 +17,7 @@ export default function Home() {
         )}>NOW AVAILABLE</p>
         <Image src={BGImage} alt="" fill className="object-cover hidden md:block relative" />
         <Image src={BGImageMobile} alt="" className="block absolute top-0 left-0 w-full md:hidden" />
-        <Headline className="absolute top-[5.75%] sm:top-[6%] md:top-[8.5%] left-0 right-0 w-[90%] md:w-full max-w-[620px] mx-auto z-40 text-navy px-4" />
+        <Headline className="absolute top-[6.75%] sm:top-[6%] md:top-[8.5%] left-0 right-0 w-[90%] md:w-full max-w-[620px] mx-auto z-40 text-navy px-4" />
         <HomeData />
       </div>
     </>

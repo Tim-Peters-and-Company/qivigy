@@ -47,10 +47,10 @@ export const INFUSION_PROVIDERS = {
       websiteLabel: "aominfusionrx.com",
     },
     {
-      name: "BlueSky/BlueBird",
-      phone: "000-000-0000",
-      websiteUrl: "#",
-      websiteLabel: "TKTK",
+      name: "Bluebird Specialty Pharmacy, LLC",
+      phone: "704-804-3600",
+      websiteUrl: "https://bluebirdspecialtypharmacy.localsearch.com",
+      websiteLabel: "bluebirdspecialtypharmacy.localsearch.com",
     },
     {
       name: "Clinical Specialty Infusions of Dallas, LLC",
@@ -62,13 +62,13 @@ export const INFUSION_PROVIDERS = {
       name: "Elevance",
       phone: null,
       websiteUrl: "https://www.elevancehealth.com",
-      websiteLabel: "www.elevancehealth.com",
+      websiteLabel: "elevancehealth.com",
     },
     {
-      name: "Local Infusion",
-      phone: "000-000-0000",
-      websiteUrl: "#",
-      websiteLabel: "TKTK",
+      name: "Local Infusion Ambulatory Infusion Center",
+      phone: null,
+      websiteUrl: "https://mylocalinfusion.com",
+      websiteLabel: "mylocalinfusion.com",
     },
     {
       name: "Optum Infusion Pharmacy",

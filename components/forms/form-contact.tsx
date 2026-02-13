@@ -219,7 +219,7 @@ export function ContactForm() {
       const formEl = document.getElementById(formId) as HTMLFormElement | null
       const honeypot = formEl?.elements.namedItem("bot-field") as HTMLInputElement | null
       if (honeypot?.value?.trim()) {
-        setSubmitError("Something went wrong. Please try again or call 1-855-353-7466.")
+        setSubmitError("Something went wrong. Please try again or call 855-353-7466.")
         setIsSubmitting(false)
         return
       }
@@ -248,7 +248,7 @@ export function ContactForm() {
       setSuccessDialogOpen(true)
       form.reset()
     } catch {
-      setSubmitError("Something went wrong. Please try again or call 1-855-353-7466.")
+      setSubmitError("Something went wrong. Please try again or call 855-353-7466.")
     } finally {
       setIsSubmitting(false)
     }
@@ -552,7 +552,7 @@ export function ContactForm() {
           <DialogHeader>
             <DialogTitle>Thank you for requesting more information about QIVIGY<sup>®</sup>.</DialogTitle>
             <DialogDescription>
-              You may also call Kedrion Biopharma toll-free at <a href="tel:+18553537466" className="font-semibold text-navy underline focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded">1-855-353-7466</a> for assistance.{" "}
+              You may also call Kedrion Biopharma toll-free at <a href="tel:+18553537466" className="font-semibold text-navy underline focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 rounded">855-353-7466</a> for assistance.{" "}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="">

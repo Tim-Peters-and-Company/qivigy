@@ -77,7 +77,7 @@ export const DialogUSOnly = () => {
               {DialogUSOnlyData.description}
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="">
+          <DialogFooter className="flex flex-col md:flex-row">
             <Button
               type="button"
               variant="secondary"
@@ -105,7 +105,7 @@ export const DialogUSOnly = () => {
               {DialogLeavingSiteData.description}
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
+          <DialogFooter className="flex flex-col md:flex-row">
             <Button
               type="button"
               variant="secondary"
