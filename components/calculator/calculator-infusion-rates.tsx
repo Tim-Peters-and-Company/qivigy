@@ -29,7 +29,7 @@ export const CalculatorInfusionRatesData = () => {
         <li>Ensure that patients with pre-existing renal insufficiency are not volume depleted. For patients at risk of renal dysfunction or thrombosis, administer QIVIGY at the minimum dose and infusion rate practicable and discontinue QIVIGY if renal function deteriorates.</li>
       </ul>
 
-      <p><Button onClick={handleClick} className="whitespace-normal! leading-none!">Calculate Infusion Rates for a Patient</Button></p>
+      <p className="text-center md:text-left"><Button onClick={handleClick} className="whitespace-normal! leading-none!">Calculate Infusion Rates for a Patient</Button></p>
     </div>
   )
 }

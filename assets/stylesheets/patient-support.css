@@ -23,7 +23,7 @@
 }
 
 .patient-support-copay li {
-  @apply marker:text-deep-orange;
+  @apply marker:text-deep-orange text-[16px] leading-[22px] mb-1;
 }
 
 /* CALLOUT */

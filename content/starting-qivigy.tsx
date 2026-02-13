@@ -139,14 +139,14 @@ export const StartingQivigyCustomerService = () => {
           <Image className="mr-2" src={CustomerService1} alt="" width={80} height={80} />
           <span>
             <h2>GENERAL INFORMATION</h2>
-            <p>For more information, call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com" className="whitespace-nowrap">US_CustomerService@kedrion.com</a></strong> </p>
+            <p>For more information, call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap!">866-398-0825</a></strong> or email <strong><a href="mailto:US_CustomerService@kedrion.com" className="whitespace-nowrap!">US_CustomerService@kedrion.com</a></strong> </p>
           </span>
         </li>
         <li>
           <Image className="mr-2" src={CustomerService2} alt="" width={80} height={80} />
           <span>
             <h2>MEDICAL INFORMATION</h2>
-            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap">866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com" className="whitespace-nowrap">US_MedicalInfo@kedrion.com</a></strong></p>
+            <p>For Medical Information requests, including AMCP Dossier requests, please call <strong><a href="tel:1-866-398-0825" className="whitespace-nowrap!">866-398-0825</a></strong>, or email <strong><a href="mailto:US_MedicalInfo@kedrion.com" className="whitespace-nowrap!">US_MedicalInfo@kedrion.com</a></strong></p>
           </span>
         </li>
 

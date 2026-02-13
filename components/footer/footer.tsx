@@ -31,6 +31,7 @@ export default function Footer() {
             <div className="font-open-sans text-sm">
               <p>{footerCopyrightData.copyright}</p>
               <p>{footerCopyrightData.trademark}</p>
+              <p>{footerCopyrightData.otherTrademarks}</p>
               <p>{footerCopyrightData.version}</p>
             </div>
           </div>

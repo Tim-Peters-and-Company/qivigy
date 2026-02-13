@@ -16,5 +16,6 @@ export const footerLinksData = [
 export const footerCopyrightData = {
   copyright: "© 2026 Kedrion Biopharma Inc. All rights reserved.",
   trademark: "QIVIGY is a registered trademark of Kedrion S.p.A.",
+  otherTrademarks: "All other trademarks are the property of their respective owners.",
   version: "QIV.0005.USA.26 February 2026",
 };

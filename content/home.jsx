@@ -38,7 +38,7 @@ export const HomeData = () => {
             <p>
               <span className="item__number">3<span>%</span></span>{" "}
               <span className="item__focus">
-                <strong>OF THE YEAR ON ANTIBIOTICS<sup className="font-normal! text-sm!">1*</sup></strong>
+                <strong>OF THE YEAR ON ANTIBIOTICS<sup className="font-normal! text-sm!">1</sup>*</strong>
               </span>
             </p>
           </article>
@@ -60,7 +60,7 @@ export const HomeData = () => {
         </Button>
 
         <div className="reference-text text-left mx-auto mt-8 space-y-2 px-4 md:px-0 max-w-[655px]">
-          <p><span className="float-left -ml-1.5!">*</span>The median (min, max) duration of antibiotic treatment of any kind of infection was 10 days (1,334). A total of 36 (76.6%) patients used at least 1 course of concomitant antibiotic therapy for treatment of infections. Eleven patients (23.4%) did not require antibiotic treatment.<sup>2</sup></p>
+          <p><span className="float-left -ml-1.5!">*</span>The median (min, max) duration of antibiotic treatment of any kind of infection was 10 days (1, 334). A total of 36 (76.6%) patients used at least 1 course of concomitant antibiotic therapy for treatment of infections. Eleven patients (23.4%) did not require antibiotic treatment.<sup>2</sup></p>
 
           <p><span className="float-left -ml-1.5!">†</span>A study-specific patient satisfaction questionnaire was an exploratory endpoint in the trial and collected from all 47 treated patients at Week 24. Questionnaire results also showed 68% of patients were satisfied with their previous IVIG therapy.<sup>2</sup></p>
 

@@ -43,7 +43,7 @@
 }
 
 .starting-qivigy .starting-qivigy__characteristics li {
-  @apply flex items-start md:items-center gap-4 text-balance leading-none md:leading-normal;
+  @apply flex items-center md:items-center gap-4 text-balance leading-none md:leading-normal;
 }
 
 .starting-qivigy .starting-qivigy__characteristics img {
